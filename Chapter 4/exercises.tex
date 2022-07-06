@@ -12,6 +12,56 @@ Pauli $Y$: $\ket{0}+i\ket{1}$, $\ket{0}-i\ket{1}$\\
 Bloch sphere representations:
 
 \includegraphics*[scale=0.4]{4.1.png}
-
+\subsection*{Exercise 4.2}
+exp$(iAx)=\displaystyle\sum_n(iAx)^n=
+\displaystyle\sum_n(-1)^nx^{2n}I+\displaystyle\sum_n(-1)^nix^nA=
+\cos(x)I+i\sin{x}A$
+\subsection*{Exercise 4.3}
+Up to a global phase:\\
+$T=\noindent\begin{bmatrix}
+    e^{-i\pi/8} &0\\
+    0 & e^{i\pi/8}
+\end{bmatrix}=
+\begin{bmatrix}
+    e^{-i\frac{\pi}{4}/2} &0\\
+    0 & e^{i\frac{\pi}{4}/2}
+\end{bmatrix}=
+R_z(\pi/4)$
+\subsection*{Exercise 4.4}
+First consider $R_zR_xR_z$:\\
+$R_zR_xR_z=\begin{bmatrix}
+    \cos{\frac{\theta}{2}}e^{-i\theta} & -i\sin{\frac{\theta}{2}}\\
+    -i\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}e^{i\theta}
+\end{bmatrix}$\\
+For $\theta=\frac{\pi}{2}$:\\
+$R_zR_xR_z=\frac{1}{\sqrt{2}}\begin{bmatrix}
+  e^{-i\frac{\pi}{2}} &  e^{-i\frac{\pi}{2}} \\
+  e^{-i\frac{\pi}{2}}  & e^{i\frac{\pi}{2}}
+\end{bmatrix}$\\
+Hence, by multiplying by $e^{i\frac{\pi}{2}}$ we get,\\
+$e^{i\frac{\pi}{2}}R_zR_xR_z=\frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &  1 \\
+   1  & -1
+  \end{bmatrix}=H$\\
+\subsection*{Exercise 4.5}
+We have $n_x^2+n_y^2+n_z^2=1$\\
+$\hat{n}\cdot\vec{\sigma}=\begin{bmatrix}
+    n_z& n_x-in_y\\
+    n_x+in_y& n_z
+\end{bmatrix}$\\
+Therefore,\\
+$(\hat{n}\cdot\vec{\sigma})^2=\begin{bmatrix}
+    n_x^2+n_y^2+n_z^2&0\\
+    0&n_x^2+n_y^2+n_z^2
+\end{bmatrix}=\begin{bmatrix}
+    1&0\\
+    0&1
+\end{bmatrix}=I$\\
+Consider, $R_n(\theta)R_n(-\theta)$\\
+$I=R_n(\theta)R_n(-\theta)=(\cos(\frac{\theta}{2})I-\sin(\frac{\theta}{2})\hat{n}\cdot\vec{\sigma})
+(\cos(\frac{\theta}{2})I+\sin(\frac{\theta}{2})\hat{n}\cdot\vec{\sigma})=
+\cos^2(\frac{\theta}{2})I+\sin^2(\frac{\theta}{2})(\hat{n}\cdot\vec{\sigma})^2=
+(\cos^2(\frac{\theta}{2})+\sin^2(\frac{\theta}{2}))I=I$
+\subsection*{Exercise 4.6}
 
 \end{document}
