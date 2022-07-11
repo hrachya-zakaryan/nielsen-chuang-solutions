@@ -1,0 +1,79 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\usepackage{graphicx}
+\begin{document}
+\subsection*{Exercise 8.1}
+Under the transformation $\rho \rightarrow \mathcal{E}(\rho)$, the state transforms as
+$\ket{\psi}\rightarrow U\ket{\psi}$. Hence, the new density operator is 
+$\rho^\prime =U\ket{\psi}\bra{\psi}U^\dagger=U\rho U^\dagger$, and therefore $\rho$ transforms as
+$\rho \rightarrow U\rho U^\dagger$.
+\subsection*{Exercise 8.2}
+Let $\rho =\displaystyle \sum_i p_i \ket{i}\bra{i}$, hence after the measurement
+for each of the $i$ states will take the form, $\ket{i^\prime}=\frac{M_m\ket{i}}{\sqrt{\bra{i}
+M_m^\dagger M_m\ket{i}}}$. Therefore, for the final state $\rho^\prime$ we'll have,\\
+$\rho^\prime =\displaystyle \sum_i p_i \frac{M_m\ket{i}\bra{i}M_m^\dagger}{\sqrt{\bra{i}
+M_m^\dagger M_m\ket{i}}\sqrt{\bra{i}
+M_m M_m^\dagger\ket{i}}}=\frac{\mathcal{E}_m(\rho)}{tr(\mathcal{E}_m(\rho))}$\\
+For the probability of the $m$ state, using $p(m|i)=\bra{i}M_m^\dagger M_m\ket{i}$, we get\\
+$p(m)=\displaystyle \sum_{i} p_i p(m|i)=
+\displaystyle \sum_{i} p_i \bra{i}M_m^\dagger M_m\ket{i}=
+\displaystyle \sum_{i} p_i tr(M_m^\dagger M_m\ket{i}\bra{i})=
+tr(\mathcal{E}_m(\rho))$
+\subsection*{Exercise 8.3}
+Initially we have the state $\rho\otimes \ket{0_{CD}}\bra{0_{CD}}$. Consider the action
+of $\mathcal{E}$($i$ basis for $A$, $j$ basis for $D$),\\
+$\mathcal{E}(\rho)=tr_A(tr_D(U[\rho\otimes \ket{0_{CD}}\bra{0_{CD}}]U^\dagger))=
+\displaystyle \sum_{i} \sum_{j} \bra{i}\bra{j}U[\rho\otimes \ket{0_{CD}}\bra{0_{CD}}]U^\dagger
+\ket{j}\ket{i}=\\
+\displaystyle \sum_{i} \sum_{j} \bra{i}\bra{j}U\ket{0_{CD}}\rho\bra{0_{CD}}U^\dagger
+\ket{j}\ket{i}=\displaystyle \sum_j E_j\rho E_j^\dagger$.\\
+where $E_j=\displaystyle \sum_i  \bra{i}\bra{j}U\ket{0_{CD}}$\\
+Also, (using $\displaystyle \sum_{i} \ket{i}\bra{i}=I$)\\
+$\displaystyle \sum_j E_j^\dagger E_j=\displaystyle \sum_i\sum_j 
+\bra{0_{CD}}U^\dagger \ket{j}\ket{i}\bra{i}\bra{j}U\ket{0_{CD}}=
+I\bra{0_{CD}}U^\dagger U\ket{0_{CD}} =I\braket{0_{CD}|0_{CD}}=I$\\
+\subsection*{Exercise 8.4}
+$E_k=\bra{k}U\ket{0}$, hence using the orthogonality of the $\ket{0}$ and $\ket{1}$
+states, $E_0=P_0$, $E_1=P_1$. Therefore,\\
+$\mathcal{E}(\rho)=\ket{0}\bra{0}\rho \ket{0}\bra{0}+\ket{1}\bra{1}\rho \ket{1}\bra{1}$
+\subsection*{Exercise 8.5}
+$E_0=\frac{X}{\sqrt{2}}$, $E_1=\frac{Y}{\sqrt{2}}$\\
+$\mathcal{E}(\rho)=\frac{1}{2}(X\rho X^\dagger + Y\rho Y^\dagger)=
+\frac{1}{2}(X\rho X - Y\rho Y)$
+\subsection*{Exercise 8.6}
+In general the composition of quantum operations is still a quantum operation, hence we
+only prove the general case.\\
+Let $\rho$ belong to a Hilbert Space $\mathcal{H}$ and let the quantum operations be given by,
+$\mathcal{E}(\rho)=\displaystyle \sum_i E_i \rho E_i^\dagger$ and
+$\mathcal{F}(\rho)=\displaystyle \sum_i F_i \rho F_i^\dagger$.\\
+As by definition, $\mathcal{E}$ and $\mathcal{F}$ are quantum operations, there exist states
+$\omega_\mathcal{E}$ and $\omega_\mathcal{F}$ and unitary operators
+$U_\mathcal{E}$ and $U_\mathcal{F}$ on Hilbert spaces
+$\mathcal{K}_\mathcal{E}$ and $\mathcal{K}_\mathcal{F}$, respectively, such that\\
+$\mathcal{E}(\rho)=tr_{\mathcal{K}_\mathcal{E}}(U_\mathcal{E}[\rho\otimes\omega_\mathcal{E}]U_\mathcal{E}^\dagger)$ and
+$\mathcal{F}(\rho)=tr_{\mathcal{K}_\mathcal{F}}(U_\mathcal{F}[\rho\otimes\omega_\mathcal{F}]U_\mathcal{F}^\dagger)$.\\
+Consider the Hilbert space $\mathcal{K}=\mathcal{K}_\mathcal{E}\otimes\mathcal{K}_\mathcal{F}$ and the state
+$\omega=\omega_\mathcal{E}\otimes\omega_\mathcal{F}$. Consider the ampliations
+$\hat{U}_\mathcal{E}$ and $\hat{U}_\mathcal{F}$ of $U_\mathcal{E}$ and $U_\mathcal{F}$ to
+$\mathcal{H}\otimes\mathcal{K}$, i.e $\hat{U}_\mathcal{E}=U_\mathcal{E}\otimes \mathcal{I}$ and
+$\hat{U}_\mathcal{F}=\mathcal{I}\otimes U_\mathcal{F}$. Lastly, take $U=\hat{U}_\mathcal{F} \hat{U}_\mathcal{E}$,
+which is an operator on $\mathcal{H}\otimes\mathcal{K}$. Finally, consider\\
+\begin{align*}
+tr_\mathcal{K}(U[\rho\otimes\omega]U^\dagger)&=
+tr_{\mathcal{K}_\mathcal{E}\otimes\mathcal{K}_\mathcal{F}}
+(\hat{U}_\mathcal{F}\hat{U}_\mathcal{E}[\rho\otimes\omega_\mathcal{E}\otimes\omega_\mathcal{F}]
+\hat{U}_\mathcal{E}\hat{U}_\mathcal{F})\\ 
+&=tr_{\mathcal{K}_\mathcal{F}}(tr_{\mathcal{K}_\mathcal{E}}(\hat{U}_\mathcal{F}
+(U_\mathcal{E}[\rho\otimes\omega_\mathcal{E}]U_\mathcal{E}^\dagger\otimes\omega_\mathcal{F})\hat{U}_\mathcal{F}^\dagger))\\
+&= tr_{\mathcal{K}_\mathcal{F}}(U_\mathcal{F}(tr_{\mathcal{K}_\mathcal{E}}
+(U_\mathcal{E}[\rho\otimes\omega_\mathcal{E}]U_\mathcal{E}^\dagger)\otimes\omega_\mathcal{F})U_\mathcal{F}^\dagger)\\
+&= tr_{\mathcal{K}_\mathcal{F}}(U_\mathcal{F}(\mathcal{E}(\rho)
+\otimes\omega_\mathcal{F})U_\mathcal{F}^\dagger)\\
+&=\mathcal{F}(\mathcal{E}(\rho))
+\end{align*}
+From the trace as previously we can obtain an operator-sum representation, hence
+the composition even for different input and output spaces is a quantum operation.
+
+\end{document}
