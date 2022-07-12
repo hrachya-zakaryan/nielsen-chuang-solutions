@@ -42,6 +42,7 @@ $\mathcal{E}(\rho)=\ket{0}\bra{0}\rho \ket{0}\bra{0}+\ket{1}\bra{1}\rho \ket{1}\
 $E_0=\frac{X}{\sqrt{2}}$, $E_1=\frac{Y}{\sqrt{2}}$\\
 $\mathcal{E}(\rho)=\frac{1}{2}(X\rho X^\dagger + Y\rho Y^\dagger)=
 \frac{1}{2}(X\rho X - Y\rho Y)$
+\newpage
 \subsection*{Exercise 8.6}
 In general the composition of quantum operations is still a quantum operation, hence we
 only prove the general case.\\
@@ -75,5 +76,42 @@ tr_{\mathcal{K}_\mathcal{E}\otimes\mathcal{K}_\mathcal{F}}
 \end{align*}
 From the trace as previously we can obtain an operator-sum representation, hence
 the composition even for different input and output spaces is a quantum operation.
+\subsection*{Exercise 8.7}
+Again consider, $\rho^{QE}=\rho\otimes\sigma$. The final state after a general measurement
+with outcome $m$ is,\\
+$\frac{M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger}{tr(M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger)}$\\
+Hence, tracing out $E$ the final state of Q is,\\
+$\frac{tr_E(M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger)}{tr(M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger)}$\\
+Define, $\mathcal(E)_m(\rho)=tr_E(M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger)$. Let 
+$\sigma=\displaystyle \sum_J\ket{j}\bra{j}$ and consider an orthonormal basis $\ket{e_k}$
+for the system $E$. We get,\\
+$\mathcal{E}_m(\rho)=\displaystyle \sum_{jk}q_jtr_E(\ket{e_k}\bra{e_k}M_mU(\rho\otimes\sigma)U^\dagger M_m^\dagger\ket{e_k}\bra{e_k})=
+\displaystyle \sum_{jk} E_{jk}\rho E_{jk}^\dagger$\\
+where $E_{jk}=\sqrt{q_j}\bra{e_k}M_mU\ket{j}$
+\subsection*{Exercise 8.8}
+The process will be identical to the trace-preserving method, with the addition of the 
+$E_\infty$ operation element. Additionally, we need to add another orthonormal basis vector
+$\ket{e_\infty}$ to our basis, i.e ampliate the Hilbert Space of the environment.
+\newpage
+\subsection*{Exercise 8.9}
+Consider the action of $U$ on $\rho\otimes \ket{e_0}\bra{e_0}$ succeeded by a measurement by $P_m$.
+Tracing over this will give the probability of the outcome $m$.\\
+\begin{align*}
+    p(m)&=tr(P_m U(\rho\otimes \ket{e_0}\bra{e_0})U^\dagger P_m)\\
+&=tr(\displaystyle \sum_k \ket{m,k}\bra{m,k}U\ket{e_0}\rho\bra{e_0}U^\dagger \ket{m,k}\bra{m,k})\\
+&=tr(\displaystyle \sum_{k,m^\prime,k^\prime} \ket{m,k}\bra{m,k}E_{m^\prime k^\prime}\ket{m^\prime, k^\prime}
+\rho\bra{m^\prime, k^\prime}E_{m^\prime k^\prime}^\dagger \ket{m,k}\bra{m,k})\\
+&=tr(\displaystyle \sum_{k} \ket{m,k}E_{m k}
+\rho E_{mk}^\dagger\bra{m,k})\\
+&=tr_Q(tr_E(\displaystyle \sum_{k} \ket{m,k}E_{mk}
+\rho E_{mk}^\dagger\bra{m,k}))\\
+&=tr_Q(\displaystyle \sum_{k} E_{mk}
+\rho E_{mk}^\dagger)\\
+&=tr_Q(\mathcal{E}_m(\rho))=tr(\mathcal{E}_m(\rho))
+\end{align*}\\
+
+For the state we have,
+$\frac{tr_E(P_m U(\rho\otimes \ket{e_0}\bra{e_0})U^\dagger P_m)}{p(m)}=\frac{\mathcal{E}_m(\rho)}{tr(\mathcal{E}_m(\rho))}$
+\subsection*{Exercise 8.10}
 
 \end{document}
