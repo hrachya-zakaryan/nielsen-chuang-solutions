@@ -113,5 +113,74 @@ Tracing over this will give the probability of the outcome $m$.\\
 For the state we have,
 $\frac{tr_E(P_m U(\rho\otimes \ket{e_0}\bra{e_0})U^\dagger P_m)}{p(m)}=\frac{\mathcal{E}_m(\rho)}{tr(\mathcal{E}_m(\rho))}$
 \subsection*{Exercise 8.10}
+\subsection*{Exercise 8.15}
+This is the bit flip channel with $p=0.5$, hence it deforms into a line on the x-axis.
+\subsection*{Exercise 8.16}
+\subsection*{Exercise 8.17}
+$\mathcal{E}(I)=\frac{I+XX+YY+ZZ}{4}=\frac{4I}{4}=I$\\
+$\mathcal{E}(X)=\frac{X+XXX+YXY+ZXZ}{4}=\frac{X+X-X-X}{4}=0$\\
+Similarly, $\mathcal{E}(Y)=\mathcal{E}(Z)=0$\\
+$\rho=\frac{I+\vec{r}\cdot\vec{\sigma}}{2}\\
+2\rho=I+r_xX+r_yY+r_zZ$\\
+Left and right multiplying by $X$, $Y$ and $Z$ we get,\\
+$2X\rho X=I+r_xX-r_yY-r_zZ\\
+2Y\rho Y=I-r_xX+r_yY-r_zZ\\
+2Z\rho Z=I-r_xX-r_yY+r_zZ$\\
+Adding all 4 equations,\\
+$2(\rho+X\rho X+Y\rho Y+Z\rho Z)=4I\\
+\frac{I}{2}=\frac{\rho+X\rho X+Y\rho Y+Z\rho Z}{4}$
+\subsection*{Exercise 8.18}
+We have, $\mathcal{E}(\rho)=\rho^\prime=\displaystyle \frac{pI}{2}+(1-p)\rho$ and
+$\rho=\displaystyle\frac{I+r\cdot\sigma}{2}$. Hence substituting $\rho$ we get,\\
+$\rho^\prime=\displaystyle \frac{I}{2}+\frac{(1-p)r\cdot\sigma}{2}$.
+Now we need to find the eigenvalues of $\rho$ and $\rho^\prime$. For $\rho^\prime$ we have,\\
+$\begin{vmatrix}
+    \frac{1}{2}+\frac{1-p}{2}r_z-\lambda & \frac{1-p}{2}(r_x-ir_y)\\
+    \frac{1-p}{2}(r_x+ir_y) &      \frac{1}{2}-\frac{1-p}{2}r_z-\lambda
+\end{vmatrix}
+=0$\\
+Hence, $\lambda=1\pm\frac{1-p}{4}|r|$ and similarly for $\rho$, $\lambda=1\pm\frac{1}{4}|r|$.\\
+Therefore we have,\\
+$tr(\rho)=(1-\frac{|r|}{4})^k+(1+\frac{|r|}{4})^k=\displaystyle \sum_{n}{k\choose 2n}\left(\frac{|r|}{4}\right)^{2n}$\\
+$tr(\rho^\prime)=(1-\frac{(1-p)|r|}{4})^k+(1+\frac{(1-p)|r|}{4})^k=\displaystyle \sum_{n}{k\choose 2n}\left(\frac{(1-p)|r|}{4}\right)^{2n}$\\
+Therefore, $tr(\rho^\prime)\leq tr(\rho)$ with equality for $p=0$.
+
+\subsection*{Exercise 8.19}
+We have $\mathcal{E}(\rho)=\frac{pI}{d}+(1-p)\rho$. We know that $tr(\rho)=1$, hence can write,
+$\frac{I}{d}=\frac{I}{d}tr(\rho)$. Consider an orthonormal basis $\ket{i}$ for the system. This gives,\\
+$\cfrac{I}{d}=\displaystyle \cfrac{1}{d}\sum_i \ket{i}\bra{i}\sum_j \bra{j}\rho\ket{j}=
+\displaystyle \frac{1}{d}\sum_{i,j} \ket{i} \bra{j}\rho\ket{j}\bra{i}$\\
+Hence, we can choose as the operation elements $\{\sqrt{\frac{p}{d}}\ket{i}\bra{j}\}$
+\subsection*{Exercise 8.20}
+Let the initial state be $\ket{\psi_0}=a\ket{00}+b\ket{10}$. Then applying the controlled-$R_y$ and CNOT gates we get.\\
+After the $R_y$ we have,\\
+$\ket{\psi_1}=a\ket{00}+b\cos{\frac{\theta}{2}}\ket{10}+b\sin{\frac{\theta}{2}}\ket{11}$\\
+After the CNOT we have,\\
+$\ket{\psi_2}=a\ket{00}+b\cos{\frac{\theta}{2}}\ket{10}+b\sin{\frac{\theta}{2}}\ket{01}$\\
+Tracing over the environment we get,\\
+$tr_E(\ket{\psi_2}\bra{\psi_2})=(a\ket{0}+b\cos{\frac{\theta}{2}}\ket{1})(a^*\bra{0}+b^*\cos{\frac{\theta}{2}}\bra{1})+
+bb^*\sin^2{\frac{\theta}{2}}\ket{0}\bra{0}=
+\begin{bmatrix}
+    |a|^2+|b|^2\sin^2{\frac{\theta}{2}} & ab^*\cos{\frac{\theta}{2}}\\
+    ba^*\cos{\frac{\theta}{2}} &    |b|^2\cos^2{\frac{\theta}{2}}
+\end{bmatrix}$\\
+If we apply amplitude damping to our original state we get,\\
+$\mathcal{E}_{AD}=E_0
+\begin{bmatrix}
+    |a|^2&ab^*\\
+    ba^*& |b|^2
+\end{bmatrix}
+E_0^\dagger +E_1
+\begin{bmatrix}
+    |a|^2&ab^*\\
+    ba^*& |b|^2
+\end{bmatrix}
+E_1^\dagger=
+\begin{bmatrix}
+    |a|^2+\gamma|b|^2& ab*\sqrt{1-\gamma}\\
+    ba^*\sqrt{1-\gamma} & |b|^2(1-\gamma)
+\end{bmatrix}$\\
+Comparing with the model above we see that, the circuit does indeed model the quantum operation
+with $\gamma=\sin^2{\frac{\theta}{2}}$.
 
 \end{document}
