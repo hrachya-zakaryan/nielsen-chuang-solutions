@@ -1,0 +1,112 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\usepackage{graphicx}
+\begin{document}
+\subsection*{Exercise 9.1}
+$D((1,0),(\frac{1}{2}, \frac{1}{2}))=\frac{1}{2}*2*\frac{1}{2}=\frac{1}{2}$\\
+\\
+$D((\frac{1}{2},\frac{1}{3},\frac{1}{6}),(\frac{3}{4},\frac{1}{8}, \frac{1}{8}))=
+\frac{1}{2}(\frac{1}{4}+\frac{5}{24}+\frac{1}{24})=\frac{1}{4}$
+\subsection*{Exercise 9.2}
+$D((p, 1-p),(q, 1-q))=\frac{1}{2}(|p-q|+|1-p-1+q|)=\frac{1}{2}(|p-q|+|p-q|)=|p-q|$
+\subsection*{Exercise 9.3}
+$F((1,0),(\frac{1}{2}, \frac{1}{2}))=\frac{1}{\sqrt{2}}$\\
+\\
+$F((\frac{1}{2},\frac{1}{3},\frac{1}{6}),(\frac{3}{4},\frac{1}{8}, \frac{1}{8}))=
+\sqrt{\frac{3}{8}}+\sqrt{\frac{1}{24}}+\sqrt{\frac{1}{48}}=0.96$
+\subsection*{Exercise 9.4}
+$D(p_x,q_x)=\frac{1}{2}\displaystyle\sum_x|p_x-q_x|=\frac{1}{2}\left(\displaystyle\sum_{p_x> q_x}(p_x-q_x)-
+\sum_{p_x< q_x}(p_x-q_x)\right)$\\
+\\
+$\displaystyle\sum_{p_x<q_x}(p_x-q_x)=\sum_{p_x<q_x}p_x-\sum_{p_x<q_x}q_x=1-\sum_{p_x>q_x}p_x-1+\sum_{p_x>q_x}q_x=
+-\sum_{p_x>q_x}(p_x-q_x)$\\
+\\
+Therefore,\\
+$D(p_x, q_x)=\displaystyle \sum_{p_x>q_x}(p_x-q_x)$\\
+Looking at the last term, if we add an other $(p_{x^\prime},q_{x^\prime})$ pair to the sum, the overall sum
+will decrease as $(p_{x^\prime}-q_{x^\prime})$ is negative. Hence,\\
+$D(p_x, q_x)=\displaystyle \sum_{p_x>q_x}(p_x-q_x)=\displaystyle \max_S \left|\sum_{x\in S}(p_x-q_x)\right|$
+\subsection*{Exercise 9.5}
+
+\subsection*{Exercise 9.6}
+$D\left(\frac{3}{4}\ket{0}\bra{0}+\frac{1}{4}\ket{1}\bra{1},\frac{2}{3}\ket{0}\bra{0}+\frac{1}{3}\ket{1}\bra{1}\right)=
+\frac{1}{2}tr\left|\frac{1}{12}\ket{0}\bra{0}-\frac{1}{12}\ket{1}\bra{1}\right|=\frac{1}{12}$
+\\
+\\
+$D\left(\frac{3}{4}\ket{0}\bra{0}+\frac{1}{4}\ket{1}\bra{1},\frac{2}{3}\ket{+}\bra{+}+\frac{1}{3}\ket{-}\bra{-}\right)=\\
+\\
+=D\left(\frac{3}{4}\ket{0}\bra{0}+\frac{1}{4}\ket{1}\bra{1},
+\frac{1}{2}(\ket{0}\bra{0}+\ket{1}\bra{1})+\frac{1}{6}(\ket{0}\bra{1}+\ket{1}\bra{0})\right)=\\
+\\
+=\frac{1}{2}tr\left|\frac{1}{4}\ket{0}\bra{0}-\frac{1}{4}\ket{1}\bra{1}
++\frac{1}{6}(\ket{0}\bra{1}+\ket{1}\bra{0})\right|=\frac{\sqrt{13}}{12}$
+\subsection*{Exercise 9.7}
+Let $\rho-\sigma=UDU^\dagger=U(\Lambda_++\Lambda_-)U^\dagger$, where $\Lambda_+$ and $\Lambda_-$
+are the diagonal matrices of the positive and negative eigenvalues of $\rho-\sigma$.\\
+ Hence, we can write\\
+$\rho-\sigma=U\Lambda_+U^\dagger+U\Lambda_-U^\dagger=Q-S$, where $Q=U\Lambda_+U^\dagger$ and
+$S=-U\Lambda_-U^\dagger$ are positive operators, with their support being the partial eigenbasis
+of $\rho-\sigma$, which is orthogonal.
+\subsection*{Exercise 9.8}
+Using $\displaystyle\sum_ip_i=1$ we have,\\
+$D\left(\displaystyle\sum_ip_i\rho_i,\sigma\right)=D\left(\sum_ip_i\rho_i,\sum_ip_i\sigma\right)$\\
+From eq 9.50$\left(D\left(\displaystyle\sum_ip_i\rho_i,\sum_ip_i\sigma\right)
+\leq\sum_ip_iD(\rho_i,\sigma_i)\right)$, it follows that,\\
+$D\left(\displaystyle\sum_ip_i\rho_i,\sigma\right)=D\left(\sum_ip_i\rho_i,\sum_ip_i\sigma\right)
+\leq\sum_ip_iD(\rho_i,\sigma)$
+\subsection*{Exercise 9.9}
+The set of the density matrices(positive, trace one, Hermitian) is convex and compact. Hence,
+as the CPTP maps are continuous, they have a fixed point. 
+\subsection*{Exercise 9.10}
+Let $\rho$ and $\sigma$,$\rho\neq\sigma$ both be fixed points of $\mathcal{E}$. Therefore,
+$D(\mathcal{E}(\rho),\mathcal{E}(\sigma))=D(\rho, \sigma)$ from the definition of a fixed point.
+However, $D(\mathcal{E}(\rho),\mathcal{E}(\sigma))<D(\rho, \sigma)$, hence we have a contradiction,
+therefore, $\rho=\sigma$, i.e there's a unique fixed point.
+\subsection*{Exercise 9.11}
+\begin{align*}
+D(\mathcal{E}(\rho), \mathcal{E}(\sigma))&=
+D(p\rho_0+(1-p)\mathcal{E}^\prime(\rho), p\rho_0+(1-p)\mathcal{E}^\prime(\sigma))\\&\leq
+pD(\rho_0,\rho_0)+(1-p)D(\mathcal{E}^\prime(\rho),\mathcal{E}^\prime(\sigma))\\&\leq
+(1-p)D(\rho, \sigma)   
+\end{align*}
+Therefore, as $0\leq (1-p)< 1$, we have $D(\mathcal{E}(\rho), \mathcal{E}(\sigma))<D(\rho,\sigma)$, i.e.
+$\mathcal{E}$ is strictly contractive.
+\subsection*{Exercise 9.12}
+\begin{align*}
+    D(\mathcal{E}(\rho), \mathcal{E}(\sigma))&=\frac{1}{2}tr\left|\frac{pI}{2}-(1-p)\rho-
+    \frac{pI}{2}+(1-p)\sigma\right|\\&=\frac{1}{2}(1-p)tr|\rho-\sigma|\\
+    &=(1-p)D(\rho, \sigma)
+\end{align*}
+Therefore, as $0\leq (1-p)< 1$, we have $D(\mathcal{E}(\rho), \mathcal{E}(\sigma))<D(\rho,\sigma)$.
+\subsection*{Exercise 9.13}
+$\mathcal{E}(\rho)=p\rho+(1-p)X\rho X$\\
+Using that $D(X\rho X, X\sigma X)=D(\rho, \sigma)$($X$ unitary) and 
+Theorem 9.3, i.e.\\
+\begin{align*}
+    D\left(\displaystyle\sum_ip_i\rho_i,\sum_ip_i\sigma_i\right)\leq\sum_ip_iD(\rho_i, \sigma_i)
+\end{align*}
+we have,
+\begin{align*}
+    D(\mathcal{E}(\rho), \mathcal{E}(\sigma))&=
+    D(p\rho+(1-p)X\rho X, p\sigma+(1-p)X\sigma X)\\&\leq
+    pD(\rho,\sigma)+(1-p)D(X\rho X, X\sigma X)\\&=
+    pD(\rho,\sigma)+(1-p)D(\rho, \sigma)=D(\rho, \sigma)
+\end{align*}
+Hence, $\mathcal{E}$ is contractive but not strictly contractive.
+\subsection*{Exercise 9.14}
+Using the fact that density matrices are positive operators and the given identity, we have,
+\begin{align*}
+    F(U\rho U^\dagger, U\sigma U^\dagger)&=
+    tr\sqrt{(U\rho U^\dagger)^{1/2}U\sigma U^\dagger(U\rho U^\dagger)^{1/2}}\\&=
+    tr\sqrt{U\rho^{1/2} U^\dagger U\sigma U^\dagger U\rho^{1/2} U^\dagger}\\&=
+    tr\sqrt{U\rho^{1/2} \sigma \rho^{1/2} U^\dagger}\\&=
+    tr(U\sqrt{\rho^{1/2} \sigma \rho^{1/2}}U^\dagger)=tr\sqrt{\rho^{1/2} \sigma \rho^{1/2}}=
+    F(\rho, \sigma)
+\end{align*}
+\subsection*{Exercise 9.15}
+\subsection*{Exercise 9.16}
+\subsection*{Exercise 9.17}
+
+\end{document}
