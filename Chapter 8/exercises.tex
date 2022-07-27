@@ -116,6 +116,8 @@ $\frac{tr_E(P_m U(\rho\otimes \ket{e_0}\bra{e_0})U^\dagger P_m)}{p(m)}=\frac{\ma
 \subsection*{Exercise 8.15}
 This is the bit flip channel with $p=0.5$, hence it deforms into a line on the x-axis.
 \subsection*{Exercise 8.16}
+The map $\rho \rightarrow tr(\rho)$(measurement) is a quantum operation, however it cannot be described by a deformation of the
+bloch sphere.
 \subsection*{Exercise 8.17}
 $\mathcal{E}(I)=\frac{I+XX+YY+ZZ}{4}=\frac{4I}{4}=I$\\
 $\mathcal{E}(X)=\frac{X+XXX+YXY+ZXZ}{4}=\frac{X+X-X-X}{4}=0$\\
@@ -177,13 +179,56 @@ E_0^\dagger +E_1
 \end{bmatrix}
 E_1^\dagger=
 \begin{bmatrix}
-    |a|^2+\gamma|b|^2& ab*\sqrt{1-\gamma}\\
+    |a|^2+\gamma|b|^2& ab^*\sqrt{1-\gamma}\\
     ba^*\sqrt{1-\gamma} & |b|^2(1-\gamma)
 \end{bmatrix}$\\
 Comparing with the model above we see that, the circuit does indeed model the quantum operation
 with $\gamma=\sin^2{\frac{\theta}{2}}$.
 \subsection*{Exercise 8.21}
+1) $H$ preserves the total number of particles, hence we can write,\\
+\begin{align*}
+    E_k=\bra{k_b}U\ket{0_b}&=\displaystyle \sum_n \ket{n-k}\bra{n-k, k}U\ket{n,0}\bra{n}\\
+    &=\sum_n \ket{n-k}\bra{n-k, k}U\left(\frac{a^\dagger}{\sqrt{n!}}\right)^n\ket{0,0}\bra{n}\\
+    &=\sum_n \frac{1}{\sqrt{n!}}\ket{n-k}\bra{n-k, k}\left(Ua^\dagger U^\dagger\right)^nU\ket{0,0}\bra{n}
+\end{align*}\\
+However,\\
+$U\ket{0,0}=\displaystyle \sum_n \frac{(-i\chi\Delta t)^n}{n!}(a^\dagger b +b^\dagger a)^n\ket{0,0}$\\
+As, $a\ket{0,0}=0$ and $b\ket{0,0}=0$ we're only left with the zeroth order term, hence
+\\$U\ket{0,0}=\ket{0,0}$.\\
+Using the Baker-Cambell-Hausdorf formula $\displaystyle e^{\lambda G}Ae^{-\lambda G}=
+\sum_n \frac{\lambda^n}{n!}C_n$, where $C_0=A$ and $C_n=[G,C_{n-1}]$, in conjunction with
+the commutation relations
+$[a^\dagger b +b^\dagger a,a^\dagger]=b^\dagger$ and $[a^\dagger b +b^\dagger a,b^\dagger]=a^\dagger$, we have\\
+\begin{align*}
+    Ua^\dagger U^\dagger&=\displaystyle \sum_n \frac{(-i\chi\Delta t)^{2n}}{2n!}a^\dagger+
+    \frac{(-i\chi\Delta t)^{2n+1}}{(2n+1)!}b^\dagger\\
+    &=\cos(\chi\Delta t)a^\dagger - i\sin(\chi\Delta t)b^\dagger\\
+    &=\sqrt{1-\gamma}a^\dagger-i\sqrt{\gamma}b^\dagger
+\end{align*}\\
+Hence,\\
+\begin{align*}
+    E_k&=\displaystyle\sum_n \frac{1}{\sqrt{n!}}\bra{n-k, k}(\sqrt{1-\gamma}a^\dagger-
+    i\sqrt{\gamma}b^\dagger)^n\ket{0,0}\ket{n-k}\bra{n}\\
+    &=\sum_n \frac{(-i)^m}{\sqrt{n!}} {n \choose m} \sqrt{(1-\gamma)^{n-m}}\sqrt{\gamma^m}\bra{n-k, k}
+    (a^\dagger)^{n-m}(b^\dagger)^m\ket{0,0}\ket{n-k}\bra{n}\\
+    &=\sum_n \frac{(-i)^m}{\sqrt{n!}} {n \choose m} \sqrt{(1-\gamma)^{n-m}}\sqrt{\gamma^m}
+    \sqrt{(n-m)!m!}\braket{n-k, k|n-m,m}\ket{n-k}\bra{n}\\
+    &=\sum_n \frac{(-i)^k}{\sqrt{n!}} {n \choose k} \sqrt{(1-\gamma)^{n-k}\gamma^k}
+    \sqrt{(n-k)!k!}\ket{n-k}\bra{n}\\
+    &=\sum_n \sqrt{n \choose k} \sqrt{(1-\gamma)^{n-k}\gamma^k}\ket{n-k}\bra{n}
+\end{align*}\\
+where in the last line we have neglected the global phase factor $(-i)^k$.\\
+2) To show that $E_k$ is trace-preserving we need to show that $\displaystyle \sum_k E_k^\dagger E_k=I$.
+\begin{align*}
+    \displaystyle \sum_k E_k^\dagger E_k&=\sum_k\sum_n{n \choose k}(1-\gamma)^{n-k}\gamma^k
+    \ket{n}\braket{n-k|n-k}\bra{n}\\
+    &= \sum_n\sum_k{n \choose k}(1-\gamma)^{n-k}\gamma^k
+    \ket{n}\bra{n}\\
+    &=\sum_n(1-\gamma+\gamma)^n\ket{n}\bra{n}\\
+    &=\sum_n \ket{n}\bra{n}=I
+\end{align*}\\
 
+Hence, $E_k$ is a trace-preserving quantum operation.
 \subsection*{Exercise 8.22}
 $\mathcal{E}_{AD}(\rho)=E_0\rho E_0^\dagger+E_1\rho E_1^\dagger=
 \begin{bmatrix}
@@ -223,10 +268,172 @@ $\mathcal{E}_{AD}(\rho)=E_0\rho E_0^\dagger+E_1\rho E_1^\dagger=
     b^*\sqrt{1-\gamma}& c(1-\gamma)
 \end{bmatrix}$
 \subsection*{Exercise 8.23}
+For $\mathcal{E}_{AD}(\rho)$ $E_0=\ket{0}\bra{0}+\sqrt{1-\gamma}\ket{1}\bra{1}$ and
+$E_1=\sqrt{\gamma}\ket{0}\bra{1}$. Hence,\\
+\begin{align*}
+    \mathcal{E}_{AD}\otimes\mathcal{E}_{AD}(\ket{\psi}\bra{\psi})&=
+    I\otimes\mathcal{E}_{AD}(\mathcal{E}_{AD} \otimes I(\ket{\psi}\bra{\psi}))\\
+    &=I\otimes\mathcal{E}_{AD}((a\ket{01}+\sqrt{1-\gamma}b\ket{10})(a^*\bra{01}+\sqrt{1-\gamma}b^*\bra{10})
+    +b^2\gamma\ket{00}\bra{00})\\
+    &=(\sqrt{1-\gamma}a\ket{01}+\sqrt{1-\gamma}b\ket{10})
+    (\sqrt{1-\gamma}a^*\bra{01}+\sqrt{1-\gamma}b^*\bra{10})\\
+    &+\sqrt{\gamma}a^2\ket{00}\bra{00}\sqrt{\gamma}+\sqrt{\gamma}b^2\ket{00}\bra{00}\sqrt{\gamma}\\
+    &=\sqrt{1-\gamma}(a\ket{01}+b\ket{10})(a^*\bra{01}+b^*\bra{10})\sqrt{1-\gamma}\\
+    &=\sqrt{1-\gamma}I\ket{\psi}\bra{\psi}I\sqrt{1-\gamma}\\
+    &+\sqrt{\gamma}(\ket{00}\bra{01}+\ket{00}\bra{10})(\ket{\psi}\bra{\psi})
+    (\ket{01}\bra{00}+\ket{10}\bra{00})\sqrt{1-\gamma}\\
+    &=E_0^{dr}\ket{\psi}\bra{\psi}E_0^{dr\dagger}+E_1^{dr}\ket{\psi}\bra{\psi}E_1^{dr\dagger}
+\end{align*}
 
 \subsection*{Exercise 8.24}
+$U=\ket{00}\bra{00}+\cos(gt)(\ket{01}\bra{01}+\ket{10}\bra{10})-
+\sin(gt)(\ket{01}\bra{10}+\ket{10}\bra{01})$\\
+$E_0=\ket{0}\bra{0}+\cos(gt)\ket{1}\bra{1}$\\
+$E_1=\cos(gt)\ket{0}\bra{0}$
 \subsection*{Exercise 8.25}
+$\rho_\infty=
+\begin{bmatrix}
+    p&0\\
+    0&1-p
+\end{bmatrix}$\\
+$\mathcal{E}_{GAD}(\rho_\infty)=
+\begin{bmatrix}
+    p^2+2p(1-p)\gamma&0\\
+    0& (1-p)^2+2p(1-p)\gamma
+\end{bmatrix}
+=\begin{bmatrix}
+    p&0\\
+    0&1-p
+\end{bmatrix}$\\
+Therefore, $p=1$,i.e $p_0=1$ and $p_1=0$.\\
+$p_1=\displaystyle \frac{e^{-E_1/k_bT}}{e^{-E_0/k_bT}+e^{-E_1/k_bT}}=
+\displaystyle\frac{1}{e^{E_1-E_0/k_bT}+1}$\\
+Therefore, for $p_1=0$ we require $T=0$.
+
 \subsection*{Exercise 8.26}
+Let the initial state be $\ket{\psi_0}=a\ket{00}+b\ket{10}$. Then applying the controlled-$R_y$ we get.\\
+After the $R_y$ we have,\\
+$\ket{\psi_1}=a\ket{00}+b\cos{\frac{\theta}{2}}\ket{10}+b\sin{\frac{\theta}{2}}\ket{11}$\\
+Tracing over the environment we get,\\
+$tr_E(\ket{\psi_1}\bra{\psi_1})=(a\ket{0}+b\cos\frac{\theta}{2}\ket{1})(a^*\bra{0}+b^*\cos\frac{\theta}{2}\bra{1})+
+bb^*\sin^2\frac{\theta}{2}\ket{1}\bra{1}
+\begin{bmatrix}
+    |a|^2&ab^*\cos\frac{\theta}{2}\\
+    a^*b\cos\frac{\theta}{2}& |b|^2
+\end{bmatrix}$\\
+If we apply phase damping to our original state we get,\\
+$\mathcal{E}_{PD}=E_0
+\begin{bmatrix}
+    |a|^2&ab^*\\
+    ba^*& |b|^2
+\end{bmatrix}
+E_0^\dagger +E_1
+\begin{bmatrix}
+    |a|^2&ab^*\\
+    ba^*& |b|^2
+\end{bmatrix}
+E_1^\dagger=
+\begin{bmatrix}
+    |a|^2& ab^*\sqrt{1-\lambda}\\
+    ba^*\sqrt{1-\lambda} & |b|^2
+\end{bmatrix}$\\
+Comparing with the model above we see that, the circuit does indeed model the 
+phase damping quantum operation
+with $\lambda=\sin^2{\frac{\theta}{2}}$, where $\theta=2\chi\Delta t$.
 \subsection*{Exercise 8.27}
+We have,
+\begin{align*}
+    \begin{bmatrix}
+        1 & 0\\
+        0 &\sqrt{1-\lambda}
+    \end{bmatrix}&=
+    u_{00}\sqrt{\alpha}
+    \begin{bmatrix}
+        1 &0\\
+        0& 1
+    \end{bmatrix}
+    +u_{01}\sqrt{1-\alpha}
+    \begin{bmatrix}
+        1&0\\
+        0& -1
+    \end{bmatrix}\\
+    \begin{bmatrix}
+        0 & 0\\
+        0 &\sqrt{\lambda}
+    \end{bmatrix}&=
+    u_{10}\sqrt{\alpha}
+    \begin{bmatrix}
+        1 &0\\
+        0& 1
+    \end{bmatrix}
+    +u_{11}\sqrt{1-\alpha}
+    \begin{bmatrix}
+        1&0\\
+        0& -1
+    \end{bmatrix}
+\end{align*}\\
+Therefore,\\
+\begin{align*}
+    u=
+    \begin{bmatrix}
+      \frac{1+\sqrt{1-\lambda}}{2\sqrt{\alpha}}&  \frac{1-\sqrt{1-\lambda}}{2\sqrt{1-\alpha}}\\
+      \frac{\sqrt{\lambda}}{2\sqrt{\alpha}} & \frac{-\sqrt{\lambda}}{2\sqrt{1-\alpha}} 
+    \end{bmatrix}
+\end{align*}
 \subsection*{Exercise 8.28}
+Let the initial state be, 
+$\rho_0=p_0(a\ket{00}+b\ket{10})(a^*\bra{00}+b^*\bra{10})
++p_1(a\ket{01}+b\ket{11})(a^*\bra{01}+b^*\bra{11})$.\\
+After applying a CNOT we have,\\
+$\rho_1=p_0(a\ket{00}+b\ket{10})(a^*\bra{00}+b^*\bra{10})
++p_1(a\ket{11}+b\ket{01})(a^*\bra{11}+b^*\bra{01})$\\
+Tracing over the environment we get,\\
+$tr_E(\rho_1)=p_0(a\ket{0}+b\ket{1})(a^*\bra{0}+b^*\bra{1})+
+p_1(a\ket{1}+b\ket{0})(a^*\bra{1}+b^*\bra{0})=\\
+\begin{bmatrix}
+    p_0|a|^2+p_1|b|^2& p_0ab^*+p_1ba^*\\
+    p_0ba^*+p_1ab^* & p_0|b|^2+p_1|a|^2
+\end{bmatrix}=
+\begin{bmatrix}
+    p_0|a|^2+(1-p_0)|b|^2& p_0ab^*+(1-p_0)ba^*\\
+    p_0ba^*+(1-p_0)ab^* & p_0|b|^2+(1-p_0)|a|^2
+\end{bmatrix}=\\
+\begin{bmatrix}
+    p_0|a|^2+(1-p_0)|b|^2& p_0ab^*+(1-p_0)ba^*\\
+    p_0ba^*+(1-p_0)ab^* & p_0|b|^2+(1-p_0)|a|^2
+\end{bmatrix}$\\
+If we apply phase damping to the initial state,\\
+$\mathcal{E}_{PD}(\ket{\psi_0}\bra{\psi_0})=$
+\subsection*{Exercise 8.29}
+$\mathcal{E}_D(I)=\frac{pI}{2}+(1-p)I=(1-\frac{p}{2})I$\\
+$\mathcal{E}_PD(I)=
+\begin{bmatrix}
+    1&0\\
+    0&1-\lambda
+\end{bmatrix}+
+\begin{bmatrix}
+    0&0\\
+    0&\lambda
+\end{bmatrix}=I$\\
+$\mathcal{E}_AD(I)=
+\begin{bmatrix}
+    1&0\\
+    0&1-\gamma
+\end{bmatrix}+
+\begin{bmatrix}
+    \gamma&0\\
+    0&0
+\end{bmatrix}=
+\begin{bmatrix}
+    1+\gamma&0\\
+    0&1-\gamma
+\end{bmatrix}$
+\subsection*{Exercise 8.30}
+Compare the form of the density matrix in 7.144 and Exercise 8.22. The diagonal term have the
+terms proportional to $1-\gamma$, while the off-diagonal ones to $\sqrt{1-\gamma}$. Compering
+with the exponential terms in 7.144, we can see that $T_2=\frac{T_1}{2}$.\\
+In phase damping only the off-diagonal terms decay, hence if we have both amplitude and
+phase damping, $T_2\leq\frac{T_1}{2}$.
+\subsection*{Exercise 8.31}
+
 \end{document}
