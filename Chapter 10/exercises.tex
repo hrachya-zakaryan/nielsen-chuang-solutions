@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\begin{document}
+\subsection*{Exercise 10.1}
+Let $\ket{\psi}=a\ket{0}+b\ket{1}$ and the initial state be $\ket{\psi_0}=a\ket{000}+b\ket{100}$.\\
+Applying a CNOT to the first two qubits we get,\\
+$\ket{\psi_1}=a\ket{000}+b\ket{110}$\\
+Applying a CNOT to the first and last qubits we get,\\
+$\ket{\psi_2}=a\ket{000}+b\ket{111}$
+\subsection*{Exercise 10.2}
+$P_\pm=\frac{1}{2}(\ket{0}\pm\ket{1})(\bra{0}\pm\bra{1})=
+\frac{1}{2}(\ket{0}\bra{0}+\ket{1}\bra{1}\pm\ket{1}\bra{0}\pm\ket{0}\bra{1})
+=\frac{1}{2}(I\pm X)$\\
+Therefore,\\
+$\mathcal{E}(\rho)=(1-2p)\rho+2pP_+\rho P_++2pP_-\rho P_-=
+(1-2p)\rho+\frac{1}{2}p(I+X)\rho(I+X)+\frac{1}{2}p(I-X)\rho(I-X)=
+(1-2p)\rho+p\rho+pX\rho X=(1-p)\rho+pX\rho X$
+\subsection*{Exercise 10.3}
+$Z_2Z_3Z_1Z_2=[I\otimes (\ket{00}\bra{00}+\ket{11}\bra{11})-I\otimes (\ket{01}\bra{01}+\ket{10}\bra{10})]
+[(\ket{00}\bra{00}+\ket{11}\bra{11})\otimes I-(\ket{01}\bra{01}+\ket{10}\bra{10})\otimes I]=
+\underbrace{\ket{000}\bra{000}+\ket{111}\bra{111}}_{P_0}
+-(\underbrace{\ket{100}\bra{100}+\ket{011}\bra{011}}_{P_1})\\
++\underbrace{\ket{010}\bra{010}+\ket{101}\bra{101}}_{P_2}
+-(\underbrace{\ket{001}\bra{001}+\ket{110}\bra{110}}_{P_3})$
+\subsection*{Exercise 10.4}
+
+\subsection*{Exercise 10.5}
+\subsection*{Exercise 10.6}
+\subsection*{Exercise 10.7}
+\subsection*{Exercise 10.8}
+\subsection*{Exercise 10.9}
+\subsection*{Exercise 10.10}
+\subsection*{Exercise 10.11}
+\subsection*{Exercise 10.12}
+\subsection*{Exercise 10.13}
+\subsection*{Exercise 10.14}
+\subsection*{Exercise 10.15}
+\subsection*{Exercise 10.16}
+\subsection*{Exercise 10.17}
+\subsection*{Exercise 10.18}
+\subsection*{Exercise 10.19}
+\subsection*{Exercise 10.20}
+\subsection*{Exercise 10.21}
+\subsection*{Exercise 10.22}
+\subsection*{Exercise 10.23}
+\subsection*{Exercise 10.24}
+\subsection*{Exercise 10.25}
+\subsection*{Exercise 10.26}
+
+\end{document}

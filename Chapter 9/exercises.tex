@@ -2,7 +2,6 @@
 \usepackage{amsmath}
 \usepackage[margin=0.9in]{geometry}
 \usepackage{braket}
-\usepackage{graphicx}
 \begin{document}
 \subsection*{Exercise 9.1}
 $D((1,0),(\frac{1}{2}, \frac{1}{2}))=\frac{1}{2}*2*\frac{1}{2}=\frac{1}{2}$\\
@@ -106,7 +105,45 @@ Using the fact that density matrices are positive operators and the given identi
     F(\rho, \sigma)
 \end{align*}
 \subsection*{Exercise 9.15}
+Let $\ket{\psi}=(U_R\otimes\sqrt{\rho}U_Q)\ket{m}$ be a 
+fixed purification for $\rho$ with fixed $U_R$ and $U_M$. Repeating the steps
+in Uhlmann's theorems proof, we get,\\
+$|\braket{\psi|\phi}|=|tr(V_R^\dagger U_RU_Q^\dagger \sqrt{\rho}\sqrt{\sigma}V_Q)|$\\
+Where, $V_R$ and $V_Q$ define an arbitrary purification of $\sigma$. Hence, letting
+$U=V_QV_R^\dagger U_RU_Q^\dagger$, from Lemma 9.5 we have\\
+$|\braket{\psi|\phi}|=|tr(\sqrt{\rho}\sqrt{\sigma}U)\leq tr|\sqrt{\rho}\sqrt{\sigma}|=
+tr\sqrt{\rho^{1/2}\sigma\rho^{1/2}}$\\
+Let, $\sqrt{\rho}\sqrt{\sigma}=|\sqrt{\rho}\sqrt{\sigma}|V$ be the polar decomposition of
+$\sqrt{\rho}\sqrt{\sigma}$. Choosing, $V_R=U_R$ and $V_Q=V^\dagger U_Q$, we get $U=V^\dagger$.
+Therefore, for such $V_R$ and $V_Q$ by Lemme 9.5,\\
+$|\braket{\psi|\phi}|=tr\sqrt{\rho^{1/2}\sigma\rho^{1/2}}$\\
+i.e\\
+$F(\rho, \sigma)=\displaystyle\max_{\ket{\phi}}|\braket{\psi|\phi}|$
 \subsection*{Exercise 9.16}
+$\bra{m}(A\otimes B)\ket{m}=\displaystyle \sum_{i,j}=
+\bra{i_R}A\ket{j_R}\bra{i_Q}B\ket{j_Q}=\sum_{i,j}A^\dagger_{ji}B_{ij}=tr(A^\dagger B)$
 \subsection*{Exercise 9.17}
+$0\leq F(\rho, \sigma)\leq 1$, hence for $A(\rho, \sigma)=\arccos F(\rho, \sigma)$ we have
+$0\leq A(\rho, \sigma)\leq \frac{\pi}{2}$\\
+$A(\rho, \sigma)=0$ if and only if $F(\rho, \sigma)=1$, which is only true if and only if
+$\rho=\sigma$.
+\subsection*{Exercise 9.18}
+In the range $0\leq x\leq 1$ $\arccos x$ is a decreasing function, hence from
+$F(\mathcal{E}(\rho),\mathcal{E}(\sigma))\geq F(\rho, \sigma)$ we have\\
+$\arccos{F(\mathcal{E}(\rho),\mathcal{E}(\sigma))}\leq \arccos{F(\rho, \sigma)}$\\
+Therefore,\\
+$A(\mathcal{E}(\rho),\mathcal{E}(\sigma))=\arccos{F(\mathcal{E}(\rho),\mathcal{E}(\sigma))}
+\leq F(\rho, \sigma)=A(\rho, \sigma)$
+\subsection*{Exercise 9.19}
+Using Theorem 9.7 and letting $q_i=p_i$ we have\\
+$F\left(\displaystyle \sum_i p_i\rho_i,\sum_ip_i\sigma_i\right)\geq \displaystyle \sum_i\sqrt{p_ip_i}F(\rho_i,\sigma_i)
+=\sum_i p_iF(\rho_i, \sigma_i)$
+\subsection*{Exercise 9.20}
+Using Theorem 9.7 and letting $\sigma_i=\sigma$ we have,\\
+$F\left(\displaystyle \sum_i p_i\rho_i,\sigma\right)=
+F\left(\displaystyle \sum_i p_i\rho_i,\sum_ip_i\sigma\right)\geq
+\displaystyle \sum_i p_iF(\rho_i, \sigma)$
+\subsection*{Exercise 9.21}
+
 
 \end{document}
