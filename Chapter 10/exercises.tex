@@ -25,26 +25,217 @@ $Z_2Z_3Z_1Z_2=[I\otimes (\ket{00}\bra{00}+\ket{11}\bra{11})-I\otimes (\ket{01}\b
 +\underbrace{\ket{010}\bra{010}+\ket{101}\bra{101}}_{P_2}
 -(\underbrace{\ket{001}\bra{001}+\ket{110}\bra{110}}_{P_3})$
 \subsection*{Exercise 10.4}
-
+1)$\ket{000}\bra{000}$, $\ket{111}\bra{111}$: no bit flip\\
+$\ket{100}\bra{100}$, $\ket{011}\bra{011}$: first bit flipped\\
+$\ket{010}\bra{010}$, $\ket{101}\bra{101}$: second bit flipped\\
+$\ket{001}\bra{001}$, $\ket{110}\bra{110}$: third bit flipped\\
+2) If our state is $\ket{\psi}=a\ket{000}+b\ket{111}$, then the measurement will
+collapse the state into $\ket{000}$ or $\ket{111}$ with probabilities $|a|^2$ or $|b|^2$,
+respectively. Hence, only the computational basis states $\ket{000}$ and $\ket{111}$ can 
+be corrected.\\
+3)Assuming the initial state is $\ket{000}$ the probability that one or fewer bit flips occur is $(1-p)^3+p(1-p)^2$, hence
+$F\geq\sqrt{(1-p)^3+p(1-p)^2}$.
 \subsection*{Exercise 10.5}
+Assuming no more than one error has occurred, $X_1X_2X_3X_4X_5X_6$ will be $1$ if no phase flip occurred
+and $-1$ and if one occurred on the first or second block. Identically for $X_4X_5X_6X_7X_8X_9$.
+Hence, if both give $-1$ the error is on the second block, otherwise it's on the first block if
+$X_1X_2X_3X_4X_5X_6$ gives $-1$ and on the third block if $X_4X_5X_6X_7X_8X_9$ gives $-1$.
+If both give $1$ then no error has occurred.
 \subsection*{Exercise 10.6}
+The eigenvalues of $Z$ are $\pm 1$, hence\\
+$Z_1Z_2Z_3(\ket{000}-\ket{111})=\ket{000}-(-1)^3\ket{111}=\ket{000}+\ket{111}$
 \subsection*{Exercise 10.7}
+Need to prove that $PE_i^\dagger E_jP=\alpha_{ij}P$. $I$ and $X$ are Hermitian, hence suffices
+to show for $IX_1$,$II$,$X_1X_1$ and $X_1X_2$.\\
+$P\sqrt{(1-p)^3}I\sqrt{p(1-p)^2}X_1P=(1-p)^2\sqrt{p(1-p)}
+(\ket{000}\bra{000}+\ket{111}\bra{111})X_1(\ket{000}\bra{000}+\ket{111}\bra{111})=
+(1-p)^2\sqrt{p(1-p)}
+(\ket{000}\bra{000}+\ket{111}\bra{111})(\ket{100}\bra{000}+\ket{011}\bra{111})=0$\\
+$P\sqrt{(1-p)^3}I\sqrt{(1-p)^3}IP=(1-p)^3PP=(1-p)^3P$\\
+$P\sqrt{p(1-p)^2}X_1\sqrt{p(1-p)^2}X_1P=p(1-p)^2PIP=p(1-p)^2P$\\
+$P\sqrt{p(1-p)^2}X_1\sqrt{p(1-p)^2}X_2=p(1-p)^2
+(\ket{000}\bra{000}+\ket{111}\bra{111})(\ket{110}\bra{000}+\ket{001}\bra{111})=0$\\
+Hence, the quantum error-correction conditions are satisfied.
 \subsection*{Exercise 10.8}
+$P=\ket{+++}\bra{+++}+\ket{---}\bra{---}$, hence like in the previous exercise.\\
+$PE_i^\dagger E_jP=0$, $i\neq j$\\
+$PE_i^\dagger E_jP=P$, $i=j$\\
+Hence, the quantum error-correction conditions are satisfied.
 \subsection*{Exercise 10.9}
+$PIIP=P$\\
+$PIP_1P=(\ket{+++}\bra{+++}+\ket{---}\bra{---})(\ket{0}\bra{0}\otimes I\otimes I)
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})=
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})\frac{1}{\sqrt{2}}(\ket{0++}\bra{+++}+\ket{0--}\bra{---})=
+\frac{1}{2}(\ket{+++}\bra{+++}+\ket{---}\bra{---})=\frac{1}{2}P$\\
+Identically,\\
+$PIQ_1P=\frac{1}{2}P$\\
+$PP_1Q_1=0$\\
+$PP_1P_1P=PP_1P=\frac{1}{2}P$\\
+$PQ_1Q_1P=PQ_1P=\frac{1}{2}P$\\
+$PP_1P_2P=(\ket{+++}\bra{+++}+\ket{---}\bra{---})(\ket{0}\bra{0}\otimes \ket{0}\bra{0}\otimes I)
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})=
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})\frac{1}{2}(\ket{00+}\bra{+++}+\ket{00-}\bra{---})=
+\frac{1}{4}(\ket{+++}\bra{+++}+\ket{---}\bra{---})=\frac{1}{4}P$\\
+$PP_1Q_2P=(\ket{+++}\bra{+++}+\ket{---}\bra{---})(\ket{0}\bra{0}\otimes \ket{1}\bra{1}\otimes I)
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})=
+(\ket{+++}\bra{+++}+\ket{---}\bra{---})\frac{1}{2}(\ket{01+}\bra{+++}-\ket{01-}\bra{---})
+=\frac{1}{4}(\ket{+++}\bra{+++}+\ket{---}\bra{---})=\frac{1}{4}P$\\
+Hence, the quantum error-correction conditions are satisfied.
 \subsection*{Exercise 10.10}
+$P=\ket{0_L}\bra{0_L}+\ket{1_L}\bra{1_L}$\\
+Due to phase and bit flips,\\
+$PIX_iP=PIY_iP=PIZ_iP=0$\\
+$PIIP=PX_iX_iP=PY_iY_iP=PZ_iZ_iP=P$\\
+The $X_i$ and $Y_i$ change the individual qubits, hence if $i\neq j$ $PX_iY_jP=0$, e.g.
+for $PX_1Y_2P$ looking at the first triplet, we have\\
+$(\bra{000}+\bra{111})i(\ket{110}-\ket{001})=0$\\
+$X_iY_i=iZ_i$, hence $PX_iY_iP=0$\\
+For $Z_iZ_j$ if $i$ and $j$ belong to different triplets then we have a phase flip on $2$
+separate triplets, hence $PZ_iZ_jP=0$. \\
+However, if $i$ and $j$ are in the same triplet, then
+we apply $2$ phase shifts to the triplet which is equivalent to no change, hence
+$PZ_iZ_jP=P$.\\
+For $X_iZ_j$ and $Y_iZ_j$ we perform a bit and phase flip, hence for all $i$ and $j$
+$PX_iZ_jP=PY_iZ_jP=0$.
+
 \subsection*{Exercise 10.11}
+$\mathcal{E}(\rho)=\frac{I}{2}$\\
+Consider the operation elements found for the general depolarizing channel in Exercise
+8.19 $\{\sqrt{\frac{p}{d}}\ket{i}\bra{j}\}$. Taking $p=1$ and $d=2$, we get 
+$\{\frac{1}{2}\ket{0}\bra{0},\frac{1}{2}\ket{1}\bra{1},\frac{1}{2}\ket{0}\bra{1},\frac{1}{2}\ket{1}\bra{0}\}$.
 \subsection*{Exercise 10.12}
+$F(\ket{0},\mathcal{E}(\ket{0}\bra{0}))=\sqrt{\bra{0}\mathcal{E}(\ket{0}\bra{0})\ket{0}}\\
+=\sqrt{\bra{0}((1-p)\ket{0}\bra{0}+\frac{p}{3}(X\ket{0}\bra{0}X+Y\ket{0}\bra{0}+Z\ket{0}\bra{0}Z))\ket{0}}=
+\sqrt{1-p+\frac{p}{3}}=\sqrt{1-\frac{2p}{3}}$
+As the depolarizing channel is symmetric, for any pure state $\ket{\psi}$,\\ 
+$F(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=\sqrt{1-\frac{2p}{3}}$. \\As fidelity is
+jointly concave, for any $\rho$ and some $\ket{\psi}$ we have,\\
+$F(\rho, \mathcal{E}(\rho))\geq F(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=\sqrt{1-\frac{2p}{3}}$
 \subsection*{Exercise 10.13}
+Let $\ket{\psi}=a\ket{0}+b\ket{1}$\\
+$F(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=\sqrt{\bra{\psi}\mathcal{E}(\ket{\psi}\bra{\psi})\ket{\psi}}
+\\
+\sqrt{|\bra{\psi}E_0\ket{\psi}|^2+|\bra{\psi}E_1\ket{\psi}|^2}=
+\sqrt{||a|^2+|b|^2\sqrt{1-\gamma}|^2+|a|b|^2\sqrt{\gamma}|^2}$\\
+Minimum will occur when $a=0$ and $b=1$, hence\\
+$F_{min}(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=F(\ket{1},\mathcal{E}(\ket{1}\bra{1}))=\sqrt{1-\gamma}$
 \subsection*{Exercise 10.14}
+$G=
+rk\underbrace{\left\{
+\begin{bmatrix}
+    1 & 0 & \ldots & 0\\
+    \scriptstyle{r}\vdots & \vdots & \vdots & \vdots\\
+    1 & 0 & \ldots & 0\\
+    0 & 1 & \ldots & 0\\
+    \vdots & \vdots & \vdots & \vdots\\
+    0 & 1 & \ldots & 0\\
+    \vdots & \vdots & \vdots & \vdots\\
+    0 & 0 & \ldots & 1\\
+    \vdots & \vdots & \vdots & \vdots\\
+    0 & 0 & \ldots & 1
+    
+\end{bmatrix}\right.}_{k}$
+\newpage
 \subsection*{Exercise 10.15}
+Let $c_1$ and $c_2$ be columns of $G$. Then\\
+$G=[c_1|c_2|G^\prime]\\
+G^{\prime\prime}=[c_1|c_1+c_2|G^\prime]$\\
+Let $x=(x_1,x_2,\ldots, x_n)$.\\
+$Gx=c_1x_1+c_2x_2+\ldots$\\
+$G^{\prime\prime}x=c_1x_1+(c_1+c_2)x_2+\ldots$\\
+$G^{\prime\prime}x-Gx=c_1x_2\in C$\\
+Therefore, as $C$ is linear with $G$ as generator, $G^{\prime\prime}$ is a generator for
+$C$ as well, as the difference of the two codes is still in $C$.  
 \subsection*{Exercise 10.16}
+Let $r_1$ and $r_2$ be rows of $H$. Then\\
+$H=\left[\begin{array}{c}
+    r_1 \\ \hline
+    r_2 \\ \hline
+    H^\prime
+    \end{array}\right]$\\
+$H^{\prime\prime}=\left[\begin{array}{c}
+    r_1 \\ \hline
+    r_1+r_2 \\ \hline
+    H^\prime
+    \end{array}\right]$\\
+Let $x=(x_1,x_2,\ldots, x_n)$.\\
+$Hx=\begin{bmatrix}
+    r_1x\\
+    r_2x\\
+    \vdots
+\end{bmatrix}=0$\\
+Therefore, $r_1x=r_2x=0$. Hence,\\
+$H^{\prime\prime}x=\begin{bmatrix}
+    r_1x\\
+    r_1x+r_2x\\
+    \vdots
+\end{bmatrix}=0$\\
+Hence, $H^{\prime\prime}$ is a parity check matrix for the same code.
 \subsection*{Exercise 10.17}
+$y_1=(1,1,1,0,0,0)$, $y_2=(0,0,0,1,1,1)$, hence we can take $y_3$ to $y_6$ as,\\
+$y_3=(1,1,0,0,0,0)$\\
+$y_4=(1,0,1,0,0,0)$\\
+$y_5=(0,0,0,0,1,1)$\\
+$y_6=(0,0,0,1,0,1)$\\
+Therefore,\\
+$H=\begin{bmatrix}
+    1&1&0&0&0&0\\
+    1&0&1&0&0&0\\
+    0&0&0&0&1&1\\
+    0&0&0&1&0&1\\
+\end{bmatrix}$
+\newpage
 \subsection*{Exercise 10.18}
+Let $x$ be an arbitrary message to be encoded. Then,\\
+$y=Gx\in C$\\
+Hence,
+$HGx=Hy=0$ for $\forall x$\\
+Hence,
+$HG=0$
 \subsection*{Exercise 10.19}
+Using that $HG=0$ we have,\\
+$HG=\begin{bmatrix}
+    a_{11}& a_{12} &\ldots&a_{1k}&1& \ldots &0\\
+    \vdots &\vdots &\vdots &\vdots & &\ddots &\\
+    a_{(n-k)1}& a_{(n-k)2} &\ldots&a_{(n-k)k}&0 &\ldots &1
+\end{bmatrix}
+\begin{bmatrix}
+    b_{11}&b_{12}&\ldots&b_{1k}\\
+    \vdots &\vdots &\vdots &\vdots\\
+    b_{n1}&b_{n2}&\ldots&b_{nk}
+\end{bmatrix}=0$\\
+Hence,\\
+$\displaystyle\sum_{i\leq k}a_{1i}b_{i1}+b_{(k+1)1}=0
+\ldots
+\displaystyle\sum_{i\leq k}a_{(n-k)i}b_{i1}+b_{n1}=0\\
+\vdots\\
+\displaystyle\sum_{i\leq k}a_{1i}b_{ik}+b_{(k+1)k}=0
+\ldots
+\displaystyle\sum_{i\leq k}a_{(n-k)i}b_{ik}+b_{nk}=0$\\
+We see that for example, taking for $2\leq i \leq k$ $b_{i1}=0$ , $b_{11}=1$ and $b_{(k+1)1}=-a_{11}$
+gives a solution.\\
+Therefore for $i,j\leq k$ $b_{ij}=\delta_{ij}$ and for $i,j>k$ $b_{ij}=-a_{(i-k)j}$, i.e.\\
+$G=\left[\begin{array}{c}
+    I_k\\ \hline
+    -A
+    \end{array}\right]$
 \subsection*{Exercise 10.20}
+Let $x$ be a codeword such that wt$(x)\leq d-1$. Let $H={c_1|c_2\ldots c_n}$ for code $C$. Consider $Hx$,\\
+$Hx=\displaystyle \sum_ic_ix_i$ for $d-1$ columns. Therefore, as any $d-1$ columns are linearly
+independent, this sum cannot equal $0$. Hence, $d(C)\geq d$. However, as any $d$ columns
+are linearly dependant there exists a codeword $y$ with wt$(y)=d$ such that $Hy=0$. Therefore,
+$d(C)=d$.
 \subsection*{Exercise 10.21}
+The parity check matrix is a $n-k$ by $n$ matrix, hence the maximum number of linearly independent
+columns is $n-k$. Therefore, from Exercise 10.20 $n-k\geq d-1$.
 \subsection*{Exercise 10.22}
+The Hamming parity check matrix is constructed from columns which are all the possible
+$n-k$ bit strings, of which there are $2^r-1$ of excluding the $0$ string. Hence, any
+two columns will be linearly independent as all are different, however there always will be $3$
+linearly dependant columns, e.g. $(1,0,0,\ldots)$, $(0,1,0,\ldots)$ and $(1,1,0,\ldots)$.
+Therefore, as per exercise 10.20 the code will have distance $3$. 
 \subsection*{Exercise 10.23}
+
 \subsection*{Exercise 10.24}
 \subsection*{Exercise 10.25}
 \subsection*{Exercise 10.26}
