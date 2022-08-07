@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage[margin=0.9in]{geometry}
 \usepackage{braket}
+\usepackage{graphicx}
 \begin{document}
 \subsection*{Exercise 10.1}
 Let $\ket{\psi}=a\ket{0}+b\ket{1}$ and the initial state be $\ket{\psi_0}=a\ket{000}+b\ket{100}$.\\
@@ -237,7 +238,106 @@ Therefore, as per exercise 10.20 the code will have distance $3$.
 \subsection*{Exercise 10.23}
 
 \subsection*{Exercise 10.24}
+If $C^\perp\subseteq C$, $\forall x$ ${y=Gx}\in C^\perp$ and $G^T=H^\perp$.
+Hence, $\forall x$ $G^TGx=H^\perp y=0$, i.e. $G^TG=0$.\\
+If $G^TG=0$, $\forall x$ $G^TGx=H^\perp y=0$, therefore $y\in C^\perp$, hence
+$C^\perp\subseteq C$.
 \subsection*{Exercise 10.25}
+$x=H^Tz_0$\\
+If $x\in C^\perp$, \\
+$\displaystyle \sum_{y\in C} (-1)^{x.y}=\sum_{z}(-1)^{(H^Tz_0)^TGz}=
+\sum_{z}(-1)^{z_0^THGz}=\sum_{z}(-1)^{0}=|C|$\\
+If $x\notin C^\perp$,\\
+$\displaystyle \sum_{y\in C} (-1)^{x.y}=\sum_{z}(-1)^{x^TGz}$\\
+Let, $x^TG=z_1^T$, then\\
+$\displaystyle \sum_{y\in C} (-1)^{x.y}=\sum_z(-1)^{z_1.z}$\\
+As we're summing over all $z$, $z_1.z=0$ or $1$ both with probability $\frac{1}{2}$.
+Hence,\\
+$\displaystyle \sum_{y\in C} (-1)^{x.y}=0$
 \subsection*{Exercise 10.26}
-
+To perform the transformation $\ket{x}\ket{0}\rightarrow\ket{x}\ket{Hx}$ we perform the
+following. Let $\ket{x}=\ket{x_1,x_2,\ldots,x_n}$ and $\ket{0}=\ket{0_1,0_2,\ldots, 0_m}$.
+ For each $0_i$,
+consider the $i^{th}$ row of $H$ and for each column $j$ which is $1$ apply a
+CNOT between $x_j$ and the $0_i$ with $x_j$ the control. After,
+applying this for all the qubits of $\ket{0}$ we obtain the desired transformation. As an example
+here's the circuit for $H=\begin{bmatrix}
+    1 & 1 & 0\\
+    0& 1&1
+\end{bmatrix}$,\\
+\begin{center}
+    \includegraphics[scale=0.7]{26.png}
+\end{center}
+\subsection*{Exercise 10.27}
+Consider a bit error $e_1$ and flip error $e_2$. We get,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|}}\sum_{y\in C_2}(-1)^{u.y}
+(-1)^{(x+y+v).e_2}\ket{x+y+v+e_1}$\\
+Applying the parity matrix $H_1$ to $\ket{x+C_2}\ket{0}$ we get,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|}}\sum_{y\in C_2}(-1)^{u.y}
+(-1)^{(x+y+v).e_2}\ket{x+y+v}\ket{H_1(v+e_1)}$\\
+As $v$ is known so is $H_1v$, hence we can calculate the syndrome
+$H_1e_1$. Therefore, removing the bit error we get,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|}}\sum_{y\in C_2}(-1)^{u.y}
+(-1)^{(x+y+v).e_2}\ket{x+y+v}$\\
+Applying Hadamard gates to each qubit we get,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|2^n}}\sum_z\sum_{y\in C_2}
+(-1)^{u.y}(-1)^{(x+y+v).(z+e_2)}\ket{z}=
+\frac{1}{\sqrt{|C_2|2^n}}\sum_z\sum_{y\in C_2}
+(-1)^{(u+z+e_2).y}(-1)^{(x+v).(z+e_2)}\ket{z}$\\
+Let $e_2+z=z^\prime+u$, then we have,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|2^n}}\sum_{z^\prime}\sum_{y\in C_2}
+(-1)^{z^\prime.y}(-1)^{(x+v).(z^\prime +u)}\ket{z^\prime+e_2+u}$\\
+Using Exercise 10.25 we get,\\
+$\displaystyle\frac{1}{\sqrt{2^n/|C_2|}}\sum_{z^\prime\in C_2^\perp}
+(-1)^{(x+v).(z^\prime +u)}\ket{z^\prime+e_2+u}$\\
+Once again by knowing $H_2u$ we calculate the syndrome $H_2e_2$, where
+$H_2$ is the parity check matrix for $C_2^\perp$, and hence correct the
+error $e_2$ to get,\\
+$\displaystyle\frac{1}{\sqrt{2^n/|C_2|}}\sum_{z^\prime\in C_2^\perp}
+(-1)^{(x+v).(z^\prime +u)}\ket{z^\prime+u}$\\
+Applying the Hadamards again we get,\\
+$\displaystyle\frac{1}{\sqrt{|C_2|}}\sum_{y\in C_2}(-1)^{u.y}
+\ket{x+y+v}$\\
+Hence, this has the same error-correcting properties as the
+$CSS(C_1,C_2)$.
+\subsection*{Exercise 10.28}
+For the $[7,4,3]$ Hamming code we have,\\
+$H=
+\begin{bmatrix}
+    0&0&0&1&1&1&1\\
+    0&1&1&0&0&1&1\\
+    1&0&1&0&1&0&1
+\end{bmatrix}$\\
+$HH[C_2]^T=\begin{bmatrix}
+    0&0&0&1&1&1&1\\
+    0&1&1&0&0&1&1\\
+    1&0&1&0&1&0&1
+\end{bmatrix}
+\begin{bmatrix}
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&1\\
+    0&1&1&1\\
+    1&0&1&1\\
+    1&1&0&1\\
+\end{bmatrix}=
+\begin{bmatrix}
+    0&0&0&0\\
+    0&0&0&0\\
+    0&0&0&0
+\end{bmatrix}$\\
+Hence, $H[C_2]^T=G[C_1]$.
+\subsection*{Exercise 10.29}
+Let $\ket{x},\ket{y}\in V_S$, i.e. $\forall g\in S$ 
+$g\ket{x}=\ket{x}$ and $g\ket{y}=\ket{y}$. Consider $a\ket{x}+b\ket{y}$
+for some $a$ and $b$. As $g$ are linear operators we have,\\
+$g(a\ket{x}+b\ket{y})=ag\ket{x}+bg\ket{y}=a\ket{x}+b\ket{y}$\\
+Hence, $a\ket{x}+b\ket{y}\in V_S$.\\
+Let $\ket{x}\in V_S\implies \forall g\in S$ $g\ket{x}=\ket{x}\implies \forall
+g\in S$ $\ket{x}\in V_g\implies \ket{x}\in \displaystyle \bigcap_{g\in S}V_G$ 
+\subsection*{Exercise 10.30}
+Let $\pm iI\in S$ then as $S$ is a group $(\pm iI)(\pm iI)\in S$, hence $-I\in S$, which
+is a contradiction therefore $\pm iI\notin S$.
+\subsection*{Exercise 10.31} 
 \end{document}
