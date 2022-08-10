@@ -522,5 +522,390 @@ $SXS^\dagger=
     1&-1
 \end{bmatrix}=Z$
 \subsection*{Exercise 10.40}
+1) First, consider $UZU^\dagger=Z$, for this to be true
+we require $U=\begin{bmatrix}
+    1&0\\
+    0&e^{i\phi}
+\end{bmatrix}$. For this $U$ we see that, 
+$UXU^\dagger=\pm X, \pm Y$, with $e^{i\phi}=\pm 1, \pm i$.
+Therefore, we see that $U$ can be constructed using only phase gates.\\
+From Chapter 4 we know that for and Pauli operator $\sigma$ there exists
+$R$ constructed from Hadamards and phase gates, such that
+$R\sigma R^\dagger =Z$.\\
+Let's consider a normalizer $U$ for $G_1$. Then, $\exists g\in G_1$ such
+that $UgU^\dagger=Z$. Let $U=VR$, where $R$ is defined as above.
+Then, $UgU^\dagger=VRgR^\dagger V^\dagger=VZV^\dagger=Z$, hence from above
+$V$ consists of only phase gates and $R$ consists of phase and Hadamard gates, therefore
+$U$ consists of only phase and Hadamard gates.\\
+Therefore, phase and Hadamard gates can be used to construct any normalizer one
+$G_1$.\\
+2) Let the process described by the circuit be $\bar{U}$. We like to show
+$\bra{a}\bar{U}\ket{b}\ket{\psi}=\bra{a}U\ket{b}\ket{\psi}$ $\forall a,b,\psi$.\\
+First we get the following from the conditions on $U$,\\
+$UZ_1=(X_1\otimes g)U$\\
+$X_1U=(I\otimes g)UZ_1=gUZ_1$\\
+$UX_1=(Z_1\otimes g^\prime)U$\\
+$Z_1U=(I\otimes g^\prime)UX_1=g^\prime UX_1$\\
+Now consider $U^\prime\ket{\psi}$\\
+$U^\prime\ket{\psi}=\sqrt{2}\bra{0}U(\ket{0}\ket{\psi})=
+\sqrt{2}\bra{0}X_1gUZ_1(\ket{0}\ket{\psi})=
+\sqrt{2}\bra{1}gU(\ket{0}\ket{\psi})$\\
+$U^\prime\ket{\psi}=\sqrt{2}\bra{0}Z_1g^\prime UX_1(\ket{0}\ket{\psi})=
+\sqrt{2}\bra{0}g^\prime U(\ket{1}\ket{\psi})$\\
+$U^\prime\ket{\psi}=\sqrt{2}\bra{1}Z_1g g^\prime UX_1(\ket{0}\ket{\psi})
+-\sqrt{2}\bra{1}g g^\prime U(\ket{1}\ket{\psi})$\\
+Now consider, $\bra{a}\bar{U}\ket{b}\ket{\psi}$.\\
+$\bra{0}\bar{U}\ket{0}\ket{\psi}=\bra{0}\frac{1}{\sqrt{2}}
+(\ket{0}\otimes U^\prime \ket{\psi}+\ket{1}\otimes gU^\prime\ket{\psi})=
+\frac{1}{\sqrt{2}}U^\prime\ket{\psi}=\bra{0}U\ket{0}\ket{\psi}$\\
+$\bra{0}\bar{U}\ket{1}\ket{\psi}=\bra{0}\frac{1}{\sqrt{2}}
+(\ket{0}\otimes g^\prime U^\prime \ket{\psi}-\ket{1}\otimes gg^\prime U^\prime\ket{\psi})=
+\frac{1}{\sqrt{2}}g^\prime U^\prime\ket{\psi}=\bra{0}U\ket{1}\ket{\psi}$\\
+$\bra{1}\bar{U}\ket{1}\ket{\psi}=\bra{1}\frac{1}{\sqrt{2}}
+(\ket{0}\otimes g^\prime U^\prime \ket{\psi}-\ket{1}\otimes gg^\prime U^\prime\ket{\psi})=
+-\frac{1}{\sqrt{2}}gg^\prime U^\prime\ket{\psi}=-\bra{1}U\ket{1}\ket{\psi}$\\
+$\bra{1}\bar{U}\ket{0}\ket{\psi}=\bra{1}\frac{1}{\sqrt{2}}
+(\ket{0}\otimes U^\prime \ket{\psi}+\ket{1}\otimes gU^\prime\ket{\psi})=
+\frac{1}{\sqrt{2}}gU^\prime\ket{\psi}=\bra{1}U\ket{0}\ket{\psi}$\\
+Hence, $\bra{a}\bar{U}\ket{b}\ket{\psi}=\bra{a}U\ket{b}\ket{\psi}$ $\forall a,b,\psi$, therefore
+$U=\bar{U}$.\\
+Overall, $U$ is composed of $U^\prime$ and $O(n)$ phase and Hadamard
+gates. As construction of a gate $U\in N(G_{n+1})$ requires a gate
+$U^\prime \in N(G_n)$, for gate $U$ we need $\displaystyle\sum_{i=1}^nO(i)=O(n^2)$ phase and
+Hadamard gates.\\
+3) Consider $UZ_1U^\dagger = g$ and $UX_1U^\dagger=g^\prime$. Then 
+$\{g,g^\dagger\}=0$ as $\{Z_1,X_1\}=0$. Hence, $g$ and $g^\prime$ have at
+some position $j$ $\sigma_j\neq\sigma_j^\prime$. Hence, we use the SWAP operator to turn the
+situation of that of part (2).\\
+$\textbf{SWAP}_{1j}UZ_1U^\dagger\textbf{SWAP}_{1j}^\dagger=\sigma\otimes g_1$\\
+$\textbf{SWAP}_{1j}UX_1U^\dagger\textbf{SWAP}_{1j}^\dagger=\sigma^\prime\otimes g_1^\prime$\\
+As we can construct pauli operators using Hadamard and phase gates,
+if $\sigma\neq\sigma^\prime$ then $R\sigma R^\dagger=Z_1$ and $R\sigma^\prime R^\dagger=X_1$
+for some $R$ constructed from phase and Hadamard gates. Then,\\
+$R\textbf{SWAP}_{1j}UZ_1U^\dagger\textbf{SWAP}_{1j}^\dagger R^\dagger=Z_1\otimes g_1$\\
+$R\textbf{SWAP}_{1j}UZ_1U^\dagger\textbf{SWAP}_{1j}^\dagger R^\dagger=X_1\otimes g_1$\\
+which is the situation of part (2).\\
+Therefore, as the \textbf{SWAP} is made out of 3 \textbf{CNOT}s, we conclude
+that any normalizer can be written as a composition of $O(n^2)$ phase, Hadamard and
+\textbf{CNOT} gates.
+\subsection*{Exercise 10.41}
+$T=\begin{bmatrix}
+    1&0\\
+    0&e^{i\pi/4}
+\end{bmatrix}$\\
+$TZT^\dagger=\begin{bmatrix}
+    1&0\\
+    0&e^{i\pi/4}
+\end{bmatrix}
+\begin{bmatrix}
+    1&0\\
+    0&-1
+\end{bmatrix}
+\begin{bmatrix}
+    1&0\\
+    0&e^{-i\pi/4}
+\end{bmatrix}=
+\begin{bmatrix}
+    1&0\\
+    0&-e^{i\pi/4}e^{-i\pi/4}
+\end{bmatrix}=Z$\\
+$TXT^\dagger=\begin{bmatrix}
+    1&0\\
+    0&e^{i\pi/4}
+\end{bmatrix}
+\begin{bmatrix}
+    0&1\\
+    1&0
+\end{bmatrix}
+\begin{bmatrix}
+    1&0\\
+    0&e^{-i\pi/4}
+\end{bmatrix}=
+\begin{bmatrix}
+    1&0\\
+    0&e^{i\pi/4}
+\end{bmatrix}
+\begin{bmatrix}
+    0&e^{-i\pi/4}\\
+    1&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&e^{-i\pi/4}\\
+    e^{i\pi/4}&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&\frac{1-i}{\sqrt{2}}\\
+    \frac{1+i}{\sqrt{2}}&0
+\end{bmatrix}=\frac{X+Y}{\sqrt{2}}$\\
+$U=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}$\\
+$UZ_1U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&-I&0\\
+    0&0&0&-I
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&-I&0\\
+    0&0&0&-XX
+\end{bmatrix}=Z_1$
+$UZ_2U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&-I&0&0\\
+    0&0&I&0\\
+    0&0&0&-I
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0&0&0\\
+    0&-I&0&0\\
+    0&0&I&0\\
+    0&0&0&-XX
+\end{bmatrix}=Z_2$
+$UX_3U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    X&0&0&0\\
+    0&X&0&0\\
+    0&0&X&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    X&0&0&0\\
+    0&X&0&0\\
+    0&0&X&0\\
+    0&0&0&XXX
+\end{bmatrix}=X_3$\\
+$UX_1U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&I\\
+    I&0&0&0\\
+    0&I&0&0
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&X\\
+    I&0&0&0\\
+    0&I&0&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&X\\
+    I&0&0&0\\
+    0&X&0&0
+\end{bmatrix}=X_1\otimes
+\begin{bmatrix}
+    I&0\\
+    0&X
+\end{bmatrix}=X_1\otimes
+\frac{
+    \begin{bmatrix}
+        I&0\\
+        0&I
+    \end{bmatrix}+
+    \begin{bmatrix}
+        I&0\\
+        0&-I
+    \end{bmatrix}+
+    \begin{bmatrix}
+        X&0\\
+        0&X
+    \end{bmatrix}+
+    \begin{bmatrix}
+        -X&0\\
+        0&X
+    \end{bmatrix}
+}{2}=\\
+\displaystyle X_1\otimes\frac{I+Z_2+X_3-Z_2X_3}{2}$\\
+$UX_2U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    0&I&0&0\\
+    I&0&0&0\\
+    0&0&0&I\\
+    0&0&I&0
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    0&I&0&0\\
+    I&0&0&0\\
+    0&0&0&X\\
+    0&0&I&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&I&0&0\\
+    I&0&0&0\\
+    0&0&0&X\\
+    0&0&X&0
+\end{bmatrix}=\frac{1}{2}\left\{
+\begin{bmatrix}
+    0&I&0&0\\
+    I&0&0&0\\
+    0&0&0&I\\
+    0&0&I&0
+\end{bmatrix}+
+\begin{bmatrix}
+    0&I&0&0\\
+    I&0&0&0\\
+    0&0&0&-I\\
+    0&0&-I&0
+\end{bmatrix}+
+\begin{bmatrix}
+    0&X&0&0\\
+    X&0&0&0\\
+    0&0&0&X\\
+    0&0&X&0
+\end{bmatrix}+
+\begin{bmatrix}
+    0&-X&0&0\\
+    -X&0&0&0\\
+    0&0&0&X\\
+    0&0&X&0
+\end{bmatrix}
+\right\}\\
+=\displaystyle X_2\otimes\frac{I+Z_1+X_3-Z_1X_3}{2}$\\
+$UZ_3U^\dagger=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&Z
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&XZX
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&-Z
+\end{bmatrix}=\frac{1}{2}\left\{
+    \begin{bmatrix}
+        Z&0&0&0\\
+        0&Z&0&0\\
+        0&0&Z&0\\
+        0&0&0&Z
+    \end{bmatrix}+
+    \begin{bmatrix}
+        Z&0&0&0\\
+        0&Z&0&0\\
+        0&0&-Z&0\\
+        0&0&0&-Z
+    \end{bmatrix}+
+    \begin{bmatrix}
+        Z&0&0&0\\
+        0&-Z&0&0\\
+        0&0&Z&0\\
+        0&0&0&-Z
+    \end{bmatrix}+
+    \begin{bmatrix}
+        -Z&0&0&0\\
+        0&Z&0&0\\
+        0&0&Z&0\\
+        0&0&0&-Z
+    \end{bmatrix}
+\right\}\\
+=\displaystyle Z_3\otimes\frac{I+Z_1+Z_2-Z_1Z_2}{2}$
+\subsection*{Exercise 10.42}
+Initially $S=<IXX,IZZ>$ with $\bar{Z}=ZII$ and $\bar{X}=XII$.
+Considering the effect of the circuit on the generators we get,\\
+$IXX\xrightarrow{CNOT}IXX\xrightarrow{H}IXX
+\xrightarrow{\text{Mes. }X_1}IXX
+\xrightarrow{\text{Mes. }Z_2}IZI$\\
+$IZZ\xrightarrow{CNOT}ZZZ\xrightarrow{H}XZZ
+\xrightarrow{\text{Mes. }X_1}XZZ
+\xrightarrow{\text{Mes. }Z_2}XZZ$\\
+For the final $S_f=<IZI,XZZ>$ we have $\bar{Z}=IIZ$ and $\bar{X}=IIX$,
+hence the circuit does indeed teleport the initial state.
+\subsection*{Exercise 10.43}
+$\forall g \in S$ we have $g\in N(S)$ as $gg^\prime g^\dagger \in S$ $\forall g^\prime\in S$ due to
+$S$ being a group. Therefore, $S\subseteq N(S)$.
+\subsection*{Exercise 10.44}
 
 \end{document}
