@@ -63,5 +63,59 @@ $I=R_n(\theta)R_n(-\theta)=(\cos(\frac{\theta}{2})I-\sin(\frac{\theta}{2})\hat{n
 \cos^2(\frac{\theta}{2})I+\sin^2(\frac{\theta}{2})(\hat{n}\cdot\vec{\sigma})^2=
 (\cos^2(\frac{\theta}{2})+\sin^2(\frac{\theta}{2}))I=I$
 \subsection*{Exercise 4.6}
+First, let's show that $R_Z(x)$ rotates around the Z-axis by an angle $x$.
+Consider the general state $\ket{\psi}=\begin{pmatrix}
+    \cos\frac{\theta}{2}\\
+    e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}$. Then,\\
+$R_Z(x)\ket{\psi}=(\cos\frac{x}{2}I-i\sin\frac{x}{2}Z)\begin{pmatrix}
+    \cos\frac{\theta}{2}\\
+    e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}=
+\cos\frac{x}{2}\begin{pmatrix}
+    \cos\frac{\theta}{2}\\
+    e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}-i\sin\frac{x}{2}\begin{pmatrix}
+    \cos\frac{\theta}{2}\\
+    -e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}=
+\begin{pmatrix}
+    e^{-ix/2}\cos\frac{\theta}{2}\\
+    e^{ix/2}e^{i\phi}\sin\frac{\theta}{2}
+\end{pmatrix}=
+\begin{pmatrix}
+    \cos\frac{\theta}{2}\\
+    e^{i(\phi+x)}\sin\frac{\theta}{2}
+\end{pmatrix}$\\
+Hence, the state has been rotated by $x$ around the Z-axis. Similarly, we get
+that $R_X(x)$ and $R_Y(x)$ rotate around the X and Y axis respectively.\\
+We also have that,\\
+$R_n(x)=\cos\frac{x}{2}I-i\sin\frac{x}{2}(n_xX+n_yY+n_ZZ)=
+\cos\frac{x}{2}I-i\sin\frac{x}{2}(\sin\theta_n\cos\phi_nX+\sin\theta_n\sin\theta_nY
++\cos\theta_nZ)=R_Z(\phi_n)R_X(\theta_n)(\cos\frac{x}{2}I-i\sin\frac{x}{2}Z) R_X(\theta_n)^\dagger R_Z(\phi_n)^\dagger=
+R_Z(\phi_n)R_X(\theta_n)R_Z(x) R_X(\theta_n)^\dagger R_Z(\phi_n)^\dagger$\\
+Therefore, $R_n(x)$ rotates the axis of rotation to the Z axis performs the rotations
+by angle $x$ and then returns the axis back to $n$, which is the same as rotating around $n$
+by an angle $x$. 
+\subsection*{Exercise 4.7}
+$\{X,Y\}=1$ therefore, $XYX=-XXY=-Y$.\\
+$XR_Y(\theta)X=X(\cos\frac{\theta}{2}I-i\sin\frac{\theta}{2}Y)X=\cos\frac{\theta}{2}I+i\sin\frac{\theta}{2}Y=R_Y(-\theta)$
+\subsection*{Exercise 4.8}
+Any 2x2 unitary matrix for $a^2+b^2+c^2+d^2=1$ can be written as,\\
+1)$U=e^{i\alpha}\begin{bmatrix}
+    a+ib&c+id\\
+    -c+id& a-ib
+\end{bmatrix}$\\
+Consider, the given form for $U$,\\
+$U=e^{i\alpha}R_n(\theta)=e^{i\alpha}\begin{bmatrix}
+    \cos\frac{\theta}{2}-i\sin\frac{\theta}{2}n_z & -\sin\frac{\theta}{2}(n_y+in_x)\\
+    \sin\frac{\theta}{2}(n_y-in_x)& \cos\frac{\theta}{2}+i\sin\frac{\theta}{2}n_z
+\end{bmatrix}$\\
+As, $n_x^2+n_y^2+n_z^2=1$ this has the same form as the general $U$, hence any 
+arbitrary 2x2 unitary matrix can be written as $U=e^{i\alpha}R_n(\theta)$.\\
+2) $n_z=\frac{1}{\sqrt{2}}$, $n_y=0$, $n_x=\frac{1}{\sqrt{2}}$,
+$\alpha=0$ and $\theta=\pi$.\\
+3) $n_x,n_y=0$, $n_z=1$, $\alpha =\theta=\frac{\pi}{4}$.
+\subsection*{Exercise 4.9}
 
 \end{document}
