@@ -3,6 +3,8 @@
 \usepackage[margin=0.9in]{geometry}
 \usepackage{braket}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
 \begin{document}
 \subsection*{Exercise 4.1}
 The eigenvectors are as follows:\\
@@ -117,5 +119,233 @@ arbitrary 2x2 unitary matrix can be written as $U=e^{i\alpha}R_n(\theta)$.\\
 $\alpha=0$ and $\theta=\pi$.\\
 3) $n_x,n_y=0$, $n_z=1$, $\alpha =\theta=\frac{\pi}{4}$.
 \subsection*{Exercise 4.9}
+We can write,\\
+$U=\begin{bmatrix}
+    e^{i(\alpha-\beta/2-\delta/2)}\cos\frac{\gamma}{2} & -e^{i(\alpha-\beta/2+\delta/2)}\sin\frac{\gamma}{2}\\
+    e^{i(\alpha+\beta/2-\delta/2)}\sin\frac{\gamma}{2} & e^{i(\alpha+\beta/2+\delta/2)}\cos\frac{\gamma}{2}
+\end{bmatrix}=e^{i\alpha}
+\begin{bmatrix}
+    e^{i(-\beta/2-\delta/2)}\cos\frac{\gamma}{2} & -e^{i(-\beta/2+\delta/2)}\sin\frac{\gamma}{2}\\
+    e^{i(\beta/2-\delta/2)}\sin\frac{\gamma}{2} & e^{i(\beta/2+\delta/2)}\cos\frac{\gamma}{2}
+\end{bmatrix}=e^{i\alpha}
+\begin{bmatrix}
+    a & b\\
+    -b^* & a^*
+\end{bmatrix}$\\
+which is the general form of a 2x2 unitary matrix as $det(U)=\cos^2\frac{\gamma}{2}+
+\sin^2\frac{\gamma}{2}=1$.
+\subsection*{Exercise 4.10}
+$U=e^{i\alpha}R_Z(\beta)R_X(\gamma)R_Z(\delta)=\begin{bmatrix}
+    e^{i(\alpha-\beta/2-\delta/2)}\cos\frac{\gamma}{2} & -ie^{i(\alpha-\beta/2+\delta/2)}\sin\frac{\gamma}{2}\\
+    -ie^{i(\alpha+\beta/2-\delta/2)}\sin\frac{\gamma}{2} & e^{i(\alpha+\beta/2+\delta/2)}\cos\frac{\gamma}{2}
+\end{bmatrix}$\\
+which once again is a unitary matrix.
+\subsection*{Exercise 4.11}
+\subsection*{Exercise 4.12}
+From the proof of Corollary 4.2 we have, $AXBXC=R_Z(\beta)R_Y(\gamma)R_Z(\delta)$. We can see
+that $\alpha=\gamma=\delta=\frac{\pi}{2}$ and $\beta=0$ gives $H$. Hence, we can take
+$A=R_Y(\frac{\pi}{4})$,$B=R_Y(-\frac{\pi}{4})R_Z(-\frac{\pi}{4})$ and $C=R_Z(\frac{\pi}{4})$.
+\subsection*{Exercise 4.13}
+$HXH=\frac{1}{2}\begin{bmatrix}
+    1&1\\
+    1&-1
+\end{bmatrix}
+\begin{bmatrix}
+    0&1\\
+    1&0
+\end{bmatrix}
+\begin{bmatrix}
+    1&1\\
+    1&-1
+\end{bmatrix}=
+\frac{1}{2}
+\begin{bmatrix}
+    2&0\\
+    0&-2
+\end{bmatrix}=Z$\\
+$HYH=\frac{1}{2}\begin{bmatrix}
+    1&1\\
+    1&-1
+\end{bmatrix}
+\begin{bmatrix}
+    0&-i\\
+    i&0
+\end{bmatrix}
+\begin{bmatrix}
+    1&1\\
+    1&-1
+\end{bmatrix}=
+\frac{1}{2}
+\begin{bmatrix}
+    0&2i\\
+    -2i&0
+\end{bmatrix}=-Y$
+$HZH=HHXHH=X$
+\subsection*{Exercise 4.14}
+$T=R_Z(\frac{\pi}{4})$\\
+$HTH=HR_Z(\frac{\pi}{4})H=H(\cos\frac{\pi}{8}-i\sin\frac{\pi}{8}Z)H=
+\cos\frac{\pi}{8}-i\sin\frac{\pi}{8}X=R_X(\frac{\pi}{4})$
+\subsection*{Exercise 4.15}
+(Check Errata for the sign in the second equation)
+1)$R_{\hat{n}_2}(\beta_2)R_{\hat{n}_1}(\beta_1)=
+(c_2I-is_2\hat{n}_2.\sigma)(c_1I-is_1\hat{n}_1.\sigma)=
+c_1c_2I-s_1s_2(\hat{n}_2.\sigma)(\hat{n}_1.\sigma) -ic_2s_1\hat{n}_1.\sigma
+-ic_1s_2\hat{n}_2.\sigma=
+c_1c_2I-s_1s_2(\hat{n}_1.\hat{n}_2I+i(\hat{n}_2\times\hat{n}_1).\sigma)-ic_2s_1\hat{n}_1.\sigma
+-ic_1s_2\hat{n}_2.\sigma=
+(c_1c_2-s_1s_2\hat{n}_1.\hat{n}_2)I-i(c_2s_1\hat{n}_1
++c_1s_2\hat{n}_2+s_1s_2\hat{n}_2\times\hat{n}_1).\sigma$\\
+Therefore,\\
+$c_{12}=c_1c_2-s_1s_2\hat{n}_1.\hat{n}_2\\
+s_{12}\hat{n}_{12}=c_2s_1\hat{n}_1
++c_1s_2\hat{n}_2+s_1s_2\hat{n}_2\times\hat{n}_1$\\
+2)$\beta_1=\beta_2$ and $\hat{n}_1=\hat{z}$, hence $c_1=c_2=c$ and $s_1=s_2=s$.
+Therefore,\\
+$c_{12}=c^2-s^2\hat{z}.\hat{n}_2\\
+s_{12}\hat{n}_{12}=cs(\hat{z}
++\hat{n}_2)+s^2\hat{n}_2\times\hat{z}$
+\subsection*{Exercise 4.16}
+$H_1=\frac{1}{\sqrt{2}}\begin{bmatrix}
+    I&I\\
+    I&-I
+\end{bmatrix}$\\
+$H_2=\frac{1}{\sqrt{2}}\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}$
+\subsection*{Exercise 4.17}
+$\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&Z
+\end{bmatrix}
+\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}=
+\begin{bmatrix}
+    HH&0\\
+    0&HZH
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X
+\end{bmatrix}=CNOT$
+\subsection*{Exercise 4.18}
+When the second qubit is the control we have the following representation,\\
+$CZ_2=\ket{00}\bra{00}+\ket{01}\bra{01}-\ket{11}\bra{11}+\ket{10}\bra{10}=
+\begin{bmatrix}
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&-1
+\end{bmatrix}$
+\subsection*{Exercise 4.19}
+$\text{CNOT}\rho\text{CNOT}=\begin{bmatrix}
+    I&0\\
+    0&X
+\end{bmatrix}
+\begin{bmatrix}
+    A&B\\
+    C&D
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    A&XB\\
+    XC&XDX
+\end{bmatrix}$\\
+$X$ only rearranges elements, hence the CNOT only rearranges the elements of $\rho$.
+\subsection*{Exercise 4.20}
+$(H_1\otimes H_2)\text{CNOT}(H_1\otimes H_2)=\frac{1}{2}
+\begin{bmatrix}
+    H&H\\
+    H&-H    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    H&H\\
+    H&-H    
+\end{bmatrix}=\frac{1}{2}
+\begin{bmatrix}
+    HH+HXH&HH-HXH\\
+    HH-HXH&HH+HXH    
+\end{bmatrix}=\frac{1}{2}
+\begin{bmatrix}
+    I+Z&I-Z\\
+    I-Z&I+Z    
+\end{bmatrix}=
+\begin{bmatrix}
+    1&0&0&0\\
+    0&0&0&1\\
+    0&0&1&0\\
+    0&1&0&0
+\end{bmatrix}=\text{CNOT(2\textsuperscript{nd} qubit control)}$\\
+The left circuit transforms between the $\ket{0}$,$\ket{1}$ and $\ket{+}$,$\ket{-}$ basis applies a CNOT and transforms back.
+Hence, the effect of the CNOT on the $\ket{\pm}\ket{\pm}$ is the same as applying the CNOT with the 2\textsuperscript{nd}
+qubit as target to the state in the $\ket{0}$,$\ket{1}$ basis 
+and then replacing $0$ with $+$ and $1$ with $-$. This process does indeed give the equations 4.24-4.27.
+\subsection*{Exercise 4.21}
+Consider all the possible inputs,\\
+$\ket{00\psi}\rightarrow\ket{00\psi}\rightarrow\ket{00\psi}\rightarrow\ket{00\psi}\rightarrow\ket{00\psi}\rightarrow\ket{00\psi}\\
+\ket{01\psi}\rightarrow\ket{01(V\psi)}\rightarrow\ket{01(V\psi)}\rightarrow\ket{01(V^\dagger V\psi)}\rightarrow\ket{01\psi}\rightarrow\ket{01\psi}\\
+\ket{10\psi}\rightarrow\ket{10\psi}\rightarrow\ket{11\psi}\rightarrow\ket{11(V^\dagger\psi)}\rightarrow\ket{10(VV^\dagger\psi)}\rightarrow\ket{10\psi}\\
+\ket{11\psi}\rightarrow\ket{11(V\psi)}\rightarrow\ket{10(V\psi)}\rightarrow\ket{11(V\psi)}\rightarrow\ket{11(VV\psi)}\rightarrow\ket{11U\psi}$\\
+Hence, the circuit does perform the $C^2(U)$ operation.
+\newpage
+\subsection*{Exercise 4.22}
+Firstly, we apply the circuit in figure 4.6 to the circuit in figure 4.8 for $V=e^{i\alpha}AXBXC$, which gives,\\
+$\begin{quantikz}
+    &\qw&\qw & \qw&\qw &\qw &\ctrl{1} & \qw& \qw&\qw&\qw&\qw&\ctrl{1}&\qw&\ctrl{2}&\qw&\ctrl{2}&\phase{\alpha}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\phase{\alpha}&\targ{}&\phase{-\alpha}&\ctrl{1}&\qw&\ctrl{1}&\qw&\targ{}&\qw&\qw&\qw&\qw&\qw&\qw\\
+    &\gate{C}&\targ{}&\gate{B}&\targ{}&\gate{A}&\qw&\gate{A^\dagger}&\targ{}&\gate{B^\dagger}&\targ{}&\gate{C^\dagger}&\qw&\gate{C}&\targ{}&\gate{B}&\targ{}&\gate{A}&\qw
+\end{quantikz}$\\
+We move the 6\textsuperscript{th} CNOT left from the 4\textsuperscript{th} one, which involves adding CNOTs
+after the 4\textsuperscript{th} and 5\textsuperscript{th} CNOTs from first to third qubit, which is due to,\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\qw\\
+    &\ctrl{1}&\targ{}&\qw\\
+    &\targ{}&\qw&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\ctrl{1}&\qw&\ctrl{2}&\qw\\
+    &\targ{}&\ctrl{1}&\qw&\qw\\
+    &\qw&\targ{}&\targ{}&\qw
+\end{quantikz}$\\
 
+and can be checked by considering all the possible inputs. We also see that $AA^\dagger=CC^\dagger=I$.
+Hence we get the following circuit.\\
+$\begin{quantikz}
+    &\qw&\qw & \qw&\qw &\phase{\alpha}\gategroup[wires=2, steps=4, style={dashed}]{} &\ctrl{1} & \qw& \ctrl{1}&\qw&\ctrl{2}&\qw&\qw&\ctrl{2}&\ctrl{2}&\qw&\ctrl{2}&\qw&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\phase{\alpha}&\targ{}&\phase{-\alpha}&\targ{}&\ctrl{1}&\qw&\qw&\ctrl{1}&\qw&\qw&\qw&\qw&\qw&\qw\\
+    &\gate{C}&\targ{}&\gate{B}&\targ{}&\qw&\qw&\qw&\qw&\targ{}&\targ{}&\gate{B^\dagger}&\targ{}&\targ&\qw&\targ{}&\gate{B}&\targ{}&\gate{A}&\qw
+\end{quantikz}$\\
+
+The dashed section is diagonal hence commutes with the rest of the components therefore can be moved to the end
+for convenience.\\
+$\begin{quantikz}
+    &\qw&\qw & \qw&\qw &\qw&\ctrl{2}&\qw&\qw&\ctrl{2}&\ctrl{2}&\qw&\ctrl{2}&\qw&\phase{\alpha} &\ctrl{1} & \qw& \ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw&\qw&\ctrl{1}&\qw&\qw&\qw&\qw&\qw&\phase{\alpha}&\targ{}&\phase{-\alpha}&\targ{}&\qw\\
+    &\gate{C}&\targ{}&\gate{B}&\targ{}&\targ{}&\targ{}&\gate{B^\dagger}&\targ{}&\targ&\qw&\targ{}&\gate{B}&\targ{}&\gate{A}&\qw&\qw&\qw&\qw&\qw
+\end{quantikz}$\\
+
+CNOTs 2 and 3, and 6 and 7 cancel each other, hence we're left with the circuit.\\
+$\begin{quantikz}
+    &\qw&\qw & \qw&\ctrl{2}&\qw&\qw&\qw&\ctrl{2}&\qw&\phase{\alpha} &\ctrl{1} & \qw& \ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\qw&\qw&\ctrl{1}&\qw&\qw&\qw&\phase{\alpha}&\targ{}&\phase{-\alpha}&\targ{}&\qw\\
+    &\gate{C}&\targ{}&\gate{B}&\targ{}&\gate{B^\dagger}&\targ{}&\gate{B}&\targ{}&\gate{A}&\qw&\qw&\qw&\qw&\qw
+\end{quantikz}$\\
+
+This has 8 single qubit gates and 6 CNOTs as desired.\\
+The circuit performs the operation, $AXBXB^\dagger XBXC=(VC^\dagger)B^\dagger(A^\dagger V)=V(ABC)^\dagger =V^2=U$.
+Therefore, the circuit performs the $C^2(U)$ operation.
+\subsection*{Exercise 4.23}
 \end{document}
