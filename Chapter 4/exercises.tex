@@ -186,7 +186,7 @@ $T=R_Z(\frac{\pi}{4})$\\
 $HTH=HR_Z(\frac{\pi}{4})H=H(\cos\frac{\pi}{8}-i\sin\frac{\pi}{8}Z)H=
 \cos\frac{\pi}{8}-i\sin\frac{\pi}{8}X=R_X(\frac{\pi}{4})$
 \subsection*{Exercise 4.15}
-(Check Errata for the sign in the second equation)
+(Check Errata for the sign in the second equation)\\
 1)$R_{\hat{n}_2}(\beta_2)R_{\hat{n}_1}(\beta_1)=
 (c_2I-is_2\hat{n}_2.\sigma)(c_1I-is_1\hat{n}_1.\sigma)=
 c_1c_2I-s_1s_2(\hat{n}_2.\sigma)(\hat{n}_1.\sigma) -ic_2s_1\hat{n}_1.\sigma
@@ -348,4 +348,147 @@ This has 8 single qubit gates and 6 CNOTs as desired.\\
 The circuit performs the operation, $AXBXB^\dagger XBXC=(VC^\dagger)B^\dagger(A^\dagger V)=V(ABC)^\dagger =V^2=U$.
 Therefore, the circuit performs the $C^2(U)$ operation.
 \subsection*{Exercise 4.23}
+For $U=R_X(\theta)$ from corollary 4.2 we can see that $A=H$, $B=R_Z(-\frac{\theta}{2})$, $C=R_Z(\frac{\theta}{2})H$, which gives
+$ABC=I$ and $AXBXC=HXR_Z(-\frac{\theta}{2})XR_Z(\frac{\theta}{2})H=HXXR_Z(\frac{\theta}{2})R_Z(\frac{\theta}{2})H=R_X(\theta)$.\\
+For $U=R_Y(\theta)$ we can take $A=I$, $B=R_Y(-\frac{\theta}{2})$ and $C=R_Y(\frac{\theta}{2})$, which gives
+$ABC=I$ and $AXBXC=XR_Y(-\frac{\theta}{2})XR_Y(\frac{\theta}{2})=XXR_Y(\frac{\theta}{2})R_Y(\frac{\theta}{2})=R_Y(\theta)$.
+\subsection*{Exercise 4.24}
+To verify the circuit we consider the state after each operation. Let the initial state be $\ket{xyz}$, where 
+$x,y,z\in\{0,1\}$.\\
+\begingroup
+\allowdisplaybreaks
+\begin{align*}
+    \ket{xyz}\\
+\big\downarrow &H_3\\
+\frac{1}{\sqrt{2}}(\ket{xy0}+&(-1)^z\ket{xy1})\\
+\big\downarrow &\text{CNOT}_{23}\\
+\frac{1}{\sqrt{2}}(\ket{xyy} +&(-1)^z\ket{xy\bar{y}})\\
+\big\downarrow &T^\dagger_3 \\
+\frac{1}{\sqrt{2}}(e^{-iy\pi/4}\ket{xyy} +&e^{-i\bar{y}\pi/4}(-1)^z\ket{xy\bar{y}})\\
+\big\downarrow &\text{CNOT}_{13}\\
+\frac{1}{\sqrt{2}}(e^{-iy\pi/4}\ket{xy(y\oplus x)} +&e^{-i\bar{y}\pi/4}(-1)^z\ket{xy(\bar{y}\oplus x)})\\
+\big\downarrow & T_3\\
+\frac{1}{\sqrt{2}}(e^{i(y\oplus x - y)\pi/4}\ket{xy(y\oplus x)} +&e^{i(\bar{y}\oplus x -\bar{y})\pi/4}(-1)^z\ket{xy(\bar{y}\oplus x)})\\
+\big\downarrow &\text{CNOT}_{23}\\
+\frac{1}{\sqrt{2}}(e^{i(y\oplus x - y)\pi/4}\ket{xyx} +&e^{i(\bar{y}\oplus x -\bar{y})\pi/4}(-1)^z\ket{xy\bar{x}})\\
+\big\downarrow & T^\dagger_3 \\
+\frac{1}{\sqrt{2}}(e^{i(y\oplus x - y-x)\pi/4}\ket{xyx} +&e^{i(\bar{y}\oplus x -\bar{y}-\bar{x})\pi/4}(-1)^z\ket{xy\bar{x}})\\
+\big\downarrow &\text{CNOT}_{13}\\
+\frac{1}{\sqrt{2}}(e^{i(y\oplus x - y-x)\pi/4}\ket{xy0} +&e^{i(\bar{y}\oplus x -\bar{y}-\bar{x})\pi/4}(-1)^z\ket{xy1})\\
+\big\downarrow & T_2^\dagger T_3\\
+\frac{1}{\sqrt{2}}(e^{i(y\oplus x - 2y-x)\pi/4}\ket{xy0} +&e^{i(\bar{y}\oplus x -\bar{x})\pi/4}(-1)^z\ket{xy1})\\
+\big\downarrow &\text{CNOT}_{12}H_3\\
+\frac{1}{2}(e^{i(y\oplus x - 2y-x)\pi/4}+e^{i(\bar{y}\oplus x -\bar{x})\pi/4})\ket{x(y\oplus x)0} 
++&\frac{1}{2}(e^{i(y\oplus x - 2y-x)\pi/4}-e^{i(\bar{y}\oplus x -\bar{x})\pi/4}(-1)^z)\ket{x(y\oplus x)1}\\
+\big\downarrow & T_2^\dagger\\
+\frac{1}{2}(e^{i(-2y-x)\pi/4}+e^{i((1-2y)(1-2x) -\bar{x})\pi/4})\ket{x(y\oplus x)0} 
++&\frac{1}{2}(e^{i(-2y-x)\pi/4}-e^{i((1-2y)(1-2x) -\bar{x})\pi/4}(-1)^z)\ket{x(y\oplus x)1}\\
+\big\downarrow &\text{CNOT}_{23}\\
+\frac{1}{2}(e^{i(-2y-x)\pi/4}+e^{i((1-2y)(1-2x) -\bar{x})\pi/4})\ket{xy0} 
++&\frac{1}{2}(e^{i(-2y-x)\pi/4}-e^{i((1-2y)(1-2x) -\bar{x})\pi/4}(-1)^z)\ket{xy1}\\
+\big\downarrow &T_1S_2\\
+\frac{1}{2}(1+e^{i((1-2y)(1-2x) -1+2x+2y)\pi/4})\ket{xy0} 
++&\frac{1}{2}(1-e^{i((1-2y)(1-2x) -1+2x+2y)\pi/4}(-1)^z)\ket{xy1}\\
+&=\\
+\frac{1}{2}(1+(-1)^{xy+z})\ket{xy0} 
++&\frac{1}{2}(1-(-1)^{(xy+z)})\ket{xy1}\\
+\end{align*}
+\endgroup
+If $x,y=1$ then we get $\ket{xy\bar{z}}$ and $\ket{xyz}$ otherwise, hence the circuit does indeed implement the
+Toffoli gate.
+\subsection*{Exercise 4.25}
+1)\\
+$\begin{quantikz}
+    &\ctrl{1}&\ctrl{1}&\ctrl{1}&\qw\\
+    &\ctrl{1}&\targ{}&\ctrl{1}&\qw\\
+    &\targ{}&\ctrl{-1}&\targ{}&\qw
+\end{quantikz}$\\
+2)\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\qw&\qw\\
+    &\ctrl{1}&\targ{}&\ctrl{1}&\qw\\
+    &\targ{}&\ctrl{-1}&\targ{}&\qw
+\end{quantikz}$\\
+If the first qubit is $0$, then the Toffoli just performs the identity, hence the CNOTs cancel leading to an overall
+identity. If the first qubit is $1$, then the Toffoli performs a CNOT on the last 2 qubits, which overall performs the
+SWAP operation.\\
+3) For the Toffoli we take $V=\frac{(1-i)(1+iX)}{2}$, which gives $V^2=X$. Then, after changing the order of the 
+last 2 qubits the circuit is,\\
+$\begin{quantikz}
+    &\qw&\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{2}&\qw&\qw\\
+    &\targ{}&\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\qw&\targ{}&\qw\\
+    &\ctrl{-1}&\gate{V}&\qw&\gate{V^\dagger}&\qw&\gate{V}&\ctrl{-1}&\qw
+\end{quantikz}$\\
+Which simplifies to,\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{2}&\qw&\qw\\
+    &\gate[2]{CV_{23}C_{32}}&\targ{}&\ctrl{1}&\targ{}&\qw&\targ{}&\qw\\
+    &&\qw&\gate{V^\dagger}&\qw&\gate{V}&\ctrl{-1}&\qw
+\end{quantikz}$\\
+4)As $V$ is unitary the $CV_{13}$ gate commutes with the $CV^\dagger_{23}$ and $C_{12}$ gates, hence we can move it to the left
+of $CV^\dagger_{23}$. Afterwards, the last to CNOTs commute as well, hence we get\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\ctrl{2}&\qw&\qw&\ctrl{1}&\qw\\
+    &\gate[2]{CV_{23}C_{32}}&\targ{}&\qw&\ctrl{1}&\targ{}&\targ{}&\qw\\
+    &&\qw&\gate{V}&\gate{V^\dagger}&\ctrl{-1}&\qw&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\qw&\ctrl{1}&\ctrl{2}&\qw&\ctrl{1}&\qw\\
+    &\gate[2]{CV_{23}C_{32}}&\targ{}&\qw&\gate[2]{C_{32}CV^\dagger_{23}}&\targ{}&\qw\\
+    &&\qw&\gate{V}&&\qw&\qw
+\end{quantikz}$\\
+which contains 5 two-qubit gates.
+\subsection*{Exercise 4.26}
+Consider all the possible controls,\\
+$\ket{00t}\rightarrow\ket{00(R_Y(\pi/4)R_Y(\pi/4)R_Y(-\pi/4)R_Y(-\pi/4))t}=\ket{00t}$\\
+$\ket{01t}\rightarrow\ket{01(R_Y(\pi/4)XR_Y(\pi/4)R_Y(-\pi/4)XR_Y(-\pi/4))t}=\\
+\ket{01(R_Y(\pi/4)R_Y(-\pi/4)XXR_Y(\pi/4)R_Y(-\pi/4))t}=\ket{01t}$\\
+$\ket{10t}\rightarrow\ket{10(R_Y(\pi/4)R_Y(\pi/4)XR_Y(-\pi/4)R_Y(-\pi/4))t}=\\
+\ket{10(R_Y(\pi/4)R_Y(\pi/4)R_Y(\pi/4)R_Y(\pi/4)X)t}=
+\ket{10(R_Y(\pi)X)t}=-\ket{10(Zt)}$\\
+$\ket{11t}\rightarrow\ket{11(R_Y(\pi/4)XR_Y(\pi/4)XR_Y(-\pi/4)XR_Y(-\pi/4))t}=\\
+\ket{11(R_Y(\pi/4)R_Y(-\pi/4)R_Y(-\pi/4)R_Y(\pi/4)X)t}=\ket{11(Xt)}$\\
+Hence, the circuit does indeed implement the Toffoli gate, with the angle for the phase factor being,\\
+$\theta(c_1,c_2,t)=\begin{cases}
+    \pi,&\text{for } (c_1,c_2,t)=(1,0,0)\\
+    0, &\text{otherwise}
+\end{cases}$
+\subsection*{Exercise 4.27}
+We can write the matrix as,\\
+$U=\ket{000}\bra{000}+\ket{010}\bra{001}+\ket{011}\bra{010}+\ket{100}\bra{011}+\ket{101}\bra{100}
++\ket{110}\bra{101}+\ket{111}\bra{110}+\ket{001}\bra{111}$\\
+Which implies the following inputs and outputs\\
+$\ket{000}\rightarrow\ket{000}\\
+\ket{001}\rightarrow\ket{010}\\
+\ket{101}\rightarrow\ket{110}\\
+\ket{010}\rightarrow\ket{011}\\
+\ket{011}\rightarrow\ket{100}\\
+\ket{100}\rightarrow\ket{101}\\
+\ket{110}\rightarrow\ket{111}\\
+\ket{111}\rightarrow\ket{001}$\\
+Firstly, we can notice that the first qubit only changes when both the other ones are set,
+hence we start the circuit with a Toffoli(2,3,1) with the first qubit as target. Looking at
+$\ket{001}\rightarrow\ket{010}$, $\ket{101}\rightarrow\ket{110}$, $\ket{010}\rightarrow\ket{011}$,
+$\ket{110}\rightarrow\ket{111}$ and $\ket{111}\rightarrow\ket{001}$ we can see that $C_{23}C_{32}$
+after the Toffoli gives the desired results. For $\ket{011}\rightarrow\ket{100}$ and 
+$\ket{100}\rightarrow\ket{101}$ we require a $C_{13}$ after the rest of the gates. However, 
+this changes $\ket{110}\rightarrow\ket{111}$ to $\ket{110}\rightarrow\ket{110}$, hence we apply a 
+Toffoli(1,2,3), as no other final state has both first and second qubit set. Hence the circuit will be,\\
+$\begin{quantikz}
+    &\targ{}&\qw&\qw&\ctrl{2}&\ctrl{1}&\qw\\
+    &\ctrl{-1}&\targ{}&\ctrl{1}&\qw&\ctrl{1}&\qw\\
+    &\ctrl{-1}&\ctrl{-1}&\targ{}&\targ{}&\targ{}&\qw
+\end{quantikz}$
+\subsection*{Exercise 4.28}
+Analogous to the circuit for $C^2(U)$ we have,\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
+    &\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\ctrl{1}&\qw\\
+    &\gate{V}&\qw&\gate{V^\dagger}&\qw&\gate{V}&\qw
+\end{quantikz}$
+\subsection*{Exercise 4.29}
+
 \end{document}
