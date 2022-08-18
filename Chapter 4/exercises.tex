@@ -485,10 +485,441 @@ $\begin{quantikz}
     &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
     &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
     &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
-    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{1}&\qw\\
-    &\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw&\ctrl{1}&\ctrl{2}&\qw\\
+    &\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\qw&\qw\\
     &\gate{V}&\qw&\gate{V^\dagger}&\qw&\gate{V}&\qw
 \end{quantikz}$
 \subsection*{Exercise 4.29}
+A recursive circuit analogous to figure 4.6, using $A=R_Z(\frac{\pi}{2})$,
+$B=R_Z(-\frac{\pi}{2})R_Y(-\frac{\pi}{2})$ and $C=R_Y(\frac{\pi}{2})$. The circuit is,\\
+$\begin{quantikz}
+    &\qwbundle{n-1}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw\\
+    &\qw&\targ{}&\qw
+\end{quantikz}=
+\begin{quantikz}
+   &\qwbundle{n-1}&\ctrl{1}&\qw&\ctrl{1}&\qw&\qw\\
+   &\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\ctrl{1}&\qw\\
+   &\gate{C}&\qw&\gate{B}&\qw&\gate{A}&\qw
+\end{quantikz}$\\
+Each recursion requires $O(n)$ gates, hence the overall cost is
+$\sum_nO(n)=O(n^2)$.\\
+For more details,  arXiv:quant-ph/9503016v1.
+\subsection*{Exercise 4.30}
+A recursive circuit can be used for this with $V^2=U$, which analogous with figure 4.8 is,\\
+$\begin{quantikz}
+    &\qwbundle{n-1}&\ctrl{1}&\qw\\
+    &\qw&\ctrl{1}&\qw\\
+    &\qw&\gate{U}&\qw
+\end{quantikz}=
+\begin{quantikz}
+   &\qwbundle{n-1}&\ctrl{1}&\qw&\ctrl{1}&\ctrl{2}&\qw\\
+   &\ctrl{1}&\targ{}&\ctrl{1}&\targ{}&\qw&\qw\\
+   &\gate{V}&\qw&\gate{V^\dagger}&\qw&\gate{V}&\qw
+\end{quantikz}$\\
+The cost of the CV gates is $O(1)$. Let the cost of the $C^n(U)$ be $C_n$. The cost of the
+$C^{n-1}(X)$ is $O(n)$, hence the total cost from recursion will be $C_n=C_{n-1}+O(n)=O(n^2)$.\\
+For more details,  arXiv:quant-ph/9503016v1.
+\subsection*{Exercise 4.31}
+$CX_1C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    0&I\\
+    I&0    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    0&X\\
+    I&0    
+\end{bmatrix}=
+\begin{bmatrix}
+    0&X\\
+    X&0    
+\end{bmatrix}=X_1X_2
+$\\
+$CY_1C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    0&-iI\\
+    iI&0    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    0&-iX\\
+    iI&0    
+\end{bmatrix}=
+\begin{bmatrix}
+    0&-iX\\
+    iX&0    
+\end{bmatrix}=Y_1X_2
+$\\
+$CZ_1C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&-I    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&-X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&-I    
+\end{bmatrix}=Z_1
+$\\
+$CX_2C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    X&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    X&0\\
+    0&I    
+\end{bmatrix}=
+\begin{bmatrix}
+    X&0\\
+    0&X    
+\end{bmatrix}=X_2
+$\\$CY_2C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    Y&0\\
+    0&Y    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    Y&0\\
+    0&YX    
+\end{bmatrix}=
+\begin{bmatrix}
+    Y&0\\
+    0&-Y    
+\end{bmatrix}=Z_1Y_2
+$\\
+$CZ_2C=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    Z&0\\
+    0&Z    
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}=
+\begin{bmatrix}
+    I&0\\
+    0&X    
+\end{bmatrix}
+\begin{bmatrix}
+    Z&0\\
+    0&ZX    
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0\\
+    0&-Z    
+\end{bmatrix}=Z_1Z_2
+$\\
+$R_{Z,1}(\theta)C=(\cos{\frac{\theta}{2}}I-i\sin{\frac{\theta}{2}}Z_1)C=
+\cos{\frac{\theta}{2}}CI-i\sin{\frac{\theta}{2}}CZ_1=CR_{Z,1}(\theta)$\\
+$R_{X,2}(\theta)C=(\cos{\frac{\theta}{2}}I-i\sin{\frac{\theta}{2}}X_2)C=
+\cos{\frac{\theta}{2}}CI-i\sin{\frac{\theta}{2}}CZ_2=CR_{X,2}(\theta)$
+\subsection*{Exercise 4.32}
+The state after measurement is
+$\frac{P_0\rho P_0}{tr(P_0\rho P_0)}$ with probability
+$tr(P_0\rho P_0)$ for measurement result $0$ and 
+$\frac{P_1\rho P_1}{tr(P_1\rho P_1)}$ with probability
+$tr(P_1\rho P_1)$ for measurement result $1$. Hence,\\
+$\rho^\prime=tr(P_0\rho P_0)\frac{P_0\rho P_0}{tr(P_0\rho P_0)}
++tr(P_1\rho P_1)\frac{P_1\rho P_1}{tr(P_1\rho P_1)}=
+P_0\rho P_0 +P_1\rho P_1$\\
+$tr_2(\rho)=\displaystyle \sum_i \bra{i_2}\rho\ket{i_2}$\\
+$tr_2(\rho^\prime)=\displaystyle \sum_i \bra{i_2}\rho^\prime\ket{i_2}=
+\displaystyle \sum_{i,j} \bra{i_2}(\ket{j_2}\bra{j_2}\rho\ket{j_2}\bra{j_2})\ket{i_2}=
+\sum_{i,j} \delta_{ij}\bra{j_2}\rho\ket{j_2}=\sum_i \bra{i_2}\rho\ket{i_2}$\\
+Therefore, $tr_2(\rho)=tr_2(\rho^\prime)$.
+\subsection*{Exercise 4.33}
+The circuit performs the following,\\
+$\ket{xy}\xrightarrow{\text{CNOT}}\ket{x(y\oplus x)}\xrightarrow{H_1}
+\frac{1}{\sqrt{2}}(\ket{0(y\oplus x)}+(-1)^x\ket{1(y\oplus x)})$\\
+Hence, the possible input outputs are,\\
+$\ket{00}\rightarrow\frac{1}{\sqrt{2}}(\ket{00}+\ket{10})$\\
+$\ket{01}\rightarrow\frac{1}{\sqrt{2}}(\ket{01}+\ket{11})$\\
+$\ket{10}\rightarrow\frac{1}{\sqrt{2}}(\ket{01}-\ket{11})$\\
+$\ket{11}\rightarrow\frac{1}{\sqrt{2}}(\ket{00}-\ket{10})$\\
+Hence, the circuits effect on the Bell states is as follows,\\
+$\frac{1}{\sqrt{2}}(\ket{00}+\ket{11})\rightarrow \ket{00}$\\
+$\frac{1}{\sqrt{2}}(\ket{00}-\ket{11})\rightarrow \ket{10}$\\
+$\frac{1}{\sqrt{2}}(\ket{01}+\ket{10})\rightarrow \ket{01}$\\
+$\frac{1}{\sqrt{2}}(\ket{01}-\ket{10})\rightarrow \ket{11}$\\
+Therefore, by performing a measurement in the computational basis
+at the end of the circuit, we are overall performing a bell measurement.\\
+The state $\ket{\psi}$ after the measurement is given by 
+$\frac{M^\dagger_m\ket{\psi}}{\sqrt{\bra{\psi}M^\dagger_mM_m\ket{\psi}}}$. Hence,
+comparing with the effect of the circuit on the bell states we see that
+the measurement elements are,\\
+$M_0=(\ket{00}+\ket{11})(\bra{00}+\bra{11})$\\
+$M_1=(\ket{00}-\ket{11})(\bra{00}-\bra{11})$\\
+$M_2=(\ket{01}+\ket{10})(\bra{01}+\bra{10})$\\
+$M_3=(\ket{01}-\ket{10})(\bra{01}-\bra{10})$\\
+As this are projective measurements the POVM elements are equal
+to these.
+\subsection*{Exercise 4.34}
+This can be done by using a controlled gate to entangle the system to 
+a qubit whose measurement will collapse the state into the $+1$ or $-1$
+eigenbasis, while will also give us the state on the original qubit.
+The circuit performs the following,\\
+$\ket{0\psi_{in}}\xrightarrow{H_1}\frac{1}{\sqrt{2}}
+(\ket{0\psi_{in}}+\ket{1\psi_{in}})\xrightarrow{CU}
+\frac{1}{\sqrt{2}}(\ket{0\psi_{in}}+\ket{1(U\psi_{in})})\xrightarrow{H_1}
+\frac{1}{2}(\ket{0\psi_{in}}+\ket{1\psi_{in}}+\ket{0(U\psi_{in})}-\ket{1(U\psi_{in})})=
+\frac{1}{2}(\ket{0}(I+U)\ket{\psi_{in}}+\ket{1}(I-U)\ket{\psi_{in}})$\\
+If the measurement value is $0$ then the state is 
+$\ket{\psi_{out}}=(I+U)\ket{\psi_{in}}$ for which
+$U\ket{\psi_{out}}=U(I+U)\ket{\psi_{in}}=(I+U)\ket{\psi_{in}}$,
+therefore the result with eigenvalue $+1$ has taken place.\\
+If the measurement value is $1$ then the state is
+$\ket{\psi_{out}}=(I-U)\ket{\psi_{in}}$ for which
+$U\ket{\psi_{out}}=U(I-U)\ket{\psi_{in}}=-(I-U)\ket{\psi_{in}}$,
+therefore the result with eigenvalue $-1$ has taken place.
+\subsection*{Exercise 4.35}
+Let the system be in the state $a\ket{0\psi}+b\ket{1\psi}$. Then
+the effect of the circuits are,\\
+1)$a\ket{0\psi}+b\ket{1\psi}\xrightarrow{CU} 
+a\ket{0\psi}+b\ket{1(U\psi)}\xrightarrow{\text{Mes.}}
+0$ with $p=|a|^2$ and state $\ket{\psi}$ or $1$ with
+$p=|b|^2$ and state $U\ket{\psi}$\\
+2)$a\ket{0\psi}+b\ket{1\psi}\xrightarrow{\text{Mes.}}
+0$ with $p=|a|^2$ or $1$ with
+$p=|b|^2$, both with state $\ket{\psi}\xrightarrow{CU}
+\ket{\psi}$ with $p=|a|^2$ or $U\ket{\psi}$ with
+$p=|b|^2$\\
+Hence, the two circuits perform the same operation.
+\subsection*{Exercise 4.36}
+Consider all the possible input states.\\
+If $x=00$ then nothing needs to be applied.\\
+If $x=01$ we have for $y$,\\
+$\ket{00}\rightarrow\ket{01}$,
+$\ket{01}\rightarrow\ket{10}$,
+$\ket{10}\rightarrow\ket{11}$,
+and $\ket{11}\rightarrow\ket{00}$. The circuit for this is,\\
+$\begin{quantikz}
+    \lstick{$\ket{x_1}$}&\octrl{1}&\octrl{1}&\qw\\
+    \lstick{$\ket{x_2}$}&\ctrl{2}&\ctrl{1}&\qw\\
+    \lstick{$\ket{y_1}$}&\qw&\targ{}&\qw\\
+    \lstick{$\ket{y_2}$}&\targ{}&\octrl{-1}&\qw 
+\end{quantikz}$\\
+If $x=10$ we have for $y$,\\
+$\ket{00}\rightarrow\ket{10}$,
+$\ket{01}\rightarrow\ket{11}$,
+$\ket{10}\rightarrow\ket{00}$,
+and $\ket{11}\rightarrow\ket{01}$. The circuit for this is,\\
+$\begin{quantikz}
+    \lstick{$\ket{x_1}$}&\ctrl{1}&\qw\\
+    \lstick{$\ket{x_2}$}&\octrl{1}&\qw\\
+    \lstick{$\ket{y_1}$}&\targ{}&\qw\\
+    \lstick{$\ket{y_2}$}&\qw&\qw
+\end{quantikz}$\\
+If $x=01$ we have for $y$,\\
+$\ket{00}\rightarrow\ket{11}$,
+$\ket{01}\rightarrow\ket{00}$,
+$\ket{10}\rightarrow\ket{01}$,
+and $\ket{11}\rightarrow\ket{10}$. The circuit for this is,\\
+$\begin{quantikz}
+   \lstick{$\ket{x_1}$} &\ctrl{1}&\ctrl{1}&\qw\\
+   \lstick{$\ket{x_2}$} &\ctrl{2}&\ctrl{1}&\qw\\
+   \lstick{$\ket{y_1}$} &\qw&\targ{}&\qw\\
+   \lstick{$\ket{y_2}$} &\targ{}&\ctrl{-2}&\qw 
+\end{quantikz}$\\
+Hence, the full circuit is,\\
+$\begin{quantikz}
+    \lstick{$\ket{x_1}$}&\octrl{1}&\octrl{1}&\ctrl{1}&\ctrl{1}&\ctrl{1}&\qw\\
+    \lstick{$\ket{x_2}$}&\ctrl{2}&\ctrl{1}&\octrl{1}&\ctrl{2}&\ctrl{1}&\qw\\
+    \lstick{$\ket{y_1}$}&\qw&\targ{}&\targ{}&\qw&\targ{}&\qw\\
+    \lstick{$\ket{y_2}$}&\targ{}&\octrl{-1}&\qw&\targ{}&\ctrl{-2}&\qw 
+\end{quantikz}$
+\subsection*{Exercise 4.37}
+Identical to the 3x3 matrix we do the following,\\
+$U_1=\begin{bmatrix}
+    \frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}&0&0\\
+    \frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}&0&0\\
+    0&0&1&0\\
+    0&0&0&1
+\end{bmatrix}$\\
+$U_1U=\frac{1}{2}\begin{bmatrix}
+    \sqrt{2}&\frac{1}{\sqrt{2}}(1+i)&0&\frac{1}{\sqrt{2}}(1-i)\\
+    0&\frac{1}{\sqrt{2}}(1-i)&\sqrt{2}&\frac{1}{\sqrt{2}}(1+i)\\
+    1&-1&1&-1\\
+    1&-i&-1&i
+\end{bmatrix}$\\
+$U_2=\begin{bmatrix}
+    \sqrt{\frac{2}{3}}&0&\frac{1}{\sqrt{3}}&0\\
+    0&1&0&0\\
+    \frac{1}{\sqrt{3}}&0&-\sqrt{\frac{2}{3}}&0\\
+    0&0&0&1
+\end{bmatrix}$\\
+$U_2U_1U=\frac{1}{2}\begin{bmatrix}
+    \sqrt{3}&\frac{i}{\sqrt{3}}&\frac{1}{\sqrt{3}}&-\frac{i}{\sqrt{3}}\\
+    0&\frac{1}{\sqrt{2}}(1-i)&\sqrt{2}&\frac{1}{\sqrt{2}}(1+i)\\
+    0&\frac{1}{\sqrt{2}}(\sqrt{3}+\frac{i}{\sqrt{3}})&-\sqrt{\frac{2}{3}}&\frac{1}{\sqrt{2}}(\sqrt{3}-\frac{i}{\sqrt{3}})\\
+    1&-i&-1&i
+\end{bmatrix}$\\
+$U_3=\begin{bmatrix}
+    \frac{\sqrt{3}}{2}&0&0&\frac{1}{2}\\
+    0&1&0&0\\
+    0&0&1&0\\
+    \frac{1}{2}&0&0&-\frac{\sqrt{3}}{2}
+\end{bmatrix}$\\
+$U_3U_2U_1U=\frac{1}{2}\begin{bmatrix}
+    2&0&0&0\\
+    0&\frac{1}{\sqrt{2}}(1-i)&\sqrt{2}&\frac{1}{\sqrt{2}}(1+i)\\
+    0&\frac{1}{\sqrt{2}}(\sqrt{3}+\frac{i}{\sqrt{3}})&-\sqrt{\frac{2}{3}}&\frac{1}{\sqrt{2}}(\sqrt{3}-\frac{i}{\sqrt{3}})\\
+    0&i\frac{2}{\sqrt{3}}&\frac{2}{\sqrt{3}}&-i\frac{2}{\sqrt{3}}
+\end{bmatrix}$\\
+$U_4=\begin{bmatrix}
+    1&0&0&0\\
+    0&\frac{\sqrt{3}}{4}(1+i)&\frac{\sqrt{3}}{4}(\sqrt{3}-\frac{i}{\sqrt{3}})&0\\
+    0&\frac{\sqrt{3}}{4}(\sqrt{3}+\frac{i}{\sqrt{3}})&-\frac{\sqrt{3}}{4}(1-i)&0\\
+    0&0&0&1
+\end{bmatrix}$\\
+$U_4U_3U_2U_1U=\begin{bmatrix}
+    1&0&0&0\\
+    0&\sqrt{\frac{2}{3}}&i\frac{1}{\sqrt{6}}&\frac{1}{\sqrt{6}}\\
+    0&0&\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}i\\
+    0&\frac{1}{\sqrt{3}}i&\frac{1}{\sqrt{3}}&-\frac{1}{\sqrt{3}}i
+\end{bmatrix}$\\
+$U_5=\begin{bmatrix}
+    1&0&0&0\\
+    0&\sqrt{\frac{2}{3}}&0&-\frac{1}{\sqrt{3}}i\\
+    0&0&1&0\\
+    0&\frac{1}{\sqrt{3}}i&0&-\sqrt{\frac{2}{3}}
+\end{bmatrix}$\\
+$U_5U_4U_3U_2U_1U=\begin{bmatrix}
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&\frac{1}{\sqrt{2}}&i\frac{1}{\sqrt{2}}\\
+    0&0&-\frac{1}{\sqrt{2}}&i\frac{1}{\sqrt{2}}
+\end{bmatrix}$\\
+$U_6=\begin{bmatrix}
+    1&0&0&0\\
+    0&1&0&0\\
+    0&0&\frac{1}{\sqrt{2}}&-\frac{1}{\sqrt{2}}\\
+    0&0&-i\frac{1}{\sqrt{2}}&-i\frac{1}{\sqrt{2}}
+\end{bmatrix}$\\
+$U_6U_5U_4U_3U_2U_1U=I$\\
+Therefore, $U=U_1^\dagger U_2^\dagger U_3^\dagger 
+U_4^\dagger U_5^\dagger U_6^\dagger$.
+\subsection*{Exercise 4.38}
 
+\subsection*{Exercise 4.39}
+$U$ acts non-trivially on $\ket{010}$ and $\ket{111}$.
+Hence, from considering the Gray code $\ket{010}\rightarrow
+\ket{011}\rightarrow\ket{111}$, we read off the circuit to be,\\
+$\begin{quantikz}
+    &\octrl{1}&\gate{\tilde{U}}&\octrl{1}&\qw\\
+    &\ctrl{1}&\ctrl{-1}&\ctrl{1}&\qw\\
+    &\targ{}&\ctrl{-1}&\targ{}&\qw
+\end{quantikz}$
+\subsection*{Exercise 4.40}
+$E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\alpha+\beta))=
+E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\beta)R_{\hat{n}}(\alpha))=
+||(1-R_{\hat{n}}(\beta))R_{\hat{n}}(\alpha)\ket{\psi}||=
+||(1-e^{-i\beta \hat{n}.\sigma/2})\ket{\psi}||=
+\sqrt{\bra{\psi}(2-(e^{i\beta \hat{n}.\sigma/2}+
+e^{-i\beta \hat{n}.\sigma/2}))\ket{\psi}}=
+\sqrt{\bra{\psi}(2-2\cos{\frac{\beta}{2}})\ket{\psi}}=
+\sqrt{2-2\cos{\frac{\beta}{2}}}=|1-e^{i\beta/2}|$\\
+For a small $\beta$ such that $\alpha+\beta+m\theta=n\theta$ for $m<n$ we have,\\
+$E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\theta)^n)=
+E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\alpha)R_{\hat{n}}(\beta)R_{\hat{n}}(\theta)^m)=
+E(I,R_{\hat{n}}(\beta)R_{\hat{n}}(\theta)^m)\leq E(I,R_{\hat{n}}(\beta))+
+mE(I,R_{\hat{n}}(\theta)^m)=|1-e^{i\beta/2}|+m|1-e^{i\theta/2}|$\\
+As $|\beta|,|\theta|<\delta$ we have that $|1-e^{i\beta/2}|+m|1-e^{i\theta/2}|<\frac{\epsilon}{3}$,
+hence $E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\theta)^n)<\frac{\epsilon}{3}$.
+\subsection*{Exercise 4.41}
+For an initial state $\ket{00\psi}$ the circuit performs the following,\\
+$\ket{00\psi}\xrightarrow{H_1H_2}\frac{1}{2}(\ket{00}+\ket{01}+\ket{10}+\ket{11})\ket{\psi}
+\xrightarrow{\text{Toffoli}}\frac{1}{2}(\ket{00\psi}+\ket{01\psi}+\ket{10\psi}+\ket{11(X\psi)})
+\xrightarrow{S}\frac{1}{2}(\ket{00(S\psi)}+\ket{01(S\psi)}+\ket{10(S\psi)}+\ket{11(SX\psi)})
+\xrightarrow{\text{Toffoli}}\frac{1}{2}(\ket{00(S\psi)}+\ket{01(S\psi)}+\ket{10(S\psi)}+\ket{11(XSX\psi)})
+\xrightarrow{H_1H_2}\frac{1}{4}((\ket{0}+\ket{1})(\ket{0}+\ket{1})+(\ket{0}+\ket{1})(\ket{0}-\ket{1})+
+(\ket{0}-\ket{1})(\ket{0}+\ket{1}))\ket{S\psi}+\frac{1}{4}(\ket{0}-\ket{1})(\ket{0}-\ket{1})\ket{XSX\psi}=
+\frac{1}{4}(\ket{00}(3S+XSX)\ket{\psi}+(\ket{01}+\ket{10})(S-XSX)\ket{\psi}+\ket{11}(XSX-S)\ket{\psi})=
+\frac{1}{4}(\ket{00}(3S+XSX)\ket{\psi}+(\ket{01}+\ket{10}-\ket{11})(S-XSX)\ket{\psi})$\\
+If both measurements give $0$ then $\frac{1}{4}(3S+XSX)$ is applied to $\ket{\psi}$.\\
+$\frac{1}{4}(3S+XSX)=\frac{1}{4}
+\begin{bmatrix}
+    3+i&0\\
+    0&1+3i
+\end{bmatrix}=\frac{1}{4}
+\begin{bmatrix}
+    i(1-3i)&0\\
+    0&1+3i
+\end{bmatrix}=
+\frac{\sqrt{10}}{4}e^{\pi/4}
+\begin{bmatrix}
+    e^{\pi/4}e^{-i\arctan{3}}&0\\
+    0&e^{-\pi/4}e^{i\arctan{3}}
+\end{bmatrix}=\frac{\sqrt{10}}{4}R_Z(2\arctan{3}-\pi/2)=
+\frac{\sqrt{10}}{4}(\frac{1}{\sqrt{10}}I-\frac{3}{\sqrt{10}}Z)
+(\frac{1}{\sqrt{2}}I+\frac{1}{\sqrt{2}}Z)=
+\frac{1}{4}(\frac{1}{\sqrt{10}}I-\frac{3}{\sqrt{10}}I+\frac{1}{\sqrt{10}}Z-\frac{3}{\sqrt{10}}Z)=
+\frac{1}{4}()$\\
+For the rest of
 \end{document}
