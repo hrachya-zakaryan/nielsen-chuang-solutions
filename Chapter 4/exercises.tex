@@ -4,6 +4,7 @@
 \usepackage{braket}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{amssymb}
 \usetikzlibrary{quantikz}
 \begin{document}
 \subsection*{Exercise 4.1}
@@ -912,14 +913,80 @@ $\frac{1}{4}(3S+XSX)=\frac{1}{4}
     i(1-3i)&0\\
     0&1+3i
 \end{bmatrix}=
-\frac{\sqrt{10}}{4}e^{\pi/4}
+\frac{\sqrt{10}}{4}e^{i\pi/4}
 \begin{bmatrix}
-    e^{\pi/4}e^{-i\arctan{3}}&0\\
-    0&e^{-\pi/4}e^{i\arctan{3}}
-\end{bmatrix}=\frac{\sqrt{10}}{4}R_Z(2\arctan{3}-\pi/2)=
-\frac{\sqrt{10}}{4}(\frac{1}{\sqrt{10}}I-\frac{3}{\sqrt{10}}Z)
-(\frac{1}{\sqrt{2}}I+\frac{1}{\sqrt{2}}Z)=
-\frac{1}{4}(\frac{1}{\sqrt{10}}I-\frac{3}{\sqrt{10}}I+\frac{1}{\sqrt{10}}Z-\frac{3}{\sqrt{10}}Z)=
-\frac{1}{4}()$\\
-For the rest of
+    e^{i\pi/4}e^{-i\arctan{3}}&0\\
+    0&e^{-i\pi/4}e^{i\arctan{3}}
+\end{bmatrix}=\frac{\sqrt{10}}{4}e^{\pi/4}R_Z(\theta)$,\\
+as $\cos{\frac{\theta}{2}}\cos(\arctan{3}-\frac{\pi}{4})=\frac{2}{\sqrt{5}}$, hence
+$\cos\theta=2\cos^2{\frac{\theta}{2}}-1=\frac{3}{5}$.\\
+Otherwise, $Z$ is applied, as\\
+$S-XSX=\begin{bmatrix}
+    1-i&0\\
+    0&i-1
+\end{bmatrix}=e^{-i\pi/4}
+\begin{bmatrix}
+    1&0\\
+    0&-1
+\end{bmatrix}$\\
+The final state is $\frac{1}{4}(\sqrt{10}e^{i\pi/4}\ket{00(R_Z(\theta)\psi)}
++e^{-i\pi/4}(\ket{01}+\ket{10}-\ket{11})Z\ket{\psi})$.\\
+Therefore, $p(\ket{00})=\left|\frac{\sqrt{10}e^{i\pi/4}}{4}\right|=\frac{5}{8}$.\\
+If anything other then $\ket{00}$ is measured we apply a $-Z$ gate if the measurement 
+is $\ket{11}$ and $Z$ gate otherwise to the last qubit and afterwards apply the circuit again. Then for 
+the overall circuit,\\
+$p(R_Z(\theta))=\displaystyle \lim_{n \to +\infty}\sum_n\left(\frac{3}{8}\right)^{n-1}\frac{5}{8}=1$
+\subsection*{Exercise 4.42}
+1)As $\theta$ is rational $\exists m$ such that $m\theta=2\pi n$, hence raising both sides
+to the power of this $m$ we have,\\
+$e^{i2\pi n}=\frac{(3+4i)^m}{5^m}$\\
+$1=\frac{(3+4i)^m}{5^m}$\\
+$(3+4i)^m=5^m$\\
+2)$3+4i=3+4i \mod{5}$\\
+$(3+4i)^2=-7+24i=3+4i \mod{5}$\\
+Let us show that if for some $a$ and $n$ we have $a=a\mod{n}$ and $a^2=a\mod{n}$ then
+$a^m=a\mod{n}$. For $a^3$ we have $a^3=aa^2=anq_1+a^2=n(aq_1+q_2)+a=a\mod{n}$. Assume
+true for $m-1$. Then $a^m=aa^{m-1}=anq_1+a^2=n(aq_1+q_2)+a=a\mod{n}$, hence by induction
+it's true for all $m\in \mathbb{N}$. Therefore, we have that, $(3+4i)^m=3+4i\mod{5}$.
+Hence, $(3+4i)^m$ is not a multiple of 5, therefore $\nexists m\in\mathbb{N}$ such that,
+$(3+4i)^m=5^m$.
+\subsection*{Exercise 4.43}
+The circuit shown in Exercise 4.41 implements an $R_Z(\theta)$ gate with an 
+irrational $\theta$ as shown in Exercise 4.42. $HR_Z(\theta)H=R_X(\theta)$, hence
+we can convert between $R_{\hat{n}}(\theta)$ and $R_Z(\theta)$ as in Exercise 4.6 by only using
+Hadamard, phase and Toffoli gates. Hence, in accordance with equation 4.76 we have
+$E(R_Z(\alpha),R_Z(\theta)^n)=E(R_{\hat{n}}(\alpha),R_{\hat{n}}(\theta)^n)<\frac{\epsilon}{3}$.
+Therefore, Hadamard, phase, CNOT and Toffoli gates are universal for quantum
+computation.
+\subsection*{Exercise 4.44}
+\subsection*{Exercise 4.45}
+\subsection*{Exercise 4.46}
+$\rho$ is a complex $2^nx2^n$ hermitian matrix with trace 1. There are
+$2*2^{2n}$ real components. The diagonal has to be real so we get 
+$2*2^{2n}-2^n$. As the matrix is hermitian only half of the components
+other then the diagonal elements are independent, hence the number of components
+is $2*2^{2n}-2^n-(2*\frac{2^{2n}-2^n}{2})=4^n$. The trace being 1 fixes one 
+of the diagonal elements, hence the number of independent real components is
+$4^n-1$.
+\subsection*{Exercise 4.47}
+If $[A,B]=0$\\
+$e^{A+B}=\displaystyle\sum_{n=0}^\infty\frac{(A+B)^n}{n!}=
+\displaystyle\sum_{n=0}^\infty\sum_{k=0}^n{n\choose k}\frac{A^{n-k}B^k}{n!}=
+\displaystyle\sum_{n=0}^\infty\sum_{k=0}^{n}\frac{A^{n-k}B^k}{(n-k)!k!}=
+\displaystyle\sum_{k=0}^\infty\sum_{n=k}^\infty\frac{A^{n-k}B^k}{(n-k)!k!}=
+\displaystyle\sum_{k=0}^\infty\sum_{n-k=0}^\infty\frac{A^{n-k}B^k}{(n-k)!k!}=
+e^{A}e^{B}$\\
+Hence, applying this to $e^{-iHt}$ we get the desired result.
+\subsection*{Exercise 4.48}
+$L\leq\displaystyle\sum_{i=0}^n{n\choose i}<c{n\choose c}=
+c\displaystyle\frac{n!}{(n-c)!c!}=c\displaystyle\frac{n(n-1)\ldots(n-c+1)}{c!}=O(n^c)$
+\subsection*{Exercise 4.49}
+$e^{(A+B)\Delta t}=1+(A+B)\Delta t+\frac{1}{2}(A+B)^2\Delta t^2+O(\Delta t^3)=
+1+(A+B)\Delta t+\frac{1}{2}(A^2+B^2+AB+BA)\Delta t^2+O(\Delta t^3)=
+1+(A+B)\Delta t+\frac{1}{2}(A^2+B^2+2AB-(AB-BA))\Delta t^2+O(\Delta t^3)=
+e^{A\Delta t}e^{B\Delta t}e^{-\frac{1}{2}[A,B]\Delta t^2}+O(\Delta t^3)$\\
+$e^{i(A+B)\Delta t}=1+i(A+B)\Delta t +O(\Delta t^2)=e^{iA\Delta t}e^{iB\Delta t}+O(\Delta t^2)$\\
+$e^{i(A+B)\Delta t}=1+i(A+B)\Delta t-\frac{1}{2}(A^2+B^2+AB+BA)\Delta t^2+
+O(\Delta t^3)=1+i(\frac{1}{2}A+B+\frac{1}{2}A)\Delta t-(\frac{1}{4}A^2+\frac{1}{2}B^2+\frac{1}{4}AB+\frac{1}{4}BA)\Delta t^2+
+O(\Delta t^3)=e^{iA\Delta t/2}e^{iB\Delta t}e^{A\Delta t/2}+O(\Delta t^3)$
 \end{document}
