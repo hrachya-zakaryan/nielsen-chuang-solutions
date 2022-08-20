@@ -1,0 +1,93 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{quantikz}
+\begin{document}
+\subsection*{Exercise 5.1}
+$U\ket{j}=\frac{1}{\sqrt{N}}\displaystyle\sum_{k=0}^{N-1}e^{2\pi ijk/N}\ket{k}$\\
+$\bra{j^\prime}U^\dagger U\ket{j}=\frac{1}{N}\displaystyle
+\sum_{k^\prime=0}^{N-1}\sum_{k=0}^{N-1}e^{-2\pi ij^\prime k^\prime /N}e^{2\pi ijk/N}\delta_{k,k^\prime}=
+\frac{1}{N}\displaystyle
+\sum_{k=0}^{N-1}e^{2\pi i(j-j^\prime)k/N}=
+\frac{1}{N}N\delta_{j,j^\prime}=\delta_{j,j^\prime}$\\
+Therefore, $U^\dagger U =I$, hence $U$ is unitary.
+\subsection*{Exercise 5.2}
+$\ket{00\ldots 0}=\frac{1}{\sqrt{N}}
+\displaystyle\sum_{k=0}^{N-1}\ket{k}=\frac{1}{2^{n/2}}
+\displaystyle\sum_{x_i\in\{0,1\}}\ket{x_1x_2\ldots x_n}$
+\subsection*{Exercise 5.3}
+For each $y_k$ we perform $2^n$ additions and there are $2^n$ $y_k$ to
+calculate, hence in total we require $\Theta(2^{2n})$ operations.\\
+(Cooley-Turkey Algorithm) For each $x_k$ we can separate the sum into odd and even 
+indices, then we require $2^n$ operations assuming the two separate sums are known.
+This can be done recursively, splitting each sum into 2 pieces. This leads to the number
+of operations to be $\Theta(2^n\log{2^n})=\Theta(n2^n)$.
+\subsection*{Exercise 5.4}
+Let $R_k=e^{i\alpha}AXBXC$ with $ABC=I$. Taking $\alpha=\frac{\pi i}{2^k}$, $A=I$
+$B=R_Z(-\frac{\pi i}{2^{k}})$ and $C=R_Z(\frac{\pi i}{2^{k}})$ we see that $ABC=I$ and
+$AXBXC=XR_Z(-\frac{\pi i}{2^{k}})XR_Z(\frac{\pi i}{2^{k}})=
+XXR_Z(\frac{\pi i}{2^{k}})R_Z(\frac{\pi i}{2^{k}})=
+R_Z(\frac{2\pi i}{2^{k}})$. Hence, the circuit will be,\\
+$\begin{quantikz}
+    &\ctrl{1}&\qw&\ctrl{1}&\phase{e^{\pi i/2^k}}&\qw\\
+    &\targ{}&\gate{R_Z(-\frac{\pi i}{2^{k}})}&\targ{}&\gate{R_Z(\frac{\pi i}{2^{k}})}&\qw
+\end{quantikz}$
+
+\subsection*{Exercise 5.5}
+$FT^{-1}=FT^\dagger$
+\subsection*{Exercise 5.6}
+In the circuit we have $m=\frac{n(n+1)}{2}=\Theta(n^2)$ $R_k$ gates. Using the result of Box 4.1,\\
+$E(U,V)\leq m\frac{1}{p(n)}=\Theta(\frac{n^2}{p(n)})$
+\subsection*{Exercise 5.7}
+Let $\ket{j}=\ket{j_0j_2\ldots j_{n-1}}$, then the circuit implements the following,\\
+$\ket{j}\ket{u}\rightarrow \ket{j}((U^{2^0})^{j_0}(U^{2^1})^{j_1}\ldots(U^{2^{n-1}})^{j_{n-1}})\ket{u}=
+\ket{j}U^{j_02^0+j_12^1+\ldots+j_{n-1}2^{n-1}}\ket{u}=\ket{j}U^j\ket{u}$
+\subsection*{Exercise 5.8}
+With probability $|c_u|^2$ we will be measuring $\varphi_u$ for the state $\ket{u}$.
+If $t$ is of the form of 5.35 each $\tilde{\varphi}_u$ is accurate to $n$ bits of $\varphi_u$ with
+probability $1-\epsilon$. Hence, the total probability of measuring $\varphi_u$ accurate to $n$ bits
+is $|c_u|^2(1-\epsilon)$.
+\subsection*{Exercise 5.9}
+For this $U$ $\varphi_0=0$ and $\varphi_1=\frac{1}{2}$, hence the circuit is,\\
+$\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{1}&\gate{FT^\dagger}&\meter{}\\
+    \lstick{$\ket{u}$}&\qw&\gate{U}&\qw&\qw
+\end{quantikz}$
+The state before the measurement is $\ket{0}\ket{u_0}-\ket{1}\ket{u_1}$, hence after the
+measurement it will collapse into the $+1$ or $-1$ eigenbasis. For a first register with a
+single qubit $FT^\dagger=H$, hence this is the same circuit as that in Exercise 4.34.
+\subsection*{Exercise 5.10}
+$5=5\bmod 21$, $5^2=4\bmod 21$,$5^3=20\bmod 21$, $5^4=16\bmod 21$, $5^5=17\bmod 21$ and
+$5^6=1\bmod 21$. Hence, the order is $6$. 
+\subsection*{Exercise 5.11}
+As $gcd(x, N)=1$, from Euler's formula $x^{\varphi(N)}=1\bmod N$. $\varphi(N)$ is the number
+of $y$ such that $gcd(y,N)=1$ and $y<N$, hence $\varphi(N)<N$. Therefore, there always exists a
+number $r\leq N$, such that $x^r=1(\bmod N)$.
+\subsection*{Exercise 5.12}
+$\bra{y^\prime}U^\dagger U\ket{y}=\braket{xy^\prime|xy}=\braket{y^\prime|y}\bmod N$\\
+$0\leq y\leq N-1$, hence $\braket{y^\prime|y}\bmod N=\braket{y^\prime|y}=\delta_{y,y^\prime}$. Therefore,
+$\bra{y^\prime}U^\dagger U\ket{y}=\delta_{y,y^\prime}$.
+Hence, $U$ is unitary.
+\subsection*{Exercise 5.13}
+$\displaystyle\frac{1}{\sqrt{r}}\displaystyle\sum_{s=0}^{r-1}\ket{u_s}=
+\frac{1}{r}\displaystyle\sum_{s=0}^{r-1}\sum_{k=0}^{r-1}e^{-2\pi isk/r}\ket{x^k\bmod N}=
+\frac{1}{r}\displaystyle\sum_{k=0}^{r-1}\sum_{s=0}^{r-1}e^{-2\pi isk/r}\ket{x^k\bmod N}=\\
+=\frac{1}{r}\displaystyle\sum_{k=0}^{r-1}r\delta_{k0}\ket{x^k\bmod N}=\ket{1}$\\
+$\displaystyle\frac{1}{\sqrt{r}}\displaystyle\sum_{s=0}^{r-1}e^{2\pi isk/r}\ket{u_s}=
+\frac{1}{r}\displaystyle\sum_{s=0}^{r-1}\sum_{k^\prime=0}^{r-1}
+e^{2\pi is(k-k^\prime)/r}\ket{x^{k^\prime}\bmod N}=
+\frac{1}{r}\displaystyle\sum_{k^\prime=0}^{r-1}r\delta_{k,k^\prime}\ket{x^{k^\prime}\bmod N}=
+\ket{x^k\bmod N}$
+\subsection*{Exercise 5.14}
+
+\subsection*{Exercise 5.15}
+\subsection*{Exercise 5.16}
+\subsection*{Exercise 5.17}
+\subsection*{Exercise 5.18}
+\subsection*{Exercise 5.19}
+\subsection*{Exercise 5.20}
+\end{document}

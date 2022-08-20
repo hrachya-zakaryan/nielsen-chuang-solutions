@@ -989,4 +989,25 @@ $e^{i(A+B)\Delta t}=1+i(A+B)\Delta t +O(\Delta t^2)=e^{iA\Delta t}e^{iB\Delta t}
 $e^{i(A+B)\Delta t}=1+i(A+B)\Delta t-\frac{1}{2}(A^2+B^2+AB+BA)\Delta t^2+
 O(\Delta t^3)=1+i(\frac{1}{2}A+B+\frac{1}{2}A)\Delta t-(\frac{1}{4}A^2+\frac{1}{2}B^2+\frac{1}{4}AB+\frac{1}{4}BA)\Delta t^2+
 O(\Delta t^3)=e^{iA\Delta t/2}e^{iB\Delta t}e^{A\Delta t/2}+O(\Delta t^3)$
+\subsection*{Exercise 4.50}
+a)From repeated use of 4.104 we have,\\
+$U_{\Delta t}=[e^{-iH_1\Delta t}\ldots e^{-iH_L\Delta t}]
+[e^{-iH_L\Delta t}\ldots e^{-iH_1\Delta t}]=
+[e^{-iH_1\Delta t}\ldots e^{-iH_{L-1}\Delta t}]e^{-i2H_L\Delta t}
+[e^{-iH_{L-1}\Delta t}\ldots e^{-iH_1\Delta t}]=
+[e^{-iH_1\Delta t}\ldots e^{-iH_{L-2}\Delta t}]e^{-i2(H_{L-1}+H_L)\Delta t}
+[e^{-iH_{L-2}\Delta t}\ldots e^{-iH_1\Delta t}]+O(\Delta t^3)=
+e^{-i2H\Delta t}+O(\Delta t^3)$\\
+b)$E(U_{\Delta t}^m, e^{-2miH\Delta t})\leq mE(U_{\Delta t}, e^{-2iH\Delta t})=
+m||(U_{\Delta t}- e^{-2iH\Delta t})\ket{\psi}||=
+m||O(\Delta t^3)\ket{\psi}||=m\alpha \Delta t^3$
+\subsection*{Exercise 4.51}
+$HXH=Z$ and $R_X(-\frac{\pi}{2})Y=Z$, hence the circuit is\\
+$\begin{quantikz}
+    &\gate{H}&\ctrl{3}&\qw&\qw&\qw&\qw&\qw&\ctrl{3}&\gate{H}&\qw\\
+    &\gate{R_X(-\frac{\pi}{2})}&\qw&\ctrl{2}&\qw&\qw&\qw&\ctrl{2}&\qw&\gate{R_X(\frac{\pi}{2})}&\qw\\
+    &\qw&\qw&\qw&\ctrl{1}&\qw&\ctrl{1}&\qw&\qw&\qw&\qw\\
+    \lstick{$\ket{0}$}&\qw&\targ{}&\targ{}&\targ{}&\gate{e^{-i\Delta tZ}}&\targ{}&\targ{}&\targ{}&\qw&\qw
+\end{quantikz}$
+
 \end{document}
