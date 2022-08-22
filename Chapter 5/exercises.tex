@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{amssymb}
+\usepackage{mathtools}
 \usetikzlibrary{quantikz}
 \begin{document}
 \subsection*{Exercise 5.1}
@@ -83,11 +84,99 @@ e^{2\pi is(k-k^\prime)/r}\ket{x^{k^\prime}\bmod N}=
 \frac{1}{r}\displaystyle\sum_{k^\prime=0}^{r-1}r\delta_{k,k^\prime}\ket{x^{k^\prime}\bmod N}=
 \ket{x^k\bmod N}$
 \subsection*{Exercise 5.14}
-
+For $V$,\\
+$\ket{\psi}=\displaystyle\sum_{j=0}^{2^t-1}\ket{j}V^j\ket{0}=
+\displaystyle\sum_{j=0}^{2^t-1}\ket{j}\ket{0+x^j\bmod N}=
+\displaystyle\sum_{j=0}^{2^t-1}\ket{j}\ket{x^j\bmod N}$\\
+Writing $x^j(\bmod N)=(x^{j_t{2^{t-1}}}(\bmod N))(x^{j_{t-1}{2^{t-2}}}(\bmod N))
+\ldots (x^{j_1{2^0}}(\bmod N))$, each modular multiplication requires $O(L^2)$ gates, hence
+for the total product of $t-1$ modular multiplications we require $O(L^3)$ gates, and uses the circuit
+shown in figure 5.2. The addition of $k$ is done after the modular 
+multiplications and requires $O(L)$ gates, hence in total we still require $O(L^3)$ gates.
 \subsection*{Exercise 5.15}
+Let $m=[x,y]$ be the lowest common multiple. Let $M$ be any common multiple. Then
+we can write $M=mq+r$. $x$ and $y$ divide both $M$ and $m$, hence they also divide $r$, 
+meaning it's a common multiple, but $r<m$ and $m$ is the lowest common multiple, therefore
+$r=0$. Now let $x=(x,y)x_1$ and $y=(x,y)y_1$ with $(x_1,y_1)=1$. $x$ and $y$ divide
+$(x,y)x_1y_1$ hence it's a common multiple, therefore we can write $(x,y)x_1y_1=mq_1$. Therefore, we have
+$x_1=\frac{m}{y}q_1$ and $y_1=\frac{m}{x}q_1$, hence $q_1$ divides both $x_1$ and $y_1$.
+However, $(x_1,y_1)=1$, hence $q_1=1$. Hence, $[x,y]=(x,y)x_1y_1=(x,y)x_1(x,y)y_1/(x,y)=
+xy/(x,y)$.\\
+We can use Stein's gcd algorithm which requires $O(L^2)$ gates.
 \subsection*{Exercise 5.16}
+$\displaystyle\int_x^{x+1}\frac{1}{y^2}dy=\frac{1}{x(x+1)}$\\
+Consider $\displaystyle\frac{1}{x(x+1)}-\frac{2}{3x^2}=\frac{x-1}{3x^2(x+1)}$\\
+For $x\geq 2$ this is always greater than $0$, hence 
+$\displaystyle\int_x^{x+1}\frac{1}{y^2}dy\geq\frac{2}{3x^2}$.\\
+$\displaystyle\frac{3}{4}=\frac{3}{2}\displaystyle\int_2^\infty\frac{1}{y^2}dy=\frac{3}{2}\sum_{q=2}^\infty\int_q^{q+1}\frac{1}{y^2}dy
+\geq\sum_{q=2}^\infty \frac{1}{q^2}$\\
+Therefore, $1-\displaystyle\sum_q\frac{1}{q^2}\geq 1-\frac{3}{4}=\frac{1}{4}$, hence
+equation 5.58 holds.
 \subsection*{Exercise 5.17}
+1) $N=a^b$, taking $\log$ of both sides\\
+$L=b\log{a}$\\
+If $a=1$, then $L=1$ and $b=0$.\\
+If $a\geq 2$, then $\log{a}\geq 1$, hence as $b$ is a positive integer, $b\leq L$.\\
+2) We want to calculate $2$ estimates to $x=\log{N}/b$, we need $O(1)$ to find $y$ 
+$O(L^2)$ to calculate $x$ for a specific $b\leq L$ and $O(1)$ for calculating $2^x$ and finding the
+closest 2 integers.\\
+3) To calculate
 \subsection*{Exercise 5.18}
+$N$ is not even so step 1 is passed, using the algorithm of the exercise 5.17 
 \subsection*{Exercise 5.19}
+The only non composite odd number less than $15$ is $9$ which is $3^2$, hence as
+$15=3*5$ it's the smallest composite number that's odd and not a perfect power. 
 \subsection*{Exercise 5.20}
+
+(Correction for the hint, $\sqrt{N/r}\rightarrow N/r$)\\
+For $N=nr$, we have,\\
+$\hat{f}(\ell)=\displaystyle \frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}e^{-2\pi i\ell x/N}f(x)=
+\displaystyle \frac{1}{\sqrt{N}}\sum_{m=0}^{n-1}\sum_{x=0}^{r-1}e^{-2\pi i\ell(mr+x)/nr}f(x)=
+\displaystyle \frac{1}{\sqrt{N}}\sum_{x=0}^{r-1}\sum_{m=0}^{n-1}e^{-2\pi i\ell m/n}e^{-2\pi i\ell x/N}f(x)=
+\displaystyle \frac{1}{\sqrt{N}}\sum_{x=0}^{r-1}n\delta_{\ell,zn}e^{-2\pi i\ell x/N}f(x)=
+\begin{cases}
+    \displaystyle \sqrt{\frac{n}{r}}\sum_{x=0}^{r-1}e^{-2\pi i\ell x/N}f(x) & \text{for }\ell=zn \text{ where } z\in\mathbb{Z}\\
+    0&\text{otherwise}
+\end{cases}$\\
+Equation 5.63 is the fourier transform for a single period of $f(x)$.
+\subsection*{Exercise 5.21}
+1)$U_y\ket{\hat{f}(\ell)}=\displaystyle \frac{1}{\sqrt{r}}\sum_{x=0}^{r-1}e^{-2\pi i\ell x/N}\ket{f(x+y)}=
+\displaystyle e^{2\pi i\ell y/N}\frac{1}{\sqrt{r}}\sum_{x=0}^{r-1}e^{-2\pi i\ell (x+y)/N}\ket{f(x+y)}=\\
+\displaystyle e^{2\pi i\ell y/N}\frac{1}{\sqrt{r}}\sum_{x=0}^{r-1}e^{-2\pi i\ell x/N}\ket{f(x)}=
+\displaystyle e^{2\pi i\ell y/N}\ket{\hat{f}(\ell)}$\\
+2)$\ket{f(x_0)}=\displaystyle\frac{1}{\sqrt{r}}\sum_{\ell=0}^{r-1}e^{2\pi i \ell x_0/r}\ket{\hat{f}(\ell)}$\\
+$\displaystyle \frac{1}{\sqrt{2^t}}\sum_{x=0}^{2^t-1}\ket{x}U_y\ket{f(x_0)}=
+\displaystyle\frac{1}{\sqrt{2^tr}}\sum_{\ell=0}^{r-1}\sum_{x=0}^{2^t-1}e^{2\pi i \ell x_0/r}e^{2\pi i\ell y/N}\ket{x}\ket{\hat{f}(\ell)}\\
+\xrightarrow{FT^\dagger}\displaystyle\frac{1}{\sqrt{r}}\sum_{\ell=0}^{r-1}e^{2\pi i\ell y/N}\ket{\tilde{\ell/r}}\ket{\hat{f}(\ell)}$\\
+Which due to the equal superposition of the $\ket{\hat{f}(\ell)}$ gives the result from
+phase estimation.
+\subsection*{Exercise 5.22}
+Using the fact that $\ket{f(x_1,x_2)}=\ket{f(0,x_2+sx_1)}$ from periodicity.\\
+
+$\ket{\hat{f}(\ell_1,\ell_2)}=\displaystyle\frac{1}{\sqrt{r}}\sum_{x_1=0}^{r-1}
+e^{-2\pi i\ell_1x_1/r}\frac{1}{\sqrt{r}}\sum_{x_2=0}^{r-1}
+e^{-2\pi i\ell_2x_2/r}\ket{f(x_1,x_2)}=
+\displaystyle\frac{1}{r}\sum_{x_1=0}^{r-1}\sum_{x_2=0}^{r-1}
+e^{-2\pi i(\ell_1x_1+\ell_2x_2)/r}\ket{f(x_1,x_2)}=
+\displaystyle\frac{1}{r}\sum_{x_1=0}^{r-1}\sum_{x_2=0}^{r-1}
+e^{-2\pi i(\ell_1x_1+\ell_2x_2)/r}\ket{f(0,x_2+sx_1)}=
+\displaystyle\frac{1}{r}\sum_{x_1=0}^{r-1}\sum_{j=sx_1}^{r-1+sx_1}
+e^{-2\pi i(\ell_1x_1+\ell_2(j-sx_1))/r}\ket{f(0,j)}=\\
+\displaystyle\frac{1}{r}\sum_{x_1=0}^{r-1}e^{-2\pi isx_1(\ell_1/s-\ell_2)/r}\sum_{j=sx_1}^{r-1+sx_1}
+e^{-2\pi i\ell_2j/r}\ket{f(0,j)}=
+\sum_{j=0}^{r-1}e^{-2\pi i\ell_2j/r}\ket{f(0,j)}$\\
+when $\ell_1/s-\ell_2\in \mathbb{Z}$.
+\subsection*{Exercise 5.23}
+Should be a $+$ in the exponent.\\
+Using $\ell_1=\ell_2s+nrs$\\
+$\displaystyle\frac{1}{r}\sum_{\ell_1=0}^{r-1}\sum_{\ell_2=0}^{r-1}
+e^{2\pi i(\ell_1x_1+\ell_2x_2)/r}\ket{\hat{f}(\ell_1,\ell_2)}=
+\displaystyle\frac{1}{r}\sum_{\ell_1=0}^{r-1}\sum_{\ell_2=0}^{r-1}
+e^{2\pi i(\ell_1x_1+\ell_2x_2)/r}\sum_{j=0}^{r-1}e^{-2\pi i\ell_2j/r}\ket{f(0,j)}=\\
+\displaystyle\frac{1}{r}\sum_{\ell_2=0}^{r-1}\sum_{j=0}^{r-1}
+e^{2\pi i((\ell_2s+nrs)x_1+\ell_2(x_2-j))/r}\ket{f(0,j)}=
+\displaystyle\frac{1}{r}\sum_{\ell_2=0}^{r-1}\sum_{j=0}^{r-1}
+e^{2\pi i\ell_2(sx_1+x_2-j)/r}\ket{f(0,j)}=\\
+\displaystyle\sum_{j=0}^{r-1}
+\delta_{x_2+sx_1,j}\ket{f(0,j)}=\ket{f(0,x_2+sx_1)}=\ket{f(x_1,x_2)}$
 \end{document}
