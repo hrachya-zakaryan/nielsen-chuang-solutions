@@ -1,0 +1,186 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usetikzlibrary{quantikz}
+\usepackage{multicol}
+\begin{document}
+\subsection*{Exercise 6.1}
+The phase shift performs the following,\\
+$\ket{0}\rightarrow\ket{0}$\\
+$\ket{x}\rightarrow-\ket{x}$ for $x>0$\\
+Hence, checking,\\
+$(2\ket{0}\bra{0}-I)\ket{0}=2\ket{0}-\ket{0}=\ket{0}$\\
+$(2\ket{0}\bra{0}-I)\ket{x}=0-\ket{x}=-\ket{x}$\\
+Also, $(2\ket{0}\bra{0}-I)^\dagger(2\ket{0}\bra{0}-I)=I$\\
+Therefore, $2\ket{0}\bra{0}-I$ is the phase shift unitary operator.
+\subsection*{Exercise 6.2}
+$(2\ket{\psi}\bra{\psi}-I)\displaystyle\sum_k\alpha_k\ket{k}=
+\displaystyle\sum_k 2\alpha_k\ket{\psi}\braket{\psi|k}-\alpha_k\ket{k}=
+\displaystyle\sum_{x_1}\sum_{x_2}\sum_k 2 \frac{\alpha_k}{N}\ket{x_1}\braket{x_2|k}-\alpha_k\ket{k}=
+\displaystyle\sum_{x_1}2\braket{\alpha}\ket{x_1}-\sum_k\alpha_k\ket{k}=
+\displaystyle 2\braket{\alpha}\sum_{x_1}\ket{x_1}-\sum_k\alpha_k\ket{k}=
+\displaystyle 2\braket{\alpha}\sum_{k}\ket{k}-\sum_k\alpha_k\ket{k}=\\
+\sum_k[-\alpha_k+2\braket{\alpha}]\ket{k}$\\
+Where we have relabeled, $x_1$ to $k$ as both are the basis vectors of the vector space.
+\subsection*{Exercise 6.3}
+Let $\ket{\psi}=\sqrt{\frac{N-M}{N}}\ket{\alpha}+\sqrt{\frac{M}{N}}\ket{\beta}=
+\cos\frac{\theta}{2}\ket{\alpha}+\sin\frac{\theta}{2}\ket{\beta}=\begin{bmatrix}
+    \cos\frac{\theta}{2}\\
+    \sin\frac{\theta}{2}
+\end{bmatrix}$\\
+$G\ket{\psi}=\begin{bmatrix}
+    \cos\theta&-\sin\theta\\
+    \sin\theta&\cos\theta
+\end{bmatrix}
+\begin{bmatrix}
+    \cos\frac{\theta}{2}\\
+    \sin\frac{\theta}{2}
+\end{bmatrix}=\begin{bmatrix}
+    \cos\frac{\theta}{2}\cos\theta-sin\frac{\theta}{2}\sin\theta\\
+    \cos\frac{\theta}{2}\sin\theta+sin\frac{\theta}{2}\cos\theta 
+\end{bmatrix}=
+\begin{bmatrix}
+    \cos\frac{3\theta}{2}\\
+    \sin\frac{3\theta}{2}
+\end{bmatrix}=\\
+\cos\frac{3\theta}{2}\ket{\alpha}+\sin\frac{3\theta}{2}\ket{\beta}$\\
+Hence, $G$ does indeed implement the Grover iteration.
+
+\subsection*{Exercise 6.4}
+\textbf{Input:} (1) a black box oracle $O$ which performs the transformation $O\ket{x}\ket{q}=
+\ket{x}\ket{q\oplus f(x)}$, where $f(x)=0$ $\forall 0\leq x<2^n$ except $x_i$ for $1\leq i\leq m$
+for which $f(x_i)=1$; (2) $n+1$ qubits in the state $\ket{0}$.\\
+\textbf{Output:} One of the $x_i$.\\
+\textbf{Runtime:} $O(\sqrt{2^n})$ operations. Succeeds with probability $O(1)$.\\
+\textbf{Procedure:}\\
+\begin{multicols}{2}
+    \begin{description}
+        \item[1.] $\ket{0}^{\otimes n}\ket{0}$
+        \item[2.] $\rightarrow \displaystyle\frac{1}{\sqrt{2^n}}\sum_{x=0}^{2^n-1}
+        \ket{x}\left[\frac{\ket{0}-\ket{1}}{\sqrt{2}}\right]$
+        \item[3.] $[2(\ket{\psi}\bra{\psi}-I)O]^R\displaystyle\frac{1}{\sqrt{2^n}}\sum_{x=0}^{2^n-1}
+        \ket{x}\left[\frac{\ket{0}-\ket{1}}{\sqrt{2}}\right]\\
+        \approx \displaystyle\frac{1}{\sqrt{2^m}}\sum_{i=1}^{m}\ket{x_i}\left[\frac{\ket{0}-\ket{1}}{\sqrt{2}}\right]$
+        \item[4.] $\rightarrow x_k$
+        \item initial state
+        \item apply $H^\otimes n$ to the first $n$ qubits, and $HX$ to the last qubit
+        \item apply the Grover iteration $R\approx \lceil\frac{\pi}{4}\sqrt{\frac{2^n}{M}}\rceil$ times
+        \item 
+        \item measure the first $n$ qubits
+    \end{description}
+\end{multicols}
+\subsection*{Exercise 6.5}
+The following circuit can be used,\\
+$\begin{quantikz}
+   \lstick{$\ket{q}$}&\qw&\ctrl{1}&\qw&\ctrl{1}&\qw\\
+   \lstick{$\ket{-}$}&\qw&\gate{Z}&\gate[wires=2]{O}&\gate{Z}&\qw\\
+   \lstick{$\ket{x}$}&\qwbundle{n}&\qw& &\qw&\qw
+\end{quantikz}$\\
+If $\ket{q}$ is set then on the second qubit we have $\ket{-}\rightarrow\ket{+}$, hence
+the oracle performs $\ket{x}\ket{+}\rightarrow\ket{x}\ket{+\oplus f(x)}=\ket{x}\ket{+}$,
+i.e. no items are marked. If the $\ket{q}$ is not set then the oracle functions as intended, i.e marking
+the correct solutions.
+\subsection*{Exercise 6.6}
+The gates in the dotted box perform,\\
+$U=X_1X_2H_2\text{CNOT}_{12}H_2X_1X_2=
+\begin{bmatrix}
+    0&X\\
+    X&0
+\end{bmatrix}
+\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}
+\begin{bmatrix}
+    I&0\\
+    0&X
+\end{bmatrix}
+\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}
+\begin{bmatrix}
+    0&X\\
+    X&0
+\end{bmatrix}=\\
+\begin{bmatrix}
+    0&X\\
+    X&0
+\end{bmatrix}
+\begin{bmatrix}
+    H&0\\
+    0&H
+\end{bmatrix}
+\begin{bmatrix}
+    0&HX\\
+    XHX&0
+\end{bmatrix}=
+\begin{bmatrix}
+    XHXHX&0\\
+    0&I
+\end{bmatrix}=
+\begin{bmatrix}
+    -Z&0\\
+    0&I
+\end{bmatrix}=
+\begin{bmatrix}
+    -1&0&0&0\\
+    0&1&0&0\\
+    0&0&1&0\\
+    0&0&0&1
+\end{bmatrix}=\\
+I-2\ket{00}\bra{00}=-(2\ket{00}\bra{00}-I)$
+\subsection*{Exercise 6.7}
+The oracle is the operator \\
+$O=\displaystyle\sum_{y\neq x}\ket{y}\bra{y}I_2+\ket{x}\bra{x}X_2=
+(I_1-\ket{x}\bra{x})I_2+\ket{x}\bra{x}X_2=I+\ket{x}\bra{x}(X_2-I_2)$\\
+Let $P_2$ denote the phase gate, then the circuit implements,\\
+$OPO=(I+\ket{x}\bra{x}(X_2-I_2))P_2(I+\ket{x}\bra{x}(X_2-I_2))=
+P+\ket{x}\bra{x}(P_2X_2-P_2+X_2-P_2+P_2X_2-P_2X_2-P_2X_2+P_2+XP_2X)=
+P_2+\ket{x}\bra{x}(-P_2+e^{i\Delta t}P_2^\dagger)$\\
+Hence, applying the circuit to a state $\ket{y}\ket{0}$, the circuit performs,\\
+$e^{i\Delta t}\left(I-\ket{x}\bra{x}+e^{-i\Delta t}\ket{x}\bra{x}\right)\ket{y}\ket{0}=
+\left(I-\ket{x}\bra{x}+\displaystyle\sum_{n=0}\frac{(-i\Delta t)^n}{n!}\ket{x}\bra{x}\right)\ket{y}\ket{0}=\\
+\left(I+\displaystyle\sum_{n=1}\frac{(-i\Delta t)^n}{n!}\ket{x}\bra{x}\right)\ket{y}\ket{0}=
+\left(\displaystyle\sum_{n=0}\frac{(-i\Delta t\ket{x}\bra{x})^n}{n!}\right)\ket{y}\ket{0}=
+e^{-i\ket{x}\bra{x}\Delta t}\ket{y}\ket{0}$\\
+The first two gates of the second circuit performs the action,\\
+$H^{\otimes n}\left(\displaystyle\sum_{y\neq \ket{0}^{\otimes n}}\ket{y}\bra{y}I_2+\ket{0}\bra{0}X_2\right)=
+H^{\otimes n}((I_1-\ket{0}\bra{0})I_2+\ket{0}\bra{0}X_2)=H^{\otimes n}(I+\ket{0}\bra{0}(X_2-I_2))$\\
+Hence, the total action of the circuit, similar to above is,\\
+$H^{\otimes n}(I+\ket{0}\bra{0}(X_2-I_2))P_2(I+\ket{0}\bra{0}(X_2-I_2))H^{\otimes n}=
+P_2+H^{\otimes n}\ket{0}\bra{0}H^{\otimes n}(-P_2+e^{i\Delta t}P_2^\dagger)=
+P_2+\ket{\psi}\bra{\psi}(-P_2+e^{i\Delta t}P_2^\dagger)$\\
+Therefore, as above applying the circuit on a state $\ket{y}\ket{0}$, results in\\
+$e^{-i\ket{\psi}\bra{\psi}\Delta t}\ket{y}\ket{0}$
+\subsection*{Exercise 6.8}
+For an accuracy of $O(\Delta t^r)$ the cumulative error is $O(\Delta t^r \times \sqrt{N}/\Delta t)=
+O(\Delta t^{r-1}\sqrt{N})$, hence we choose $\Delta t=\Theta(N^{-1/(2(r-1))})$, therefore the number of steps is
+$\frac{t}{\Delta t}=O(\sqrt{N}N^{1/(2(r-1))})=O(N^{r/(2(r-1))})$.
+\subsection*{Exercise 6.9}
+Using Exercise 4.15 (b),\\
+$\displaystyle c_{12}=\cos^2\left(\frac{\Delta}{2}\right)-\sin^2\left(\frac{\Delta}{2}\right)\vec{\psi}.\hat{z}\\
+\displaystyle s_{12}\hat{n}_{12}=\sin\left(\frac{\Delta}{2}\right)\cos\left(\frac{\Delta}{2}\right)(\vec{\psi}+\hat{z})+
+\sin^2\left(\frac{\Delta}{2}\right)\vec{\psi}\times\hat{z}$\\
+Hence,\\
+$\displaystyle U(\Delta t)=\left(\cos^2\left(\frac{\Delta}{2}\right)-\sin^2\left(\frac{\Delta}{2}\right)\vec{\psi}.\hat{z}\right)I-
+2i\sin\left(\frac{\Delta t}{2}\right)\left(\cos\left(\frac{\Delta}{2}\right)\frac{\vec{\psi}+\hat{z}}{2}+
+\sin\left(\frac{\Delta}{2}\right)\frac{\vec{\psi}\times\hat{z}}{2}\right).\hat{\sigma}$
+\subsection*{Exercise 6.10}
+
+\subsection*{Exercise 6.11}
+\subsection*{Exercise 6.12}
+\subsection*{Exercise 6.13}
+\subsection*{Exercise 6.14}
+\subsection*{Exercise 6.15}
+\subsection*{Exercise 6.16}
+\subsection*{Exercise 6.17}
+\subsection*{Exercise 6.18}
+\subsection*{Exercise 6.19}
+\subsection*{Exercise 6.20}
+\end{document}
