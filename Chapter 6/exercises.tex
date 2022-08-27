@@ -172,13 +172,51 @@ $\displaystyle U(\Delta t)=\left(\cos^2\left(\frac{\Delta}{2}\right)-\sin^2\left
 2i\sin\left(\frac{\Delta t}{2}\right)\left(\cos\left(\frac{\Delta}{2}\right)\frac{\vec{\psi}+\hat{z}}{2}+
 \sin\left(\frac{\Delta}{2}\right)\frac{\vec{\psi}\times\hat{z}}{2}\right).\hat{\sigma}$
 \subsection*{Exercise 6.10}
-
+$\displaystyle\cos\left(\frac{\theta}{2}\right)=1-\frac{2}{N}\sin^2\left(\frac{\Delta t}{2}\right)$\\
+$\displaystyle\theta=2\arccos\left(1-\frac{2}{N}\sin^2\left(\frac{\Delta t}{2}\right)\right)$\\
+Choose the largest $\Delta t$ such that $\theta=\pi/k$ for $k\in\mathbb{Z}$.
 \subsection*{Exercise 6.11}
+$H=\displaystyle\sum_{i=1}^m\ket{x_i}\bra{x_i}+\ket{\psi}\bra{\psi}$
 \subsection*{Exercise 6.12}
+1) Let $\\ket{\psi}=\alpha\ket{x}+\beta\ket{y}$ 
+$H=\ket{x}\bra{\psi}+\ket{\psi}\bra{x}=\begin{bmatrix}
+    2\alpha&\beta\\
+    \beta&0
+\end{bmatrix}=\alpha I+\alpha Z+\beta X$\\
+Hence,\\
+$e^{-iHt}\ket{\psi}=e^{-i\alpha t}(\cos{t}\ket{\psi}-i\sin{t}(\alpha Z+\beta X)\ket{\psi})=
+e^{-i\alpha t}(\cos{t}\ket{\psi}-i\sin{t}(\alpha^2 \ket{x}-\alpha\beta\ket{y}+\alpha\beta\ket{y}+
+\beta^2\ket{x}))=e^{-i\alpha t}(\cos{t}\ket{\psi}-i\sin{t}\ket{x})$\\
+Therefore, we can let $t=\pi/2$ to get $\ket{x}$, which is $O(1)$ in time.\\
+2) We simulated the Hamiltonian $H$ by alternating application of the Hamiltonians
+$H_1=\ket{x}\bra{\psi}$ and $H_2=H_1^\dagger =\ket{\psi}\ket{x}$. Similar to the Hamiltonian simulated
+by figures 6.4 and 6.5, each iteration will require $2$ oracle calls, hence we will require
+$O(N^{r/(2(r-1))})$ oracle calls for a $\Delta t$ of accuracy $O(\Delta t^r)$.
 \subsection*{Exercise 6.13}
+$\frac{k}{N}S~B(k,p)$ with $p=\frac{M}{N}$\\
+$\text{Var}[\frac{k}{N}S]=\frac{k^2}{N^2}\text{Var}[S]=kp(1-p)=
+k\frac{M(N-M)}{N^2}$\\
+$\text{Var}[S]=\frac{M(N-M)}{k}$\\
+$\Delta S=\sqrt{\frac{M(N-M)}{k}}$\\
+From Chebyshev's inequality, $2\Delta S\leq \sqrt{M}$, hence $k\geq 4(N-M)$.
+Therefore, $k=\Omega(N)$.
 \subsection*{Exercise 6.14}
+
 \subsection*{Exercise 6.15}
+From Cauchy-Schwarz,\\
+$\displaystyle\left(\sum_x|\braket{x|y}|\times 1\right)^2\leq \sum_x |\braket{x|y}|^2\sum_x 1=N$\\
+Hence,\\
+$\displaystyle\sum_x||\psi-x||^2=||\psi||^2+||x||^2-2\mathcal{R}(\braket{x|y})=
+2N-2\mathcal{R}(\braket{x|y})\geq 2N-2\sqrt{N}$
 \subsection*{Exercise 6.16}
+Instead of $|\braket{x|\psi_k^x}|^2\geq 1/2$, we have
+$\displaystyle\frac{1}{N}\sum_x|\braket{x|\psi_k^x}|^2\geq 1/2$.\\
+Hence,\\
+$\displaystyle\frac{1}{N}\sum_x||\psi_k^x-x||^2=2-2\frac{1}{N}\sum_x|\braket{x|\psi_k^x}|\leq
+2-\sqrt{2}$\\
+Therefore,\\
+$E_k=\displaystyle\sum_x||\psi_k^x-x||^2\leq (2-\sqrt{2})N$\\
+And the rest follows as in the text.
 \subsection*{Exercise 6.17}
 \subsection*{Exercise 6.18}
 \subsection*{Exercise 6.19}
