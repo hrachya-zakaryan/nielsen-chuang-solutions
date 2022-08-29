@@ -178,7 +178,7 @@ Choose the largest $\Delta t$ such that $\theta=\pi/k$ for $k\in\mathbb{Z}$.
 \subsection*{Exercise 6.11}
 $H=\displaystyle\sum_{i=1}^m\ket{x_i}\bra{x_i}+\ket{\psi}\bra{\psi}$
 \subsection*{Exercise 6.12}
-1) Let $\\ket{\psi}=\alpha\ket{x}+\beta\ket{y}$ 
+1) Let $\ket{\psi}=\alpha\ket{x}+\beta\ket{y}$ 
 $H=\ket{x}\bra{\psi}+\ket{\psi}\bra{x}=\begin{bmatrix}
     2\alpha&\beta\\
     \beta&0
@@ -201,7 +201,14 @@ $\Delta S=\sqrt{\frac{M(N-M)}{k}}$\\
 From Chebyshev's inequality, $2\Delta S\leq \sqrt{M}$, hence $k\geq 4(N-M)$.
 Therefore, $k=\Omega(N)$.
 \subsection*{Exercise 6.14}
-
+Assume we sample $A$ values to get an estimate $M+c\sqrt{M}$. The expectation is 
+$A\frac{M}{N}$ and the standard deviation $\sqrt{A\frac{M}{N}}$. Therefore, the estimate of
+$M$ with 75\% probability is, $M_{est}=\frac{N}{A}(A\frac{M}{N}\pm 2\sqrt{A\frac{M}{N}})=
+M+2\sqrt{\frac{N}{A}}\sqrt{M}$\\
+Hence,\\
+$M+c\sqrt{M}=M_{est}=M+2\sqrt{\frac{N}{A}}\sqrt{M}$\\
+$c^2=\frac{4N}{A}$\\
+$A=\frac{4N}{c^2}=\Omega(N)$
 \subsection*{Exercise 6.15}
 From Cauchy-Schwarz,\\
 $\displaystyle\left(\sum_x|\braket{x|y}|\times 1\right)^2\leq \sum_x |\braket{x|y}|^2\sum_x 1=N$\\
@@ -218,7 +225,9 @@ Therefore,\\
 $E_k=\displaystyle\sum_x||\psi_k^x-x||^2\leq (2-\sqrt{2})N$\\
 And the rest follows as in the text.
 \subsection*{Exercise 6.17}
+
 \subsection*{Exercise 6.18}
+
 \subsection*{Exercise 6.19}
 \subsection*{Exercise 6.20}
 \end{document}

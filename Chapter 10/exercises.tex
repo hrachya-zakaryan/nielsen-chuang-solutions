@@ -907,5 +907,68 @@ hence the circuit does indeed teleport the initial state.
 $\forall g \in S$ we have $g\in N(S)$ as $gg^\prime g^\dagger \in S$ $\forall g^\prime\in S$ due to
 $S$ being a group. Therefore, $S\subseteq N(S)$.
 \subsection*{Exercise 10.44}
+\subsection*{Exercise 10.45}
+
+\subsection*{Exercise 10.46}
+$S=<X_1X_2,X_2X_3>=\{I,X_1X_2,X_2X_3,X_1X_3\}$\\
+The subspace fixed by $X_1X_2$ is spanned by $\ket{+++},\ket{++-},\ket{---}$ and $\ket{--+}$.
+The subspace fixed by $X_2X_3$ is spanned by $\ket{+++},\ket{-++},\ket{---}$ and $\ket{-++}$.
+Hence, the subspace fixed by $S$ is spanned by $\ket{+++}$ and $\ket{---}$, which is the subspace
+for the three qubit phase flip code. Therefore, $X_1X_2$ and $X_2X_3$ generate the stabilizer
+for the three qubit phase flip code. 
+\subsection*{Exercise 10.47}
+The generators 1-6 have 2 $Z$'s with both $Z$'s being in one of the triplets,
+hence the phase flips are cancelled and $\ket{0_L}$ and $\ket{1_L}$ are fixed by them.\\
+Generators 7 and 8 have $X$s on all elements of any of the triplets or none. Hence, they fix
+$\ket{0_L}$. As 2 triplets are acted on, the phase flip from the triplets is cancelled and 
+hence $\ket{1_L}$ is also fixed. Therefore, theses are the generators for the Shor-code.
+\subsection*{Exercise 10.48}
+Each generator has an even number of $Z$'s or $X$'s, hence commute with $\bar{Z}$ and $\bar{X}$.
+Counting $Y$'s as both an $X$ and a $Z$, any product of the generators has an even number of $Z$'s
+and an even number of $X$'s, therefore as $\bar{Z}$ has an odd number of $Z$'s and
+$\bar{X}$ has an odd number of $X$'s they are independent of the generators. Lastly,
+$\bar{X}\bar{Z}=(XZ)^{\otimes 9}=(-1)^9(ZX)^{\otimes 9}=-\bar{Z}\bar{X}$. Therefore,
+$\bar{Z}$ and $\bar{X}$ act as logical $Z$ and $X$ operators for the Shor-code.
+\subsection*{Exercise 10.49}
+Consider the set $E=\{X_1,\ldots X_5,Y_1\ldots Y_5, Z_1,\ldots Z_5\}$.
+Consider for example the combination $X_1Z_2$. It commutes with $g_2$ hence $X_1Z_2\notin N(S)$.
+Similarly, we can show that $\forall E_iE_j$, $E_iE_j\notin N(S)$ or $E_iE_j\in S$, and hence
+$E_iE_j\notin N(S)-S$, therefore by Theorem 10.8 the five qubit code can protect against an
+arbitrary single qubit error. 
+\subsection*{Exercise 10.50}
+For the five qubit code $t=1$, $n=5$ and $k=1$. Hence, the Hamming bound is\\
+$\displaystyle{5\choose 0}3^02^1+{5\choose 1}3^12^1=2+5\times 6=32=2^5$\\
+Therefore, the five qubit code saturates the Hamming bound.
+\subsection*{Exercise 10.51}
+The given check matrix is split into generators with only $X$'s and generators only into $Z$'s.
+Consider the set $E$ of all possible $t$ operator tensor products of $X$'s and $Z$'s. Consider
+$E_iE_j$. As both $C_1$ and $C_2$ correct up to $t$ errors, $\exists g\in S$ such that 
+for the $2t$ length row $E_iE_j$ $E_iE_jgE_iE_j\notin S$ or $E_iE_j\in S$. Hence,
+$E_iE_j\notin N(S)-S$, therefore, by Theorem 10.8 $E$ is a length $t$ set of correctable errors.
+\subsection*{Exercise 10.52}
+Using figure 10.6 for the stabilizers. Each generator has an even number of $Z$'s or
+$X$'s, hence commute with $\bar{Z}$ and $\bar{X}$. 
+Counting $Y$'s as both an $X$ and a $Z$, any product of the generators has an even number of $Z$'s
+and an even number of $X$'s, therefore as $\bar{Z}$ has an odd number of $Z$'s and
+$\bar{X}$ has an odd number of $X$'s they are independent of the generators. Lastly,
+$\bar{X}\bar{Z}=(XZ)^{\otimes 7}=(-1)^7(ZX)^{\otimes 7}=-\bar{Z}\bar{X}$. Therefore,
+$\bar{Z}$ and $\bar{X}$ act as logical $Z$ and $X$ operators for the Steane-code.
+\subsection*{Exercise 10.53}
+\subsection*{Exercise 10.54}
+\subsection*{Exercise 10.55}
+\subsection*{Exercise 10.56}
+\subsection*{Exercise 10.57}
+\subsection*{Exercise 10.58}
+\subsection*{Exercise 10.59}
+\subsection*{Exercise 10.60}
+\subsection*{Exercise 10.61}
+\subsection*{Exercise 10.62}
+\subsection*{Exercise 10.63}
+\subsection*{Exercise 10.64}
+\subsection*{Exercise 10.65}
+\subsection*{Exercise 10.66}
+\subsection*{Exercise 10.67}
+\subsection*{Exercise 10.68}
+\subsection*{Exercise 10.69}
 
 \end{document}
