@@ -3,6 +3,7 @@
 \usepackage[margin=0.9in]{geometry}
 \usepackage{braket}
 \usepackage{graphicx}
+\usepackage{quantikz}
 \begin{document}
 \subsection*{Exercise 10.1}
 Let $\ket{\psi}=a\ket{0}+b\ket{1}$ and the initial state be $\ket{\psi_0}=a\ket{000}+b\ket{100}$.\\
@@ -121,8 +122,9 @@ $F(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=\sqrt{\bra{\psi}\mathcal{E}(\ke
 Minimum will occur when $a=0$ and $b=1$, hence\\
 $F_{min}(\ket{\psi},\mathcal{E}(\ket{\psi}\bra{\psi}))=F(\ket{1},\mathcal{E}(\ket{1}\bra{1}))=\sqrt{1-\gamma}$
 \subsection*{Exercise 10.14}
+$G$ will be a $rk\times k$ matrix.\\
 $G=
-rk\underbrace{\left\{
+rk\left\{
 \begin{bmatrix}
     1 & 0 & \ldots & 0\\
     \scriptstyle{r}\vdots & \vdots & \vdots & \vdots\\
@@ -135,7 +137,7 @@ rk\underbrace{\left\{
     \vdots & \vdots & \vdots & \vdots\\
     0 & 0 & \ldots & 1
     
-\end{bmatrix}\right.}_{k}$
+\end{bmatrix}\right.$
 \newpage
 \subsection*{Exercise 10.15}
 Let $c_1$ and $c_2$ be columns of $G$. Then\\
@@ -954,20 +956,326 @@ $\bar{X}$ has an odd number of $X$'s they are independent of the generators. Las
 $\bar{X}\bar{Z}=(XZ)^{\otimes 7}=(-1)^7(ZX)^{\otimes 7}=-\bar{Z}\bar{X}$. Therefore,
 $\bar{Z}$ and $\bar{X}$ act as logical $Z$ and $X$ operators for the Steane-code.
 \subsection*{Exercise 10.53}
+As $G_z$ includes $I$, the rank of $G_z$ is $k$, hence all of its rows are independent and
+therefore the encoded $Z$ operators are independent of each other.
 \subsection*{Exercise 10.54}
+$G_x=[0E^TI|C^T00]$\\
+For the first $r$ generators we have $I\times (C^T)^T+C\times I=0$ and for
+the other $n-k-r$ generators $I\times (E^T)^T+E\times I=0$, therefore the encoded $X$
+operators commute with the generators. The encoded $X$ operators commute with each other,
+as in each block we have only $X$ or only $Z$ operators. The independence from the generators
+follows from the $I$ in the left corner of the check matrix, and the $0$s in the last
+$n-k-r$ generators, as it's not possible to get the $X$ section of $G_x$ with these, due to
+the $0$ in the first block in $G_x$. As $G_x$ includes $I$, the rank of $G_x$ is $k$, 
+hence all of its rows are independent and
+therefore the encoded $X$ operators are independent of each other.
+Comparing $G_x$ and $G_z$, in the first two blocks we have only $X$'s or only $Z$'s, hence
+those parts commute. The third block for both the $X$ and $Z$ section is the identity, hence for
+$\bar{X}_i$ the third block corresponds with the $i^{th}$ row of $I$ in the $X$ section and
+similarly for $\bar{Z}_j$ to the $j^{th}$ row of $I$ in the $Z$ section. Hence, $\bar{X}_i$
+and $\bar{Z}_j$ have an $X$ and a $Z$ respectively in the same location only if $i=j$. Therefore,
+$\bar{X}_i$ and $\bar{Z}_j$ commute unless $i=j$ in which case they anti-commute.
 \subsection*{Exercise 10.55}
+$E=(1,1,0)$ and $C=(0,0,0)$, $\bar{X}=X_4X_5X_7$.
 \subsection*{Exercise 10.56}
+Consider $g_i\bar{X}_i$, as $g_i$ commutes with and is independent of all the 
+$g$'s and $\bar{X}$'s and $\bar{Z}$'s,
+$g_i\bar{X}_i$ still commutes with and is independent of all of them. Also, from the previous
+statement $g_i\bar{X}_i$ commutes with all $\bar{Z}_j$ unless $i=j$. Similarly, for 
+$g_i\bar{Z}_i$. Therefore, $gX$ and $gZ$ still are encoded $X$ and $Z$ operators and hence
+their action on the code doesn't change.
 \subsection*{Exercise 10.57}
+For the five qubit code swap $q_2$ and $q_5$, replace $g_1$ by $g_1g_4$ and afterwards
+$g_3$ with $g_3g_1$.\\
+$G_4=\left[\begin{matrix}
+    1&0&0&1&0\\
+    0&1&0&0&1\\
+    1&0&1&0&0\\
+    0&1&0&1&0
+\end{matrix}
+\middle\vert
+\begin{matrix}
+    0&1&1&0&0\\
+    0&0&1&1&0\\
+    0&0&0&1&1\\
+    1&0&0&0&1
+\end{matrix}\right]
+=\left[\begin{matrix}
+    1&0&0&0&1\\
+    0&1&0&0&1\\
+    0&0&1&0&1\\
+    0&0&0&1&1
+\end{matrix}
+\middle\vert
+\begin{matrix}
+    1&1&1&0&1\\
+    0&0&1&1&0\\
+    1&0&1&1&1\\
+    1&1&0&0&0
+\end{matrix}\right]$\\
+For the nine qubit code replace $g_3$ by $g_3g_4$, $g_5$ by $g_5g_6$,
+$g_7$ by $g_7g_8$. Then swap $q_1$ and $q_3$, $q_2$ and $q_4$,
+$q_2$ and $q_5$, $q_2$ and $q_6$, $q_2$ and $q_8$\\
+$G_9=\left[\begin{matrix}
+    1&1&1&1&1&1&0&0&0\\
+    0&0&0&1&1&1&1&1&1\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0
+\end{matrix}
+\middle\vert
+\begin{matrix}
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    1&1&0&0&0&0&0&0&0\\
+    0&1&1&0&0&0&0&0&0\\
+    0&0&0&1&1&0&0&0&0\\
+    0&0&0&0&1&1&0&0&0\\
+    0&0&0&0&0&0&1&1&0\\
+    0&0&0&0&0&0&0&1&1
+\end{matrix}\right]=\\
+\\
+\left[\begin{matrix}
+    1&0&1&1&1&1&0&0&1\\
+    0&1&0&0&1&1&1&1&1\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0
+\end{matrix}
+\middle\vert
+\begin{matrix}
+    0&0&0&0&0&0&0&0&0\\
+    0&0&0&0&0&0&0&0&0\\
+    1&0&1&0&0&0&0&0&0\\
+    1&0&0&1&0&0&0&0&0\\
+    0&0&0&0&1&0&0&0&1\\
+    0&0&0&0&0&1&0&0&1\\
+    0&1&0&0&0&0&1&0&0\\
+    0&1&0&0&0&0&0&1&0    
+\end{matrix}\right]$
 \subsection*{Exercise 10.58}
+From Exercise 4.34 the circuits function as described. The equivalence of Figure 10.14
+follows from Exercise 4.20 and the equivalence of Figure 10.15 follows from Exercise 4.18 and
+that $HZH=X$.
 \subsection*{Exercise 10.59}
+Each single control multiple targets gate can be written as multiple
+single control single target gates. As $HH=I$ we can add Hadamard pairs between
+the single control single target gates, which then gives multiple subcircuits in the 
+form of Figures 10.14 and 15. Applying, the equivalence of the circuits using $HH=I$ 
+and collecting the single control single target gates together under single target
+multiple targets gates gives the circuit in Figure 10.17.
+\newpage
 \subsection*{Exercise 10.60}
+
+Using the check matrices from Exercise 10.57 we get,\\
+For the five qubit code,\\
+$\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{8}&\qw&\qw&\qw&\ctrl{8}&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\ctrl{7}&\qw&\qw&\qw&\ctrl{6}&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\ctrl{6}&\qw&\qw&\qw&\ctrl{6}&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\ctrl{5}&\qw&\qw&\qw&\ctrl{2}&\gate{H}&\qw&\meter{}\\
+    &\qw&\gate{X}&\qw&\qw&\qw&\gate{Z}&\qw&\gate{Z}&\gate{Z}&\qw&\qw\\
+    &\qw&\qw&\gate{X}&\qw&\qw&\gate{Z}&\qw&\qw&\gate{Z}&\qw&\qw\\
+    &\qw&\qw&\qw&\gate{X}&\qw&\gate{Z}&\gate{Z}&\gate{Z}&\qw&\qw&\qw\\
+    &\qw&\qw&\qw&\qw&\gate{X}&\qw&\gate{Z}&\gate{Z}&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\gate{X}&\gate{X}&\gate{X}&\gate{Z}&\qw&\gate{Z}&\qw&\qw&\qw\\
+\end{quantikz}$\\
+\newpage
+
+For the nine qubit code,\\
+$\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{13}&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\ctrl{15}&\qw&\qw&\qw&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\ctrl{12}&\qw&\qw&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\ctrl{11}&\qw&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\qw&\ctrl{8}&\qw&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\qw&\qw&\ctrl{8}&\qw&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\qw&\qw&\qw&\ctrl{9}&\qw&\gate{H}&\qw&\meter{}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\ctrl{9}&\gate{H}&\qw&\meter{}\\
+    &\qw&\gate{X}&\qw&\gate{Z}&\qw&\qw&\qw&\qw&\qw&\qw&\qw\\
+    &\qw&\qw&\gate{X}&\qw&\qw&\qw&\qw&\gate{Z}&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\qw&\qw&\gate{Z}&\qw&\qw&\qw&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\gate{X}&\qw&\qw&\gate{Z}&\qw&\qw&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\gate{X}&\qw&\qw&\gate{Z}&\gate{Z}&\qw&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\gate{X}&\qw&\qw&\qw&\gate{Z}&\qw&\qw&\qw&\qw\\
+    &\qw&\gate{X}&\qw&\gate{Z}&\gate{Z}&\qw&\qw&\qw&\qw&\qw&\qw\\
+    &\qw&\qw&\gate{X}&\qw&\qw&\qw&\qw&\gate{Z}&\gate{Z}&\qw&\qw\\
+    &\qw&\qw&\gate{X}&\qw&\qw&\qw&\qw&\qw&\gate{Z}&\qw&\qw
+\end{quantikz}$
 \subsection*{Exercise 10.61}
+$E_j$ are all the possible single qubit errors. For each $E_j$ we consider,
+$E_jg_lE_j^\dagger=\beta_lg_l$ where $\beta_l$ is the syndrome measurement. Hence, for 
+each syndrome we compare the $\beta_l$'s and decide based on that which $E_j$ has occurred
+and apply $E_j^\dagger$ to recover.
+We also have seen that if multiple $E_j$ give rise to the same syndrome then it suffices to
+choose one of them and applying $E_j^\dagger$ for that error operator corrects all
+the errors with the same syndrome.
 \subsection*{Exercise 10.62}
+Let $S_1$ be the generator for $[n_1,1]$ and $S_2$ the generator for $[n_2,1]$.
+After concatenating the generators for the stabilizer will need to stabilize both $[n_1,1]$
+and $[n_2,1]$. 
+Hence, the generators will be all the combinations $g_ig_j^\prime$ where $g_i\in S_1$ and
+$g_j^\prime\in S_2$. Therefore, this will create a $[n_1n_2,1]$ code.
 \subsection*{Exercise 10.63}
+$\bar{U}\ket{0_L}=\bar{U}\bar{Z}\ket{0_L}=\bar{X}\bar{U}\ket{0_L}$\\
+$\bar{U}\ket{1_L}=-\bar{U}\bar{Z}\ket{1_L}=-\bar{X}\bar{U}\ket{1_L}$\\
+Hence, $\bar{U}\ket{0_L}$ and $\bar{U}\ket{1_L}$ correspond to the $\pm 1 $ eigenstates
+of $\bar{X}$, hence up to a phase factor $\bar{U}\ket{0_L}=\frac{1}{\sqrt{2}}(\ket{0_L}+\ket{1_L})$
+and $\bar{U}\ket{1_L}=\frac{1}{\sqrt{2}}(\ket{0_L}-\ket{1_L})$.
 \subsection*{Exercise 10.64}
+Using Exercise 10.36 $UZ_2=UZ_2U^\dagger U=Z_1Z_2U$.\\
+Using Exercise 4.20, $HZ=XH$ and the propagation of an $X$ error on the control qubit,\\
+$\begin{quantikz}
+    &\qw&\ctrl{1}&\qw\\
+    &\gate{Z}&\targ{}&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\qw&\gate{H}&\gate{H}&\ctrl{1}&\gate{H}&\gate{H}&\qw\\
+    &\gate{Z}&\gate{H}&\gate{H}&\targ{}&\gate{H}&\gate{H}&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\qw&\gate{H}&\targ{}&\gate{H}&\qw\\
+    &\gate{H}&\gate{X}&\ctrl{-1}&\gate{H}&\qw
+\end{quantikz}=\\
+\begin{quantikz}
+    &\qw&\gate{H}&\targ{}&\gate{X}&\gate{H}&\qw\\
+    &\qw&\gate{H}&\ctrl{-1}&\gate{X}&\gate{H}&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\qw&\gate{H}&\targ{}&\gate{H}&\gate{Z}&\qw\\
+    &\qw&\gate{H}&\ctrl{-1}&\gate{H}&\gate{Z}&\qw
+\end{quantikz}=
+\begin{quantikz}
+    &\qw&\ctrl{1}&\gate{Z}&\qw\\
+    &\qw&\targ{}&\gate{Z}&\qw
+\end{quantikz}$
 \subsection*{Exercise 10.65}
+Let $\ket{\psi}=a\ket{0}+b\ket{1}$. For the first circuit we have,\\
+$a\ket{00}+b\ket{01}\xrightarrow{\text{CNOT}_{21}}a\ket{00}+b\ket{11}\xrightarrow{H_2}
+\frac{1}{\sqrt{2}}(a\ket{00}+a\ket{01}+b\ket{10}-b\ket{11})=\\
+\frac{1}{\sqrt{2}}((a\ket{0}+b\ket{1})\ket{0}+(a\ket{0}-b\ket{1})\ket{1})\xrightarrow{\text{Mes}}
+\begin{cases}
+    \ket{\psi} & \text{if measurement gives} +1\\
+    Z(a\ket{0}-b\ket{1})=\ket{\psi} & \text{if measurement gives} -1
+\end{cases}$\\
+For the second circuit we have,\\
+$a\ket{00}+b\ket{01}\xrightarrow{H_1}\frac{1}{\sqrt{2}}(\ket{0}(a\ket{0}+b\ket{1})+
+\ket{1}(a\ket{0}+b\ket{1}))\xrightarrow{\text{CNOT}_{12}}\\
+\frac{1}{\sqrt{2}}(\ket{0}(a\ket{0}+b\ket{1})+\ket{1}(a\ket{1}+b\ket{0}))=\\
+\frac{1}{\sqrt{2}}((a\ket{0}+b\ket{1})\ket{0}+(a\ket{1}+b\ket{0})\ket{1})\xrightarrow{\text{Mes}}
+\begin{cases}
+    \ket{\psi} & \text{if measurement gives} +1\\
+    X(b\ket{0}+a\ket{1})=\ket{\psi} & \text{if measurement gives} -1
+\end{cases}$
 \subsection*{Exercise 10.66}
+Mistake in the question, should be $TXT^\dagger =exp(-i\pi/4)SX$,i.e. $TX=exp(-i\pi/4)SXT$.\\
+$\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{1}&\gate{X}&\gate{T}&\qw\rstick{$T\ket{\psi}$}\\
+    \lstick{$\ket{\psi}$}&\qw&\targ{}&\meter{}\vcw{-1}
+\end{quantikz}=
+\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{1}&\gate{T}&\gate{SX}&\qw\rstick{$T\ket{\psi}$}\\
+    \lstick{$\ket{\psi}$}&\qw&\targ{}&\qw&\meter{}\vcw{-1}
+\end{quantikz}=\\
+\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\gate{T}&\ctrl{1}&\gate{SX}&\qw\rstick{$T\ket{\psi}$}\\
+    \lstick{$\ket{\psi}$}&\qw&\qw&\targ{}&\meter{}\vcw{-1}
+\end{quantikz}$
 \subsection*{Exercise 10.67}
+a)$LHS=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&I\\
+    I&0&0&0\\
+    0&I&0&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&I\\
+    I&0&0&0\\
+    0&X&0&0
+\end{bmatrix}
+$\\
+$RHS=
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&X\\
+    I&0&0&0\\
+    0&X&0&0
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&XX\\
+    I&0&0&0\\
+    0&X&0&0
+\end{bmatrix}=
+\begin{bmatrix}
+    0&0&I&0\\
+    0&0&0&I\\
+    I&0&0&0\\
+    0&X&0&0
+\end{bmatrix}$\\
+b)$LHS=\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&Z
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&XZ
+\end{bmatrix}
+$\\
+$RHS=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&-Z
+\end{bmatrix}
+\begin{bmatrix}
+    I&0&0&0\\
+    0&I&0&0\\
+    0&0&I&0\\
+    0&0&0&X
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&-ZX
+\end{bmatrix}=
+\begin{bmatrix}
+    Z&0&0&0\\
+    0&Z&0&0\\
+    0&0&Z&0\\
+    0&0&0&XZ
+\end{bmatrix}$
 \subsection*{Exercise 10.68}
 \subsection*{Exercise 10.69}
 
