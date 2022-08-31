@@ -1,0 +1,63 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\begin{document}
+\subsection*{Exercise 11.1}
+For a fair coin $H(X)=-2\times\frac{1}{2}\log{\frac{1}{2}}=1$\\
+For a fair die $H(X)=-6\times\frac{1}{6}\log{\frac{1}{6}}=1+\log{3}$\\
+For an unfair coin we can write $H(X)=-p\log{p}-(1-p)\log{(1-p)}$ and 
+for the unfair die $H(X)=-p_1\log{p_1}-p_2\log{p_2}-p_3\log{p_3}-p_4\log{p_4}-p_5\log{p_5}
+-(1-p_1-p_2-p_3-p_4-p_5)\log{(1-p_1-p_2-p_3-p_4-p_5)}$.\\
+Differentiating both of these we see that for both the global maxima is when 
+all the probabilities are equal, therefore for the unfair coin and die the entropy will
+decrease.
+\subsection*{Exercise 11.2}
+$I(p)=k\log{p}$ is a function of probability alone.\\
+$\log{p}$ is smooth for $0<p\leq 1$\\
+$I(pq)=k\log{(pq)}=k(\log{p}+\log{q})=I(p)+I(q)$
+\subsection*{Exercise 11.3}
+$H_{bin}(p)=-p\log{p}-(1-p)\log{(1-p)}$\\
+$\displaystyle \frac{dH_{bin}}{dp}=-\frac{1}{\ln{2}}-\log{p}+\frac{1}{\ln{2}}+\log{(1-p)}=0$\\
+$\displaystyle\frac{1-p}{p}=1$\\
+Therefore, $p=\frac{1}{2}$.
+\subsection*{Exercise 11.4}
+For a function $f(x)$ to be concave we require $f^{\prime\prime}(x)<0$.\\
+$\displaystyle \frac{d^2H_{bin}}{dp^2}=\frac{d}{dp}(\log{(1-p)}-\log{p})=
+\frac{1}{\ln{2}(1-p)p}<0$\\
+Hence, $H_{bin}$ is concave.
+\subsection*{Exercise 11.5}
+$H(p(x,y)||p(x)p(y))=\displaystyle\sum_{xy}p(x,y)\log{\frac{p(x,y)}{p(x)p(y)}}=
+\sum_{xy}p(x,y)\log{p(x,y)}-\sum_{xy}p(x,y)\log{p(x)}-\sum_{xy}p(x,y)\log{p(y)}=
+\sum_{xy}p(x,y)\log{p(x,y)}-\sum_{x}p(x)\log{p(x)}-\sum_{y}p(y)\log{p(y)}=
+H(p(x))+H(p(y))-H(p(x,y))$\\
+$H(p(x,y)||p(x)p(y))\geq 0$\\
+Therefore,\\
+$H(p(x))+H(p(y))-H(p(x,y))=H(X)+H(Y)-H(X,Y)\geq 0$\\
+$H(X,Y)\leq H(X)+H(Y)$\\
+If $X$ and $Y$ are independent then $p(x,y)=p(x)p(y)$. Therefore,\\
+$H(X,Y)=-\displaystyle\sum_{xy}p(x,y)\log{p(x,y)}=
+-\sum_{xy}p(x)p(y)\log{p(x)p(y)}=-\sum_{x}p(x)\log{p(x)}-\sum_{y}p(y)\log{p(y)}=H(X)+H(Y)$\\
+Therefore, equality hold if and only if $X$ and $Y$ are independent.
+\subsection*{Exercise 11.6}
+
+\subsection*{Exercise 11.7}
+\subsection*{Exercise 11.8}
+\subsection*{Exercise 11.9}
+\subsection*{Exercise 11.10}
+\subsection*{Exercise 11.12}
+\subsection*{Exercise 11.13}
+\subsection*{Exercise 11.14}
+\subsection*{Exercise 11.15}
+\subsection*{Exercise 11.16}
+\subsection*{Exercise 11.17}
+\subsection*{Exercise 11.18}
+\subsection*{Exercise 11.19}
+\subsection*{Exercise 11.20}
+\subsection*{Exercise 11.21}
+\subsection*{Exercise 11.22}
+\subsection*{Exercise 11.23}
+\subsection*{Exercise 11.24}
+\subsection*{Exercise 11.25}
+\subsection*{Exercise 11.26}
+\end{document}

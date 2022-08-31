@@ -1277,6 +1277,49 @@ $RHS=
     0&0&0&XZ
 \end{bmatrix}$
 \subsection*{Exercise 10.68}
+1)$\ket{x}$ and $\ket{y}$ are swapped using the first circuit in Exercise 10.65
+and $\ket{z}$ is swapped using the second circuit. Then, applying the Toffoli gives the
+indicated result.\\
+2)Using Exercise 10.67 (a) twice and then (b) we get the following,\\
+$\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{3}&\qw&\qw&\qw&\qw&\qw&\gate{X}&\ctrl{1}&\qw\rstick{$\ket{x}$}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\ctrl{3}&\qw&\qw&\qw&\gate{X}&\qw&\ctrl{1}&\qw\rstick{$\ket{y}$}\\
+    \lstick{$\ket{0}$}&\qw&\qw&\qw&\targ{}&\qw&\gate{Z}&\qw&\qw&\targ{}&\qw\rstick{$\ket{z\oplus xy}$}\\
+    \lstick{$\ket{x}$}&\qw&\targ{}&\qw&\qw&\qw&\qw&\qw&\meter{}\vcw{-3}\\
+    \lstick{$\ket{y}$}&\qw&\qw&\targ{}&\qw&\qw&\qw&\meter{}\vcw{-3}\\
+    \lstick{$\ket{z}$}&\qw&\qw&\qw&\ctrl{-3}&\gate{H}&\meter{}\vcw{-3}
+\end{quantikz}=\\
+\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{3}&\qw&\qw&\qw&\qw&\ctrl{1}&\qw&\ctrl{2}&\gate{X}&\qw&\qw\rstick{$\ket{x}$}\\
+    \lstick{$\ket{0}$}&\gate{H}&\qw&\ctrl{3}&\qw&\qw&\qw&\ctrl{1}&\gate{X}&\qw&\qw&\ctrl{1}&\qw\rstick{$\ket{y}$}\\
+    \lstick{$\ket{0}$}&\qw&\qw&\qw&\targ{}&\qw&\gate{Z}&\targ{}&\qw&\targ{}&\qw&\targ{}&\qw\rstick{$\ket{z\oplus xy}$}\\
+    \lstick{$\ket{x}$}&\qw&\targ{}&\qw&\qw&\qw&\qw&\qw&\qw&\qw&\meter{}\vcw{-3}&\cwbend{-1}\\
+    \lstick{$\ket{y}$}&\qw&\qw&\targ{}&\qw&\qw&\qw&\qw&\meter{}\vcw{-3}&\cwbend{-2}\\
+    \lstick{$\ket{z}$}&\qw&\qw&\qw&\ctrl{-3}&\gate{H}&\meter{}\vcw{-3}
+\end{quantikz}=\\
+\begin{quantikz}
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{1}&\ctrl{3}&\qw&\qw&\qw&\ctrl{1}&\qw&\ctrl{2}&\gate{X}&\qw&\qw\rstick{$\ket{x}$}\\
+    \lstick{$\ket{0}$}&\gate{H}&\ctrl{1}&\qw&\ctrl{3}&\qw&\qw&\gate{Z}&\gate{X}&\qw&\qw&\ctrl{1}&\qw\rstick{$\ket{y}$}\\
+    \lstick{$\ket{0}$}&\qw&\targ{}&\qw&\qw&\targ{}&\qw&\gate{Z}\vcw{-1}&\qw&\targ{}&\qw&\targ{}&\qw\rstick{$\ket{z\oplus xy}$}\\
+    \lstick{$\ket{x}$}&\qw&\qw&\targ{}&\qw&\qw&\qw&\qw&\qw&\qw&\meter{}\vcw{-3}&\cwbend{-1}\\
+    \lstick{$\ket{y}$}&\qw&\qw&\qw&\targ{}&\qw&\qw&\qw&\meter{}\vcw{-3}&\cwbend{-2}\\
+    \lstick{$\ket{z}$}&\qw&\qw&\qw&\qw&\ctrl{-3}&\gate{H}&\meter{}\vcw{-3}
+\end{quantikz}$\\
+3)If the ancilla preparation is done fault-tolerantly then, there will be at most an error
+on most a single qubit after the preparation. The first three CNOTs as shown prior are 
+fault tolerant as the error doesn't propagate in more than one qubit due to the measurement
+(assuming fault-tolerant measurement).
+Using the Steane code the rest of the CNOT's and controlled-Z gates can be performed 
+fault-tolerantly, therefore the whole circuit is a fault-tolerant implementation of the
+Toffoli gate.
 \subsection*{Exercise 10.69}
-
+An $X$ error on the second and third qubits won't propagate between the ancilla, while an
+$X$ error on the first qubit will propagate to the second and third qubits and hence will be
+detected by the verification step. For a $Y$ error $UY_1=Y_1X_2U$ and $UY_2=Z_1Y_2U$. Hence,
+a $Y$ error on the the first qubit will propagate an $X$ error to the other 2 qubits which 
+will be detected by the verification step. A $Y$ error on one of the other qubits will propagate
+a $Y$ error which will be detected by the verification step.
+\subsection*{Exercise 10.70}
+$UZ_1=Z_1U$ hence the $Z$ errors will not propagate to the data qubits, but will change
+the parity of the `cat' state and therefore alter the measurement result.
 \end{document}
