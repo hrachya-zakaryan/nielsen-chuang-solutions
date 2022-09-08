@@ -1,0 +1,41 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{quantikz}
+\begin{document}
+\subsection*{Exercise 12.1}
+Let $\ket{\psi}=a\ket{0}+b\ket{1}$. Then, $\ket{\varphi}=b\ket{0}-a\ket{1}$.\\
+We require a gate which transforms between the basis of $\ket{\psi}$ and $\ket{\varphi}$,
+and the computational basis. This can be performed using the unitary,
+$U=U^dagger=\begin{bmatrix}
+    a&b\\
+    b&-a
+\end{bmatrix}$. Using $U$ we construct the following circuit which performs the cloning.\\
+$\begin{quantikz}
+    \lstick{$\ket{\psi}$}&\gate{U}&\ctrl{1}&\gate{U}&\qw&\rstick{$\ket{\psi}$}\\
+    \lstick{$\ket{0}$}&\qw&\targ{}&\gate{U}&\qw&\rstick{$\ket{\psi}$}
+\end{quantikz}$
+\subsection*{Exercise 12.2}
+
+\subsection*{Exercise 12.3}
+\subsection*{Exercise 12.4}
+\subsection*{Exercise 12.5}
+\subsection*{Exercise 12.6}
+\subsection*{Exercise 12.7}
+\subsection*{Exercise 12.8}
+\subsection*{Exercise 12.9}
+\subsection*{Exercise 12.10}
+\subsection*{Exercise 12.11}
+\subsection*{Exercise 12.12}
+\subsection*{Exercise 12.13}
+\subsection*{Exercise 12.14}
+\subsection*{Exercise 12.15}
+\subsection*{Exercise 12.16}
+\subsection*{Exercise 12.17}
+\subsection*{Exercise 12.18}
+\subsection*{Exercise 12.19}
+\subsection*{Exercise 12.20}
+
+\end{document}
