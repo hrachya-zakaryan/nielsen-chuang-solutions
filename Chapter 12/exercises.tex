@@ -18,10 +18,34 @@ $\begin{quantikz}
     \lstick{$\ket{0}$}&\qw&\targ{}&\gate{U}&\qw&\rstick{$\ket{\psi}$}
 \end{quantikz}$
 \subsection*{Exercise 12.2}
-
+$\displaystyle\sum_y\sqrt{E_y}\otimes U_y(\sigma \otimes \ket{0}\bra{0})\sqrt{E_y}\otimes U_y=
+\sum_y\sqrt{E_y}\sigma\sqrt{E_y}\otimes \ket{0+y}\bra{0+y}=
+\sum_y\sqrt{E_y}\sigma\sqrt{E_y}\otimes \ket{y}\bra{y}$
 \subsection*{Exercise 12.3}
+From the Holevo bound $H(X:Y)\leq S(\rho)$, however $S(\rho)$ is bounded by $\log{2^n}=n$, 
+hence no more than $n$ bits can be transferred.
 \subsection*{Exercise 12.4}
+Let $\rho_i=\ket{X_i}\bra{X_i}$, and  $\rho=\frac{1}{4}\sum_i\rho_i=\frac{I}{2}$, which
+is the maximally mixed state, hence $S(\rho)=1$ and the $S(\rho_i)=0$ as the $\rho_i$ are
+pure states. Then,\\
+$\chi=S(\rho)-\displaystyle\sum_ip_iS(\rho_i)=1$\\
+We have tetrahedral symmetry for the states $\ket{X_i}$, hence we consider POVMs with 
+the same symmetry. Consider $E_i=\frac{1}{2}\ket{X_i}\bra{X_i}$, and $F_i=\frac{1}{2}\ket{\psi_i}\bra{\psi_i}$,
+where\\
+$\ket{\psi_1}=\ket{1}$\\
+$\ket{\psi_2}=\sqrt{\frac{1}{3}}(\sqrt{2}e^{\pi i/3}\ket{0}+\ket{1})$\\
+$\ket{\psi_3}=\sqrt{\frac{1}{3}}(\sqrt{2}e^{\pi i}\ket{0}+\ket{1})$\\
+$\ket{\psi_4}=\sqrt{\frac{1}{3}}(\sqrt{2}e^{5\pi i/3}\ket{0}+\ket{1})$\\
+Using $H(X:Y)=H(Y)-H(Y|X)$, $P(X=x)=\frac{1}{4}$, $p(Y=y|x=x)=tr(\rho_xE_y)$ and
+Bayes theorem we get,\\
+$H(Y)=-\displaystyle\sum_yp(Y=y)\log{p(Y=y)}=\\
+-\sum_y\left(\sum_xp(X=x)p(Y=y|X=x)\right)\log{\left(\sum_xp(X=x)p(Y=y|X=x)\right)}$\\
+$H(Y|X)=\displaystyle - \sum_xp(X=x)\sum_yp(Y=y|X=x)\log{p(Y=y|X=x)}$\\
+The calculation can be found in 12.3.py and gives $H(X:Y)_E\approx 0.208$ and
+$H(X:Y)_F\approx 0.415$. Therefore, ${F_i}$ is the desired POVM.\\
+As shown in DOI: 10.1109/TIT.1978.1055941 the maximum information is $\log{\frac{4}{3}}\approx 0.415$.
 \subsection*{Exercise 12.5}
+
 \subsection*{Exercise 12.6}
 \subsection*{Exercise 12.7}
 \subsection*{Exercise 12.8}
