@@ -45,11 +45,28 @@ The calculation can be found in 12.3.py and gives $H(X:Y)_E\approx 0.208$ and
 $H(X:Y)_F\approx 0.415$. Therefore, ${F_i}$ is the desired POVM.\\
 As shown in DOI: 10.1109/TIT.1978.1055941 the maximum information is $\log{\frac{4}{3}}\approx 0.415$.
 \subsection*{Exercise 12.5}
-
+We know that $p(x\in T(n,\epsilon))\geq 1-\delta$, hence $1-p(x\in T(n,\epsilon))\leq\delta$. 
+The expected number of bits required for a single symbol when 
+the $x$s are $\epsilon$-typical will be,\\
+$E(n,\epsilon)=H(X)p(x\in T(n,\epsilon))+\frac{\log{d^n}}{n}p(x\notin T(n,\epsilon))\leq\\
+Rp(x\in T(n,\epsilon))+\log{d}(1-p(x\in T(n,\epsilon)))\leq R+\delta\log{\delta}$\\
+Hence,\\
+$E(n,\epsilon)-R\leq\delta\log{d}$
 \subsection*{Exercise 12.6}
+$C_X=p^{n-wt(X)}(1-p)^{wt(X)}$\\
+Where, $wt(X)$ is the Hamming weight.
 \subsection*{Exercise 12.7}
+This is the circuit outlined in Box 12.4 but with the basis change gate $V$ set to $I$.
 \subsection*{Exercise 12.8}
+Taking $p_J=p_{j_1}p_{j_2}\ldots p_{j_n}$ and using Exercise 9.20 for the concavity of fidelity,
+ from Equation 9.141 we have,\\
+$\bar{F}\geq \displaystyle F\left(\sum_Jp_J\rho_J, D^n \circ C^n\right)=
+F\left(\sum_Jp_{j_1}\ket{\psi_{j_1}}\bra{\psi_{j_1}}\otimes p_{j_2}\ket{\psi_{j_2}}\bra{\psi_{j_2}}
+\ldots p_{j_n}\ket{\psi_{j_n}}\bra{\psi_{j_n}}, D^n \circ C^n\right)=
+F(\rho^{\otimes n},D^n \circ C^n)=F(\rho, D^n \circ C^n)^n\geq (1-2\delta)^n$\\
+Where the last inequality is only true for $R>S(\rho)$.
 \subsection*{Exercise 12.9}
+
 \subsection*{Exercise 12.10}
 \subsection*{Exercise 12.11}
 \subsection*{Exercise 12.12}
